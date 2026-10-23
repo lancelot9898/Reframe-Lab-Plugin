@@ -1,8 +1,6 @@
 # Reframe Lab: Chief of Staff
 
-DRAFT: member-facing copy goes through Lance's copy loop before publishing.
-
-The Chief of Staff plugin for Building Your AI Chief of Staff, a Reframe Lab program from Lance Pendleton. It makes Claude a chief of staff for your real estate business. It learns who you are, drafts the emails you owe, turns your meetings into follow-ups, and keeps a note for each client. It drafts. You send.
+The Chief of Staff plugin for Building Your AI Chief of Staff, a Reframe Lab program from Lance Pendleton. It makes Claude a chief of staff for your real estate business. It learns who you are, drafts the emails you owe, turns your meetings into follow-ups, and keeps a note for each client.
 
 ## What you need
 
@@ -27,13 +25,13 @@ You're done when you type / in a new chat and see setup, today, meeting, client 
 
 ## The five commands
 
-Type / and then the name. Claude also picks these up when you ask in plain words, but typing the name always works.
+Type / and then the name. Plain words often start the same job, but the command always does.
 
-- **/setup** is the week 1 interview. You talk for about 45 minutes, and Claude learns who you are and how to work for you.
-- **/today** reads your email and calendar and drafts what you owe. Your morning task runs it too.
-- **/meeting** turns a voice note, a transcript or a recording into a follow-up draft, a list of who promised what, and a note in the client's folder.
-- **/client** and a name, such as /client Bob Johnson, shows everything Claude knows about that client on one page.
-- **/backup** saves what Claude remembers to a dated Google Doc. It can run once a month on its own.
+- /setup is the week 1 interview. You talk for about 45 minutes, and Claude learns who you are and how to work for you.
+- /today reads your email and calendar and drafts what you owe. Your morning task runs it too.
+- /meeting turns a voice note, a transcript or a recording into a follow-up draft, a list of who promised what, and a note in the client's folder.
+- /client and a name, such as /client Bob Johnson, shows everything Claude knows about that client on one page.
+- /backup saves what Claude remembers to a dated Google Doc. It can run once a month on its own.
 
 ## It drafts. You send.
 
@@ -41,7 +39,7 @@ Nothing in this plugin sends an email. Your replies wait in Gmail Drafts until y
 
 ## If you use Outlook
 
-On Pro, Claude can read your Outlook mail and calendar through the Microsoft 365 connector, but it can't save drafts in Outlook. So Claude writes each draft out for you to copy. The Claude for Outlook add-in can draft straight into Outlook. Both need a work Microsoft 365 account, and your brokerage's IT has to approve them once. Personal Outlook.com and Hotmail addresses can't connect.
+On Pro, Claude can read your Outlook mail and calendar through the Microsoft 365 connector, but it can't save drafts in Outlook. So Claude writes each draft out for you to copy. The Claude for Outlook add-in can draft straight into Outlook. Both need a work Microsoft 365 account, and whoever runs your brokerage's email has to approve them once, in one request. Personal Outlook.com and Hotmail addresses can't connect.
 
 ## Updates
 

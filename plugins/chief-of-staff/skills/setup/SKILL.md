@@ -22,7 +22,7 @@ Say these in a few short lines, then ask Part 1, question 1.
 
 - It's three parts, about 45 minutes. They can stop at the end of any part and pick up later.
 - Talk, don't type. On the computer, use the microphone in the message box. On the phone, use dictation. Rambling is fine. You'll pull out what matters.
-- Names are the one thing to type, spelled out, because dictation gets them wrong.
+- Two things get typed, not spoken: names, spelled out, and the words they never want to see. Dictation gets both wrong.
 - Never give you a Social Security number, an account number or loan figures.
 - Health details stay out of memory unless they turn that on. Settings > Memory has a switch for sensitive topics, and it starts off. Leave it off unless they're sure they want it.
 
@@ -41,7 +41,7 @@ Say these in a few short lines, then ask Part 1, question 1.
 - Expect rambling, repetition and tangents. Pull out the substance. Never ask them to tidy an answer.
 - Quote their words. Don't polish them into yours.
 - Never invent a detail. If an answer is thin, ask one follow-up. If it's still thin, keep what they gave you and move on.
-- Ask them to type every name and spell it. Use their spelling everywhere.
+- Ask them to type every name and spell it, and to type the words they never want to see (Part 2, question 2). Use their spelling everywhere.
 - If they start telling you something private, like a client's health or a family matter, stop them kindly. You only need the kind of thing, never the details.
 - At the end of each part, read back what you'll keep, in short lines, and ask "What's wrong or missing?" Fix what they tell you. Then do that part's saving step.
 

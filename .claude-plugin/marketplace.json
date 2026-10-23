@@ -1,0 +1,14 @@
+{
+  "name": "reframe-lab",
+  "owner": {
+    "name": "Lance Pendleton"
+  },
+  "description": "Reframe Lab plugins from Lance Pendleton, for real estate agents who want Claude working as their chief of staff.",
+  "plugins": [
+    {
+      "name": "chief-of-staff",
+      "source": "./plugins/chief-of-staff",
+      "description": "Your AI chief of staff for real estate. It learns who you are, drafts the emails you owe from your inbox and calendar, turns meetings into follow-ups and client notes, and backs up what Claude remembers. It drafts. You send."
+    }
+  ]
+}

@@ -16,7 +16,7 @@ The Chief of Staff plugin for Building Your AI Chief of Staff, a Reframe Lab pro
 3. Click Plugins.
 4. Click Add, then Add marketplace.
 5. Click Add from a repository.
-6. Type `[NEEDS LANCE: github-owner]/reframe-lab-plugin`
+6. Type `lancelot9898/Reframe-Lab-Plugin`
 7. Leave Sync automatically on.
 8. Click Sync.
 9. Find Chief of Staff and click Add.

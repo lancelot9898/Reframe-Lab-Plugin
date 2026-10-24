@@ -175,7 +175,7 @@ You're done when the block is in the box. It applies to every new chat from then
 
 If Google Drive is connected, offer: "Want me to save a dated copy of this interview in your Google Drive, in My Brain/Backups?" If they say yes:
 
-1. Find the folder called My Brain in their Drive. If there's more than one, stop and ask which to use. If there's none, create it at the top of their Drive.
+1. Find the folder named exactly My Brain in their Drive. Ignore folders whose names only contain those words, such as "My Brain Setup Kit". If more than one is named exactly My Brain, stop and ask which to use. If there's none, create it at the top of their Drive.
 2. Find the Backups folder inside My Brain, or create it.
 3. Create a new Google Doc there called "Chief of Staff interview YYYY-MM-DD", with today's date. Upload the text with conversion to Google Docs left on.
 4. Put in their answers, part by part, in their words, then the Instructions block. Leave out anything they asked you never to keep.

@@ -36,6 +36,8 @@ Take whatever they give you.
 
 Transcripts mishear names. Use the spelling the agent types, or the one in memory, never the transcript's.
 
+Recording times can come back in UTC. Give every date and time in the time zone on the agent's calendar, and if you can't tell which zone a time is in, leave the time out and keep the date.
+
 ## 2. Which client
 
 Work out the client from what they said, the recording title, or the calendar event. If it isn't clear, or two clients fit, ask. Spell the name exactly as the agent types it. That spelling names the folder and the note. For a couple, use the agent's own wording, such as "Bob and Cindy Johnson".
@@ -60,7 +62,7 @@ To the client, in the agent's voice. Three short parts:
 
 Keep dollar figures, contract terms and legal positions out of it. Where the email needs one, write [NEEDS REVIEW: the figure] and tell the agent.
 
-- **Gmail:** if there's a recent thread with this client, draft it as a reply inside that thread. Otherwise start a new draft. Find their email address in memory or past mail. If you can't, leave To empty and say so. Never use Gmail's send, reply or forward tools. Reply and forward send at once.
+- **Gmail:** if there's a recent thread between the agent and this client alone, draft it as a reply inside that thread. Otherwise start a new draft. A thread that includes other people, such as an introduction, would copy them on the follow-up. Find their email address in memory or past mail. If you can't, leave To empty and say so. Never use Gmail's send, reply or forward tools. Reply and forward send at once.
 - **Microsoft 365 only:** give it as a copy-ready draft. Say once that the Claude for Outlook add-in can draft straight into Outlook. Never say or suggest it was saved in Outlook.
 - **No email connector:** give it as a copy-ready draft.
 
@@ -91,7 +93,7 @@ Put this in your reply:
 
 If Google Drive is connected:
 
-1. Find the folder called My Brain. If there's more than one, stop and ask which to use. If there's none, create it at the top of their Drive.
+1. Find the folder named exactly My Brain. Ignore folders whose names only contain those words, such as "My Brain Setup Kit". If more than one is named exactly My Brain, stop and ask which to use. If there's none, create it at the top of their Drive.
 2. Inside My Brain, find or create Clients. Inside Clients, find the client's folder. If there's none, create one named exactly as the agent types the client's name. If a folder with a close name exists, such as "Johnson" when they typed "Bob Johnson", ask which to use.
 3. Create a new Google Doc in that folder called "YYYY-MM-DD Meeting with [Client Name]", using the date of the meeting. Upload the text with conversion to Google Docs left on. If a note with that name already exists, add " (2)" to the new one.
 4. Put in the note:

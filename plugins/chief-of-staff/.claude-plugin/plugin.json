@@ -1,6 +1,6 @@
 {
   "name": "chief-of-staff",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Your AI chief of staff for real estate. It learns who you are, drafts the emails you owe from your inbox and calendar, turns meetings into follow-ups and client notes, and backs up what Claude remembers. It drafts. You send.",
   "author": {
     "name": "Lance Pendleton"

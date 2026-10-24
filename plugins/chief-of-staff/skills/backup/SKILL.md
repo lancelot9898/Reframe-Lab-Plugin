@@ -31,7 +31,7 @@ Write out everything you remember about the agent and their clients, verbatim, e
 
 If Google Drive is connected:
 
-1. Find the folder called My Brain. If there's more than one, stop and ask which to use. In an unattended run, stop and write nothing. If there's none, create it at the top of their Drive.
+1. Find the folder named exactly My Brain. Ignore folders whose names only contain those words, such as "My Brain Setup Kit". If more than one is named exactly My Brain, stop and ask which to use. In an unattended run, stop and write nothing. If there's none, create it at the top of their Drive.
 2. Find the Backups folder inside My Brain, or create it.
 3. Create a new Google Doc there called "Claude memory backup YYYY-MM-DD", with today's date. Upload the text with conversion to Google Docs left on. If a Doc with that name already exists, add " (2)" to the new one.
 

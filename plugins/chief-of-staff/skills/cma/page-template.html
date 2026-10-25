@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Market analysis</title>
+<!--
+  CMA page template for the Chief of Staff plugin.
+  Claude fills in ONLY the JSON inside <script id="cma-data">. Everything else stays as it is.
+  The page works offline, loads nothing except an optional Google Font, and recalculates
+  the range whenever a sale is ticked or unticked.
+-->
+<script type="application/json" id="cma-data">
+{
+  "client": "Client name",
+  "prepared": "YYYY-MM-DD",
+  "agent": {"name": "", "brokerage": "", "phone": "", "email": "", "license": ""},
+  "brand": {"primary": "#1f3a5f", "accent": "#c8963e", "ink": "#1b1f24", "paper": "#ffffff", "font": "", "logo": ""},
+  "subject": {"address": "", "beds": null, "baths": null, "sqft": null, "lot": "", "year": null, "notes": ""},
+  "seller_number": null,
+  "list_price": null,
+  "comps": [],
+  "excluded": [],
+  "market": [],
+  "what_would_change": [],
+  "checkpoint": "",
+  "sources": "",
+  "disclaimer": "This is a comparative market analysis, an opinion of value based on the sales and listings shown. It is not an appraisal. It can't see inside these homes, their condition or their permits."
+}
+</script>
+<style>
+  :root {
+    --brand: #1f3a5f; --accent: #c8963e; --ink: #1b1f24; --paper: #ffffff;
+    --muted: color-mix(in srgb, var(--ink) 58%, var(--paper));
+    --line: color-mix(in srgb, var(--ink) 14%, var(--paper));
+    --soft: color-mix(in srgb, var(--brand) 6%, var(--paper));
+    --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.5; }
+  .page { max-width: 980px; margin: 0 auto; padding: 32px 20px 56px; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; border-bottom: 3px solid var(--brand); padding-bottom: 18px; }
+  .logo img { max-height: 56px; max-width: 220px; display: block; }
+  .logo .name { font-weight: 700; font-size: 18px; color: var(--brand); }
+  .kicker { text-transform: uppercase; letter-spacing: .08em; font-size: 12px; color: var(--muted); margin: 0 0 4px; }
+  h1 { font-size: 28px; line-height: 1.2; margin: 0; color: var(--ink); }
+  .for { color: var(--muted); margin: 6px 0 0; }
+  .hdr-right { text-align: right; font-size: 14px; color: var(--muted); }
+  section { margin-top: 36px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--brand); margin: 0 0 12px; }
+  .hero { background: var(--soft); border-radius: 14px; padding: 24px; }
+  .range { font-size: clamp(30px, 6vw, 46px); font-weight: 750; letter-spacing: -.01em; color: var(--brand); line-height: 1.1; }
+  .range small { font-size: .45em; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+  .hero p { margin: 10px 0 0; max-width: 62ch; }
+  .warn { margin-top: 12px; padding: 10px 12px; border-left: 4px solid var(--accent); background: var(--paper); font-size: 14px; }
+  .bar { position: relative; height: 66px; margin: 26px 6px 6px; }
+  .bar .track { position: absolute; left: 0; right: 0; top: 30px; height: 6px; background: var(--line); border-radius: 3px; }
+  .bar .band { position: absolute; top: 26px; height: 14px; background: color-mix(in srgb, var(--brand) 34%, var(--paper)); border-radius: 7px; }
+  .bar .dot { position: absolute; top: 27px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--brand); border: 2px solid var(--paper); }
+  .bar .act { position: absolute; top: 27px; width: 12px; height: 12px; margin-left: -6px; border-radius: 50%; background: var(--paper); border: 2px solid var(--muted); }
+  .bar .mark { position: absolute; top: 4px; bottom: 6px; width: 0; border-left: 2px dashed var(--accent); }
+  .bar .mark span { position: absolute; top: -2px; left: 6px; white-space: nowrap; font-size: 12px; font-weight: 600; color: var(--ink); background: var(--soft); padding: 0 4px; }
+  .bar .mark.right span { left: auto; right: 6px; }
+  .bar .tick { position: absolute; top: 46px; font-size: 12px; color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); margin-top: 4px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
+  .fact { border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .fact b { display: block; font-size: 20px; }
+  .fact span { font-size: 13px; color: var(--muted); }
+  .notes { margin-top: 12px; }
+  .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--line); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 760px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); font-weight: 600; background: var(--soft); }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  tr.off td { color: var(--muted); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--ink) 30%, transparent); }
+  tr.off td.keep { text-decoration: none; }
+  td.keep { width: 44px; }
+  input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--brand); cursor: pointer; }
+  .adj { font-size: 13px; color: var(--muted); }
+  .why { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .hint { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+  ul.plain { margin: 0; padding-left: 20px; }
+  ul.plain li { margin: 6px 0; }
+  .tested p { margin: 0 0 8px; max-width: 68ch; }
+  footer { margin-top: 44px; border-top: 1px solid var(--line); padding-top: 16px; font-size: 13px; color: var(--muted); }
+  footer p { margin: 0 0 8px; }
+  .empty { color: var(--muted); font-style: italic; }
+  @media (max-width: 640px) {
+    .page { padding: 20px 16px 40px; }
+    header { flex-direction: column; gap: 12px; }
+    .hdr-right { text-align: left; }
+    h1 { font-size: 24px; }
+  }
+  @media print {
+    .page { max-width: none; padding: 0; }
+    .hint, td.keep, th.keep { display: none; }
+    tr.off { display: none; }
+    section { break-inside: auto; }
+    h2 { break-after: avoid; }
+    .hero, .facts, .tested, footer, tr { break-inside: avoid; }
+    .bar .dot, .bar .act, .bar .band, .bar .mark span { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .tablewrap { overflow: visible; border: 0; }
+    table { min-width: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page" id="app"></div>
+<script>
+(function () {
+  var D = JSON.parse(document.getElementById('cma-data').textContent);
+  var root = document.documentElement.style;
+  var b = D.brand || {};
+  if (b.primary) root.setProperty('--brand', b.primary);
+  if (b.accent) root.setProperty('--accent', b.accent);
+  if (b.ink) root.setProperty('--ink', b.ink);
+  if (b.paper) root.setProperty('--paper', b.paper);
+  if (b.font) {
+    var l = document.createElement('link');
+    l.rel = 'stylesheet';
+    l.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(b.font).replace(/%20/g, '+') + ':wght@400;500;600;700;800&display=swap';
+    document.head.appendChild(l);
+    root.setProperty('--font', '"' + b.font + '", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif');
+  }
+
+  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function money(n) { return n == null || isNaN(n) ? 'Not given' : '$' + Math.round(n).toLocaleString('en-US'); }
+  function k(n) { return '$' + Math.round(n / 1000).toLocaleString('en-US') + 'k'; }
+  function round1k(n) { return Math.round(n / 1000) * 1000; }
+  function num(n) { return n == null || n === '' ? 'Not given' : Number(n).toLocaleString('en-US'); }
+  function dateStr(s) {
+    if (!s) return 'Not given';
+    var d = new Date(s + 'T12:00:00');
+    return isNaN(d) ? esc(s) : d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+  function median(a) { var s = a.slice().sort(function (x, y) { return x - y; }); var m = Math.floor(s.length / 2); return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2; }
+  function sum(a) { return a.reduce(function (t, x) { return t + (Number(x.amount) || 0); }, 0); }
+
+  var S = D.subject || {};
+  var comps = (D.comps || []).map(function (c, i) {
+    c._i = i;
+    c.adjustments = c.adjustments || [];
+    if (c.keep === undefined) c.keep = true;
+    return c;
+  });
+  var sales = comps.filter(function (c) { return c.status === 'sold'; });
+  var actives = comps.filter(function (c) { return c.status === 'active'; });
+  var pendings = comps.filter(function (c) { return c.status === 'pending'; });
+  var refused = comps.filter(function (c) { return c.status === 'expired' || c.status === 'withdrawn'; });
+
+  // A sale points to a value for the subject: its price per square foot times the
+  // subject's square feet, plus the agent's own adjustments for other differences.
+  sales.forEach(function (c) {
+    c._ppsf = c.price && c.sqft ? c.price / c.sqft : null;
+    c._adj = sum(c.adjustments);
+    c._points = c._ppsf && S.sqft ? c._ppsf * S.sqft + c._adj : null;
+    c._heavy = c.price ? Math.abs(c._adj) > 0.15 * c.price : false;
+  });
+
+  var app = document.getElementById('app');
+  var a = D.agent || {};
+  var html = '';
+  html += '<header><div><p class="kicker">Comparative market analysis</p><h1>' + esc(S.address) + '</h1>';
+  html += '<p class="for">Prepared for ' + esc(D.client) + ' on ' + dateStr(D.prepared) + '</p></div>';
+  html += '<div class="hdr-right"><div class="logo">' + (b.logo ? '<img alt="' + esc(a.brokerage || a.name) + '" src="' + esc(b.logo) + '">' : '<div class="name">' + esc(a.name) + '</div>') + '</div>';
+  html += '<div>' + (b.logo ? [a.name, a.brokerage] : [a.brokerage]).filter(Boolean).map(esc).join('<br>') + '</div></div></header>';
+
+  html += '<section><h2>What the sales say</h2><div class="hero"><div class="range" id="range"></div><p id="rangeText"></p><div id="warn"></div>';
+  html += '<div class="bar" id="bar"></div><div class="legend"><span><i style="background:var(--brand)"></i>A sale we kept</span>' + (actives.length ? '<span><i style="border:2px solid var(--muted)"></i>For sale now, at its list price</span>' : '') + '</div></div></section>';
+
+  html += '<section><h2>Your home</h2><div class="facts">';
+  [['Bedrooms', S.beds], ['Bathrooms', S.baths], ['Square feet', S.sqft != null ? num(S.sqft) : null], ['Lot', S.lot], ['Built', S.year]].forEach(function (f) {
+    html += '<div class="fact"><b>' + (f[1] == null || f[1] === '' ? '<span class="empty">Not given</span>' : esc(f[1])) + '</b><span>' + f[0] + '</span></div>';
+  });
+  html += '</div>' + (S.notes ? '<p class="notes">' + esc(S.notes) + '</p>' : '') + '</section>';
+
+  html += '<section><h2>The sales</h2><div class="tablewrap"><table><thead><tr><th class="keep">Keep</th><th>Address</th><th>Sold</th><th class="num">Price</th><th class="num">Sq ft</th><th class="num">Per sq ft</th><th>Beds / baths</th><th>Adjustments</th><th class="num">Points to</th></tr></thead><tbody id="salesBody">';
+  sales.forEach(function (c) {
+    var adj = c.adjustments.length ? c.adjustments.map(function (x) { return esc(x.label) + ' ' + (x.amount < 0 ? '-' : '+') + money(Math.abs(x.amount)); }).join('<br>') : 'None';
+    html += '<tr data-i="' + c._i + '"><td class="keep"><input type="checkbox" aria-label="Keep ' + esc(c.address) + '" ' + (c.keep ? 'checked' : '') + '></td>';
+    html += '<td><b>' + esc(c.address) + '</b>' + (c.note ? '<div class="why">' + esc(c.note) + '</div>' : '') + (c._heavy ? '<div class="why">Adjusted by more than 15% of its price, so it\'s a weak match.</div>' : '') + '</td>';
+    html += '<td>' + dateStr(c.date) + (c.dom != null ? '<div class="why">' + esc(c.dom) + ' days on market</div>' : '') + '</td>';
+    html += '<td class="num">' + money(c.price) + '</td><td class="num">' + num(c.sqft) + '</td><td class="num">' + (c._ppsf ? money(c._ppsf) : 'Not given') + '</td>';
+    html += '<td>' + esc(c.beds == null ? '?' : c.beds) + ' / ' + esc(c.baths == null ? '?' : c.baths) + '</td><td class="adj">' + adj + '</td>';
+    html += '<td class="num"><b>' + (c._points ? money(round1k(c._points)) : 'Not given') + '</b></td></tr>';
+  });
+  if (!sales.length) html += '<tr><td colspan="9" class="empty">No sales were given.</td></tr>';
+  html += '</tbody></table></div><p class="hint">Untick a sale to leave it out. The range above moves with it.</p></section>';
+
+  function listTable(title, rows, dateLabel, note) {
+    if (!rows.length) return '';
+    var h = '<section><h2>' + title + '</h2>' + (note ? '<p class="hint" style="margin:0 0 10px">' + note + '</p>' : '') + '<div class="tablewrap"><table><thead><tr><th>Address</th><th>' + dateLabel + '</th><th class="num">Price</th><th class="num">Sq ft</th><th class="num">Per sq ft</th><th>Beds / baths</th><th class="num">Days on market</th></tr></thead><tbody>';
+    rows.forEach(function (c) {
+      h += '<tr><td><b>' + esc(c.address) + '</b>' + (c.note ? '<div class="why">' + esc(c.note) + '</div>' : '') + '</td><td>' + dateStr(c.date) + '</td><td class="num">' + money(c.price) + '</td><td class="num">' + num(c.sqft) + '</td><td class="num">' + (c.price && c.sqft ? money(c.price / c.sqft) : 'Not given') + '</td><td>' + esc(c.beds == null ? '?' : c.beds) + ' / ' + esc(c.baths == null ? '?' : c.baths) + '</td><td class="num">' + (c.dom == null ? 'Not given' : esc(c.dom)) + '</td></tr>';
+    });
+    return h + '</tbody></table></div></section>';
+  }
+  html += listTable('Your competition, for sale now', actives, 'Listed', 'List prices, not sale prices. Buyers compare your home with these.');
+  html += listTable('Under contract', pendings, 'Went under contract', 'What buyers agreed to recently. The final prices aren\'t public yet.');
+  html += listTable('What didn\'t sell', refused, 'Came off the market', 'Homes that expired or were withdrawn. Their prices show what buyers passed on.');
+
+  if (D.market && D.market.length) {
+    html += '<section><h2>The market right now</h2><ul class="plain">' + D.market.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul></section>';
+  }
+  html += '<section class="tested" id="tested"></section>';
+  if ((D.what_would_change && D.what_would_change.length) || D.checkpoint) {
+    html += '<section><h2>What would change this</h2>';
+    if (D.what_would_change && D.what_would_change.length) html += '<ul class="plain">' + D.what_would_change.map(function (m) { return '<li>' + esc(m) + '</li>'; }).join('') + '</ul>';
+    if (D.checkpoint) html += '<p style="margin-top:12px"><b>Our checkpoint.</b> ' + esc(D.checkpoint) + '</p>';
+    html += '</section>';
+  }
+  if (D.excluded && D.excluded.length) {
+    html += '<section><h2>Sales we looked at and left out</h2><ul class="plain">' + D.excluded.map(function (x) { return '<li><b>' + esc(x.address) + '</b>' + (x.why ? '. ' + esc(x.why) : '') + '</li>'; }).join('') + '</ul></section>';
+  }
+  html += '<footer><p>' + esc(D.disclaimer) + '</p>' + (D.sources ? '<p>Sources: ' + esc(D.sources) + '</p>' : '') + '<p>' + [a.name, a.brokerage, a.license ? 'License ' + a.license : '', a.phone, a.email].filter(Boolean).map(esc).join(' &middot; ') + '</p></footer>';
+  app.innerHTML = html;
+
+  function kept() { return sales.filter(function (c) { return c.keep && c._points; }); }
+
+  function render() {
+    var ks = kept();
+    var pts = ks.map(function (c) { return c._points; });
+    var rangeEl = document.getElementById('range');
+    var textEl = document.getElementById('rangeText');
+    var warnEl = document.getElementById('warn');
+    var sn = D.seller_number;
+    if (!pts.length) {
+      rangeEl.innerHTML = 'No sales selected';
+      textEl.textContent = 'Tick at least three sales to see a range.';
+      warnEl.innerHTML = '';
+      document.getElementById('bar').innerHTML = '';
+      document.getElementById('tested').innerHTML = '';
+      return;
+    }
+    var lo = round1k(Math.min.apply(null, pts)), hi = round1k(Math.max.apply(null, pts)), mid = round1k(median(pts));
+    rangeEl.innerHTML = money(lo) + ' <small>to</small> ' + money(hi);
+    textEl.textContent = 'The ' + ks.length + ' sale' + (ks.length === 1 ? '' : 's') + ' we kept point to ' + money(lo) + ' to ' + money(hi) + ' for your home, with the middle at ' + money(mid) + '.' + (D.list_price ? ' My recommended list price is ' + money(D.list_price) + '.' : '');
+    var w = [];
+    if (ks.length < 3) w.push('Fewer than three sales make a weak range. Add sales before relying on it.');
+    if (hi > lo * 1.12) w.push('These sales are spread wide, so the range is wide. The closest matches matter most.');
+    warnEl.innerHTML = w.map(function (t) { return '<div class="warn">' + esc(t) + '</div>'; }).join('');
+
+    var all = pts.slice();
+    actives.forEach(function (c) { if (c.price) all.push(c.price); });
+    if (sn) all.push(sn);
+    if (D.list_price) all.push(D.list_price);
+    var min = Math.min.apply(null, all), max = Math.max.apply(null, all);
+    var pad = Math.max((max - min) * 0.08, 5000); min -= pad; max += pad;
+    function x(v) { return ((v - min) / (max - min) * 100).toFixed(2) + '%'; }
+    var bar = '<div class="track"></div><div class="band" style="left:' + x(lo) + ';width:calc(' + x(hi) + ' - ' + x(lo) + ')"></div>';
+    actives.forEach(function (c) { if (c.price) bar += '<div class="act" title="' + esc(c.address) + ', ' + money(c.price) + '" style="left:' + x(c.price) + '"></div>'; });
+    ks.forEach(function (c) { bar += '<div class="dot" title="' + esc(c.address) + ' points to ' + money(round1k(c._points)) + '" style="left:' + x(c._points) + '"></div>'; });
+    function mark(v, label) { var r = (v - min) / (max - min) > 0.6; return '<div class="mark' + (r ? ' right' : '') + '" style="left:' + x(v) + '"><span>' + label + '</span></div>'; }
+    if (sn) bar += mark(sn, 'Your number ' + k(sn));
+    if (D.list_price && D.list_price !== sn) bar += mark(D.list_price, 'List ' + k(D.list_price));
+    bar += '<div class="tick" style="left:' + x(lo) + '">' + k(lo) + '</div>';
+    if (hi !== lo) bar += '<div class="tick" style="left:' + x(hi) + '">' + k(hi) + '</div>';
+    document.getElementById('bar').innerHTML = bar;
+
+    var t = '';
+    if (sn) {
+      var reach = ks.filter(function (c) { return c._points >= sn; }).length;
+      var where = sn > hi ? 'above every sale we kept' : sn < lo ? 'below every sale we kept' : sn >= mid ? 'inside the range, above the middle' : 'inside the range, below the middle';
+      var snPpsf = S.sqft ? sn / S.sqft : null;
+      var topPpsf = Math.max.apply(null, ks.map(function (c) { return c._ppsf || 0; }));
+      t += '<h2>Your number, tested</h2><p>Your number is ' + money(sn) + '. It sits ' + where + '. ' + reach + ' of the ' + ks.length + ' sale' + (ks.length === 1 ? '' : 's') + ' point to it or higher.</p>';
+      if (snPpsf) t += '<p>At ' + money(sn) + ', your home would be ' + money(snPpsf) + ' a square foot. The highest of these sales was ' + money(topPpsf) + ' a square foot.</p>';
+      var priced = actives.filter(function (c) { return c.price; });
+      if (priced.length) {
+        var above = priced.filter(function (c) { return c.price > sn; }).length;
+        t += '<p>Of the ' + priced.length + ' similar home' + (priced.length === 1 ? '' : 's') + ' for sale now, ' + (above === 0 ? 'none is' : above === 1 ? '1 is' : above + ' are') + ' listed above it.</p>';
+      }
+    }
+    document.getElementById('tested').innerHTML = t;
+  }
+
+  document.getElementById('salesBody').addEventListener('change', function (e) {
+    if (e.target.type !== 'checkbox') return;
+    var tr = e.target.closest('tr');
+    var c = comps[+tr.getAttribute('data-i')];
+    c.keep = e.target.checked;
+    tr.classList.toggle('off', !c.keep);
+    render();
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('#salesBody tr[data-i]'), function (tr) {
+    if (!comps[+tr.getAttribute('data-i')].keep) tr.classList.add('off');
+  });
+  render();
+})();
+</script>
+</body>
+</html>

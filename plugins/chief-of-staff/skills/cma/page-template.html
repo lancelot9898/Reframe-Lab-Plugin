@@ -8,7 +8,7 @@
   CMA page template for the Chief of Staff plugin.
   Claude fills in ONLY the JSON inside <script id="cma-data">. Everything else stays as it is.
   The page works offline, loads nothing except an optional Google Font, and recalculates
-  the range whenever a sale is ticked or unticked.
+  the range whenever a sale is checked or unchecked.
 -->
 <script type="application/json" id="cma-data">
 {
@@ -189,7 +189,7 @@
     html += '<td class="num"><b>' + (c._points ? money(round1k(c._points)) : 'Not given') + '</b></td></tr>';
   });
   if (!sales.length) html += '<tr><td colspan="9" class="empty">No sales were given.</td></tr>';
-  html += '</tbody></table></div><p class="hint">Untick a sale to leave it out. The range above moves with it.</p></section>';
+  html += '</tbody></table></div><p class="hint">Uncheck a sale to leave it out. The range above moves with it.</p></section>';
 
   function listTable(title, rows, dateLabel, note) {
     if (!rows.length) return '';

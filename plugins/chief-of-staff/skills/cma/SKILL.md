@@ -1,6 +1,6 @@
 ---
 name: cma
-description: Builds a branded comparative market analysis for a real estate agent's seller from properties the agent pastes in (an MLS export, a spreadsheet, a screenshot or a typed list). Picks the comps, works out the range the sales support, tests the seller's own number, says what would change it, and makes an interactive page the agent presents live, where the seller can untick a sale and watch the range move, plus a PDF to leave behind. Use when the agent says "CMA", "run a CMA", "comparative market analysis", "run comps", "pull comps for", "price this listing", "what's it worth", "pricing for my listing appointment", "test the seller's number", or types /cma.
+description: Builds a branded comparative market analysis for a real estate agent's seller from properties the agent pastes in (an MLS export, a spreadsheet, a screenshot or a typed list). Picks the comps, works out the range the sales support, tests the seller's own number, says what would change it, and makes an interactive page the agent presents live, where the seller can uncheck a sale and watch the range move, plus a PDF to leave behind. Use when the agent says "CMA", "run a CMA", "comparative market analysis", "run comps", "pull comps for", "price this listing", "what's it worth", "pricing for my listing appointment", "test the seller's number", or types /cma.
 ---
 
 # CMA: the range, the comps, and the seller's number
@@ -27,7 +27,7 @@ Never look up or fill in a property's facts yourself, from the web or from memor
 - **Sales** set the range. Use sales from about the last 90 days. If there are too few, go back up to 6 months and say so in the sources line.
 - Keep sales of the same kind of home, within about 20% of its square feet, and no more than one bedroom apart. Prefer the same neighborhood, then the nearest.
 - If the home is a resale, builders' sales of new homes are a different market. Leave them out and say why. If the home itself is new construction, ask the agent how they want builder sales treated.
-- Keep 3 to 6 sales. Fewer than 3 is a weak range: tell the agent and ask for more before you build. Past 6, mark the weakest ones as unticked (`"keep": false`) instead of dropping them, so the seller can see them. The weakest is the one least like the home: furthest in size, beds and baths, furthest away, or with a difference the agent's values can't adjust, such as a much bigger lot.
+- Keep 3 to 6 sales. Fewer than 3 is a weak range: tell the agent and ask for more before you build. Past 6, mark the weakest ones as unchecked (`"keep": false`) instead of dropping them, so the seller can see them. The weakest is the one least like the home: furthest in size, beds and baths, furthest away, or with a difference the agent's values can't adjust, such as a much bigger lot.
 - **For sale now** is the competition. Show it, never use it in the range.
 - **Under contract** shows what buyers agreed to. **Expired or withdrawn** shows what buyers passed on.
 - Any sale the agent gave you that you didn't use goes in the left-out list, with the reason in a few words. A seller's favorite comp should be visibly looked at, not ignored.
@@ -49,7 +49,7 @@ The page does this math, and your summary must match it.
    - `brand`: if you can see their published design system, take its two main colors, its font (if it's a Google Font) and its logo. If you can't, use the colors and font memory holds, or ask once for their two brand colors and their font, and save them to memory. A logo goes in as a data URI from an image they upload in this chat. Without one, the page shows their name instead.
    - `subject`: address, beds, baths, sqft (a number), lot (text, such as "0.18 acres"), year, notes (condition and updates, in a sentence or two).
    - `seller_number` and `list_price`: numbers, or null.
-   - `comps`: one object per property, with `address`, `status` ("sold", "active", "pending", "expired" or "withdrawn"), `price`, `date` (YYYY-MM-DD or null), `beds`, `baths`, `sqft`, `dom` if known, `note` (a few words on how it compares), `adjustments` (a list of `{"label": "Bathroom", "amount": -15000}`), and `"keep": false` for an unticked sale.
+   - `comps`: one object per property, with `address`, `status` ("sold", "active", "pending", "expired" or "withdrawn"), `price`, `date` (YYYY-MM-DD or null), `beds`, `baths`, `sqft`, `dom` if known, `note` (a few words on how it compares), `adjustments` (a list of `{"label": "Bathroom", "amount": -15000}`), and `"keep": false` for an unchecked sale.
    - `excluded`: one `{"address": "12 Oak St", "why": "Sold 8 months ago"}` for each sale left out.
    - `market`: two or three short lines, only from what the agent gave you or what you can count in the sales you kept and the homes for sale, such as the median days on market of the sales. Never from your own sense of the market.
    - `what_would_change`: three or four specific things for this home, such as a competing listing cutting its price, a pending sale closing, or condition the comps can't show.
@@ -57,7 +57,7 @@ The page does this math, and your summary must match it.
    - `sources`: where the properties came from and the date range of the sales, or "Sale dates not given".
    - Keep the `disclaimer` as it is, and add their brokerage's required wording after it if memory has one.
 4. Save it as an artifact so they can present it from their screen.
-5. Make a PDF of the same content to leave behind, with your file tools (the pdf skill, if you have it). Same colors and logo. Show only the sales they kept, and leave out the untick control.
+5. Make a PDF of the same content to leave behind, with your file tools (the pdf skill, if you have it). Same colors and logo. Show only the sales they kept, and leave out the checkboxes.
 
 No listing photos from the MLS or the portals. The agent's own photos of the home are fine if they give you them.
 

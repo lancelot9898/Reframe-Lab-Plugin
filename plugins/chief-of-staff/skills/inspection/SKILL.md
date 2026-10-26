@@ -24,6 +24,7 @@ Check memory and the client's folder in Google Drive first, and only ask for wha
 ## 2. Read the whole report
 
 - Read every page. Note each item's page number and the inspector's own words.
+- Use the report's own rating words, such as Action Required, Repairs Recommended or Attention, and say what each means from the report's own explanation page. Count how many items carry each rating.
 - Some findings live only in photos and captions. If pages are mostly photos, or text is unreadable, say which pages, so the agent can look themselves.
 - Keep the inspector's severity. Quote, don't upgrade or soften. "Recommend further evaluation" and "monitor" are not "defective".
 - An old component that still works is not a defect. Say its age and what the inspector said, and let the agent decide.
@@ -43,12 +44,14 @@ For each item in tiers 1 to 3, give: the page, the inspector's words in a short 
 ## 4. Cost ranges
 
 - Search the web for each tier 1 to 3 item, for their ZIP code or state where you can find it.
+- Use cost guides that show a date, such as HomeAdvisor, Angi, Fixr or HomeGuide, or a local contractor's published prices. Skip pages that look machine-written or give no source. Give the source's date, and say so when it's more than two years old.
 - Give low and high, never one number, with the source named and a label:
   - **Bid in hand:** a contractor bid the agent gave you.
   - **Cost guide:** a named cost guide for their area.
   - **Rough guide:** a national figure with nothing local.
 - These are estimates, not quotes. Any item over $1,000 needs a licensed contractor's bid before its number goes into a request. Say so next to it.
 - If you can't find a credible source for an item, write "No reliable cost found" and name the trade to call. Never make a number up.
+- If the report gives no count, such as outlets missing GFCI protection with no number, price one and ask the inspector how many.
 - For a credit, add a line for overruns, about 10 to 20% on top, because the buyer pays anything over.
 
 ## 5. Questions for the inspector

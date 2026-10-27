@@ -1,6 +1,6 @@
 ---
 name: seller-update
-description: The Monday Seller Update for a real estate agent's active listings. For each listing, reads the last 7 days of showings and feedback from email, what the agent did from sent mail and calendar, and the market around the home from a hot sheet they paste or a listings connector, then drafts one plain-English update per seller in the agent's voice, with a headline, showings and feedback, the competition this week, what's next, and a recommendation. Also runs as a Monday scheduled task. Use when the agent says "seller update", "Monday update", "update my sellers", "weekly seller report", "listing update", "how's my listing doing", "write my seller emails", "set up my Monday updates", or types /seller-update. Drafts only. Never sends.
+description: The Monday Seller Update for a real estate agent's active listings. For each listing, reads the last 7 days of showings and feedback from email, what the agent did from sent mail and calendar, and the market around the home from a hot sheet they paste or a listings connector, then drafts one plain-English update per seller in the agent's voice, with a headline, showings and feedback, the competition this week, what's next, and a recommendation. Also runs inside the Monday report, or as its own Monday scheduled task. Use when the agent says "seller update", "Monday update", "update my sellers", "weekly seller report", "listing update", "how's my listing doing", "write my seller emails", "set up my Monday updates", or types /seller-update. Drafts only. Never sends.
 ---
 
 # Seller update: the Monday letter
@@ -81,13 +81,22 @@ Short, no preamble:
 
 If you used a listings connector, name it in one line at the end.
 
-## 6. Unattended (the Monday scheduled task)
+## 6. When the Monday report calls you
+
+The monday skill runs this skill for every active listing as part of the Monday report.
+
+- Work unattended: ask nothing. If there's no hot sheet and no listings connector, write [NEEDS REVIEW: market this week] in the letter and carry on.
+- Do steps 1 to 4 for every active listing in memory, and save the memory line after each letter.
+- Don't write your own report. Hand back one line per listing, for the report's YOUR LISTINGS section: "[Sellers' names], [street address]: [N] showings this week, [the headline in a few words]. Update drafted."
+- If a letter couldn't be drafted, hand back: "[Sellers' names], [street address]: no update drafted, [why]."
+
+## 7. Unattended (its own Monday scheduled task)
 
 Nobody is watching. Make the drafts and stay quiet. Ask no questions. Mark anything missing with [NEEDS REVIEW]. End with one line only: "[N] seller updates in Gmail." With Microsoft 365 only, write the copy-ready drafts and nothing else. If there are no active listings in memory, leave nothing and end with: "No active listings."
 
 ## Put it on a schedule
 
-Suggest this only after they've sent three Monday letters they were happy with.
+The Monday report drafts these letters every Monday, so most agents need no separate task. If they've set up the Monday report, point them to it and stop here. If they want seller updates alone, suggest this only after they've sent three Monday letters they were happy with.
 
 1. With Gmail, ask them to check that send, reply and forward say Blocked, in Customize > Connectors > Gmail. If any says something else, stop and help them set it to Blocked first. Never test it by sending.
 2. Propose a scheduled task named "Monday seller updates", every Monday at 7:00 AM or the time they pick, with no folder. Use these instructions, word for word:

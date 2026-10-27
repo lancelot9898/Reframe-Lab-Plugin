@@ -197,7 +197,8 @@ This is my scheduled morning message. Use the today skill from the Chief of Staf
 When they say what they want different, such as "put my closings first", "leave out birthdays", "fewer things" or "make it later":
 
 - Save what they said to memory as one short statement about their morning message, such as "Morning message: put deal dates first." The next run reads it.
-- For a new time, they open Scheduled in the left sidebar, open Morning message, and change the time. Suggest a time a few minutes off the hour.
+- For a new arrival time, save it to memory as their delivery time, such as "Morning message: arrive at 6:30." Then they open Scheduled in the left sidebar, open Morning message, and set the task to start at least 15 minutes earlier, a few minutes off the hour.
+- To add or drop the email, save it to memory: "Morning message: phone alert and email" or "Morning message: phone alert only."
 - Never change the safety lines in the task's instructions. If they ask, explain what each one protects.
 
 ## Rules

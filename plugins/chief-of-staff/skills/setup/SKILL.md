@@ -117,7 +117,7 @@ Say: "Part 3 is the job itself. Seven questions."
 Notes:
 
 - Spend the most time on question 3. They wrote it down in lesson 1.1, so ask them to read it to you. Most answers are a version of "I tell someone I'll send them something, and then I don't." Ask for one example from their own week: who it was, what they promised, and when it slipped. Dropping a follow-up is a capacity problem, not a character problem. Say so if they sound embarrassed.
-- Question 5 shapes what /today puts first each morning.
+- Question 5 shapes what their morning message puts first.
 - Question 7: if they give you a name, use it from here on.
 
 **Save Part 3 to memory**, the same way as Part 1:
@@ -192,7 +192,7 @@ End with this, close to word for word:
 
 A good answer is about them and their business: who they serve, the people they work with, and the thing it catches for them. If something's wrong or missing, they can say so in that chat ("Remember that...") or fix it in Settings > Memory.
 
-Then name the next step in one line: "Next is /today. It reads your email and calendar and drafts what you owe."
+Then name the next step in one line: "Next we load your brand and your people, then schedule tomorrow's morning message."
 
 ## If memory won't save
 

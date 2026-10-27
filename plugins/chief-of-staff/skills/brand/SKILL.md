@@ -28,11 +28,11 @@ If they don't know their color codes, read them from the logo or the piece they'
 
 If you can create a design system in this conversation, build one from their files, named "[Their name] brand". Use their colors, fonts and logos, and copy the layout feel of the piece they're proud of. Tell them it's saved under Settings, then Customize, then Design systems, and that they can open it there to check or change it.
 
-If you can't create one here, say so in one line and carry on. The memory in step 3 is what the kits use.
+If you can't create one here, say so in one line and carry on. The memory in step 3 is what everything else uses.
 
 ## 3. Save the brand basics to memory
 
-Save these as short statements, so every kit can use them:
+Save these as short statements, so everything Claude makes for them can use them:
 - Brand colors: each one with its hex code and what it's for, such as "primary #1F3A5F, accent #C8963E"
 - Fonts: the heading and body font names
 - Brokerage name, exactly as it must appear
@@ -40,7 +40,7 @@ Save these as short statements, so every kit can use them:
 - Contact block: name, phone, email, website, license number if they gave it
 - Tagline, if they have one
 
-Don't save the logo itself. Memory holds words. Say that kits ask them to attach the logo when a page needs it.
+Don't save the logo itself. Memory holds words. Say that Claude asks them to attach the logo when a page needs it.
 
 ## 4. Make a test piece
 

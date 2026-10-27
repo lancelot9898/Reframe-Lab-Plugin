@@ -1,12 +1,13 @@
 # Reframe Lab: Chief of Staff
 
-The Chief of Staff plugin for Building Your AI Chief of Staff, a Reframe Lab program from Lance Pendleton. It makes Claude a chief of staff for your real estate business. It learns who you are, drafts the emails you owe, turns your meetings into follow-ups, and keeps a note for each client.
+The Chief of Staff plugin for Building Your AI Chief of Staff, a Reframe Lab program from Lance Pendleton. It makes Claude a chief of staff for your real estate business. Every morning it puts your day on your phone with the replies you owe already drafted. After every conversation it writes the follow-up and puts your to-dos on your calendar. It keeps a note for each client, a list of your people, and your brand, so everything it makes sounds and looks like you.
 
 ## What you need
 
 - Claude Pro, or any paid Claude plan. Plugins don't work on the free plan.
 - The Claude desktop app, on a Mac or a Windows computer.
-- Gmail and Google Calendar, connected in Customize > Connectors. Google Drive too, for client notes and backups.
+- Gmail and Google Calendar, connected in Customize > Connectors. Google Drive too, for My People, client notes, prep pages and backups.
+- The Claude app on your phone, signed in with the same email, for your morning message.
 - On Outlook? Read "If you use Outlook" below first.
 
 ## Install it once
@@ -21,17 +22,28 @@ The Chief of Staff plugin for Building Your AI Chief of Staff, a Reframe Lab pro
 8. Click Sync.
 9. Find Chief of Staff and click Add.
 
-You're done when you type / in a new chat and see setup, today, meeting, client and backup.
+You're done when you type / in a new chat and see the Chief of Staff jobs, such as setup, today, meeting and client.
 
-## The five commands
+## Three commands to remember
 
-Type / and then the name. Plain words often start the same job, but the command always does.
+Everything else arrives on a schedule or starts when you ask in plain words.
 
-- /setup is the week 1 interview. You talk for about 45 minutes, and Claude learns who you are and how to work for you.
-- /today reads your email and calendar and drafts what you owe. Your morning task runs it too.
-- /meeting turns a voice note, a transcript or a recording into a follow-up draft, a list of who promised what, and a note in the client's folder.
-- /client and a name, such as /client Bob Johnson, shows everything Claude knows about that client on one page.
-- /backup saves what Claude remembers to a dated Google Doc. It can run once a month on its own.
+- /today gives you your morning message any time: the three things that matter today, your appointments, your deal dates, and the replies you owe, drafted.
+- /meeting turns a voice note, a transcript or a recording into a follow-up draft, reminders on your calendar, and a note in the client's folder.
+- /client and a name, such as /client Bob Johnson, shows everything Claude knows about that client on one page. Say "prep me for my 2:00" and it makes the prep page for that appointment.
+
+## What arrives on its own
+
+- **Every weekday morning:** your morning message, on your phone or in your email.
+- **Every Monday:** your week on one page, with an update drafted for each seller.
+- **The 1st of every month:** your marketing review, with posts and a newsletter planned and drafted.
+
+## The jobs, week by week
+
+- **Week 1, it learns you:** setup (the interview), brand (your brand kit), people (My People, from your CRM or an export), today (your morning message).
+- **Week 2, your day:** meeting (after every conversation), client (one page on anyone, and prep pages), backup (a monthly copy of what Claude remembers).
+- **Week 3, your people and your listings:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents).
+- **Week 4, your marketing:** marketing (the monthly review, posts and newsletter), cma (a CMA), inspection (the inspection response).
 
 ## It drafts. You send.
 
@@ -46,5 +58,7 @@ On Pro, Claude can read your Outlook mail and calendar through the Microsoft 365
 Updates arrive on their own, with nothing to accept. If something looks out of date, go to Customize > Plugins and click Check for updates.
 
 ## For maintainers
+
+In Claude Code, the install is one line: `/plugin install chief-of-staff --marketplace lancelot9898/Reframe-Lab-Plugin`
 
 Change `version` in `plugins/chief-of-staff/.claude-plugin/plugin.json`, run `claude plugin validate .` from the repository root, and push to the default branch.

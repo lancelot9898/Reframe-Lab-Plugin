@@ -109,7 +109,7 @@ This is my scheduled monthly people refresh. Use the people skill from the Chief
 
   In that run, ask nothing, and end with one line only: "My People refreshed: [N] people." If anything stopped you, end with one line saying what.
 
-- **With an export:** offer a monthly reminder on their own calendar: a 15-minute event called "Export your contacts for Claude", on the 1st of each month at 9:00 AM, repeating monthly, shown as free, with a popup at the start and no guests. Create it only if they say yes. Then each month they attach the new file and say "update my people".
+- **With an export:** offer a monthly reminder on their own calendar: a 15-minute event called "Export your contacts for Claude", on the 1st of each month at 9:00 AM, repeating monthly, shown as free, with a popup at the start and no guests. Create it only if they say yes. With Outlook only, you can't add events to their calendar, so give them the reminder in your reply, under "Reminder to add", for them to put on their calendar themselves. Then each month they attach the new file and say "update my people".
 
 ## Rules
 

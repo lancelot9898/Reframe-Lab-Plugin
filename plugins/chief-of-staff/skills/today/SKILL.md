@@ -40,6 +40,7 @@ Use the time zone on their calendar for every date and time.
 - Their sent email from the last 7 days, to catch promises that fall due today.
 - Today's calendar.
 - What memory holds about the people involved, what they want to know first thing in the morning, and any promise in memory that's due today or late.
+- If Google Drive has a "Compass this week" file in My Brain/Compass from the last 7 days, read it for deal dates due today or late, and add them to what they owe.
 
 Search results can show only the oldest messages in a thread. Open the whole thread before you decide a reply is owed or a promise is still open.
 

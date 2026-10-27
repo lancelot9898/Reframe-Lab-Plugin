@@ -26,7 +26,7 @@ How drafts work depends on their email:
 ## 2. Attended or unattended
 
 - **Attended:** someone typed /today or asked. Do the steps below and finish with the morning message in step 8.
-- **Unattended:** this is the scheduled "Morning message" task, or the request says it's the scheduled morning run. Nobody is watching, and your final reply is what reaches their phone. Ask nothing. Do the steps, then make your final reply the morning message and nothing else: no preamble, no notes about what you did. With Outlook, the copy-ready drafts follow the message.
+- **Unattended:** this is the scheduled "Morning message" task, or the request says it's the scheduled morning run. Nobody is watching, and your final reply is what reaches their phone. Ask nothing. Do the steps, then make your final reply the morning message, with the Behind the drafts lines under it, and nothing else: no preamble, no notes about what you did. With Outlook, the copy-ready drafts follow the message.
 - In either case, if Google Drive has more than one folder named exactly My Brain, don't write to Drive. Note it under ALSO: "Two folders are named My Brain. Tell me which one to use."
 
 ## 3. Read
@@ -165,7 +165,7 @@ When they say "set up my morning message", or want this on a schedule:
 2. **Propose a scheduled task** named "Morning message", every weekday at 6:50 AM, or the time they pick, a few minutes off the hour, with no folder. Use these instructions, word for word:
 
 ```
-This is my scheduled morning message. Use the today skill from the Chief of Staff plugin, unattended. Read my last day of email, today's calendar, my My People list and what you remember about me. Draft up to five replies in my voice. With Gmail, leave them in Gmail Drafts. With Outlook only, put them after the message. Make a prep page in my Google Drive for each client appointment today, and draft any home anniversary, birthday or rate note that's due. Never send, reply to or forward an email. Never create, change, delete or answer a calendar event, and never invite anyone to anything. Never invent a name, number, date or commitment. Write [NEEDS REVIEW] instead. Your final reply is my morning message and nothing else.
+This is my scheduled morning message. Use the today skill from the Chief of Staff plugin, unattended. Read my last day of email, today's calendar, my My People list and what you remember about me. Draft up to five replies in my voice. With Gmail, leave them in Gmail Drafts. With Outlook only, put them after the message. Make a prep page in my Google Drive for each client appointment today, and draft any home anniversary, birthday or rate note that's due. Never send, reply to or forward an email. Never create, change, delete or answer a calendar event, and never invite anyone to anything. Never invent a name, number, date or commitment. Write [NEEDS REVIEW] instead. Your final reply is my morning message, with the Behind the drafts lines under it, and nothing else.
 ```
 
 3. **Ask how they want it to reach them.**

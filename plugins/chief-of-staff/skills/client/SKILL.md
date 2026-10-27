@@ -1,6 +1,6 @@
 ---
 name: client
-description: Everything a real estate agent knows about one client, on one page, and the prep page before an appointment. The one page covers who they are, where they are in the process, what was promised and by whom, what's overdue, preferences and sensitivities, and the next step, from Claude's memory, the client's folder in Google Drive (My Brain/Clients), recent Gmail or Outlook email, and the calendar, then offers to draft the next email. The prep page adds the property's facts and sale history, public background on the person's work, and three questions to ask, saved as a Google Doc in the client's folder. The morning message uses it for each client appointment that day. Use when the agent says "what do I know about", "pull up", "tell me about", "catch me up on", "where are we with", "where am I with", "brief me on", "what did I promise", "remind me who", "prep me for my call with", "prep me for my 2:00", "prep page for", "get me ready for my listing appointment", "prep me for the Parkers", or types /client followed by a name.
+description: Everything a real estate agent knows about one client, on one page, and the prep page before an appointment. The one page covers who they are, where they are in the process, what was promised and by whom, what's overdue, preferences and sensitivities, and the next step, from Claude's memory, the client's folder in Google Drive (My Brain/Clients), recent Gmail or Outlook email, and the calendar, then offers to draft the next email. The prep page adds what's on record for the property, public background on the person's work, and three questions to ask, saved as a Google Doc in the client's folder. The morning message uses it for each client appointment that day. Use when the agent says "what do I know about", "pull up", "tell me about", "catch me up on", "where are we with", "where am I with", "brief me on", "what did I promise", "remind me who", "prep me for my call with", "prep me for my 2:00", "prep page for", "get me ready for my listing appointment", "prep me for the Parkers", or types /client followed by a name.
 ---
 
 # Client: one page on one person, and the prep page
@@ -79,7 +79,7 @@ If the agent corrects a fact on the page, offer to update memory.
 
 Everything from step 2 of the one page, read only. Then:
 
-- **The property.** The address from the appointment, the email or memory. If the Zillow connector is there, look it up by address: beds, baths, square feet, lot, year built, and the sale history with dates and prices. If it isn't, use what's in email and memory, and add under Gaps: "Connect Zillow in Customize > Connectors for the home's sale history." Name the source and the date for every fact. Never fill in a fact the source doesn't show.
+- **The property.** The address from the appointment, the email or memory. If the Zillow connector is there, look it up by address. Zillow only covers homes that aren't listed for sale or rent right now, and it returns what's on record: the tax and assessment history, and beds, baths, square feet, lot and year built when it has them. It doesn't return the sale history. For that, use an MLS or RPR report the agent attached, or a past sale named in email or memory. If Zillow isn't connected, use what's in email and memory, and add under Gaps: "Connect Zillow in Customize > Connectors for what's on record for the home." If there's no sale history, add under Gaps: "Attach the MLS or RPR report on the home for its sale history." Name the source and the date for every fact. Never fill in a fact the source doesn't show.
 - **Their work, from public sources.** Search the web for the person's name with their company or their town. Use a result only when it's clearly the same person. Keep it to their work: their job and company, a business they own, what they've published or said in public about their work.
 
 Never put any of these on a prep page, even when it's public: their age, race or ethnicity, religion, health or disability, sexual orientation, family or marital status, children, politics or donations, court or arrest records, their other properties or what they're worth, or their personal social media. A prep page that knows too much loses the client. If you're not sure a result is the same person, leave it out.
@@ -98,7 +98,7 @@ Under about 400 words, so it reads on a phone. These headings, short lines under
 
 **Still open:** questions, decisions and anything overdue.
 
-**The property:** the facts and sale history, each with its source and date.
+**The property:** what's on record for the home, and its sale history when a report shows it, each with its source and date.
 
 **Their work:** one or two lines, or "Nothing public found."
 

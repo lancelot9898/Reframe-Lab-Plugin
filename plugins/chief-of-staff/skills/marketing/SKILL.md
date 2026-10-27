@@ -99,7 +99,7 @@ Then: "It's in My Brain/Marketing. Open it, pick what you like, and say 'make th
 
 When they've picked:
 
-1. **Their brand.** Use their published design system if you can see it. Otherwise use the brand basics in memory. If neither exists, say "Let's set up your brand first. Say 'set up my brand'." and stop.
+1. **Their brand.** Use their published design system if you can see it. Otherwise use the brand basics in memory. If neither exists, say "Let's set up your brand first. Say 'set up my brand'." and stop. Memory holds words, not images, so without a visible design system, use the logo they attached in this chat. If they didn't attach one, ask once: "Drag in your logo and I'll put it on." Without one, use their name in its place.
 2. **Their photos.** Ask them to attach the photos they want. Use only their own photos, or photos they have the right to use, such as their own listing photos. Never create or generate a photo. Never pull photos from the MLS or the portals.
 3. **Make each one** as a design in their brand: square for a feed post, tall for a story. Short words on the graphic, the caption carries the rest. Their name and brokerage where their brokerage requires it, with the required wording.
 4. **Hand it over.** Export as a PDF, or send it to Canva if Canva is connected, so they can make small changes and download the image to post. Say which you did.

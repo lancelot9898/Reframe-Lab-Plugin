@@ -42,9 +42,9 @@ Fair housing: describe homes and the market. Never describe people, or a neighbo
 
 ## 4. Build the page in their brand
 
-1. **Their brand.** If you can see their published design system, use its colors, fonts and logo. If you can't, use the brand basics in memory: colors, fonts, the brokerage name exactly as it must appear, required brokerage wording, and their contact block. If memory has none, ask once for their two brand colors and their font, save them, and suggest "Say 'set up my brand' when you have ten minutes, and everything I make will look like yours."
+1. **Their brand.** If you can see their published design system, use its colors, fonts and logo. If you can't, use the brand basics in memory: colors, fonts, the brokerage name exactly as it must appear, required brokerage wording, and their contact block. If memory has none, ask once for their two brand colors and their font, save them, and suggest "Say 'set up my brand' when you have ten minutes, and everything I make will look like yours." Memory holds words, not images, so without a visible design system, use the logo they attached in this chat. If they didn't attach one, ask once: "Drag in your logo and I'll put it on." Without one, use their name in its place.
 2. **One page.** The headline at the top, the numbers in a clean grid with each one's change, the what-it-means paragraph, the source line, then their name, brokerage and contact block, and any required brokerage wording. Phone-readable. No stock photos and no photos from the MLS or the portals. Their own photo of the town is fine if they attach one.
-3. **Save it as an artifact** so they can share it from their screen or send the link.
+3. **Save it as an artifact** so they can look it over on screen. To share it, they send the PDF, not a link to the page.
 4. **Make a PDF** of the same page with your file tools (the pdf skill, if you have it), same colors and logo, to attach or print.
 
 ## 5. What you tell them

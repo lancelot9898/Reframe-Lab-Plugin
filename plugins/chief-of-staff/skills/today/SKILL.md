@@ -162,7 +162,7 @@ Good morning, [first name]. Nothing needs you this morning. Today: [the first ap
 When they say "set up my morning message", or want this on a schedule:
 
 1. **Check the send lock.** With Gmail, ask them to check that send, reply and forward say Blocked, in Customize > Connectors > Gmail. If any says something else, stop and help them set it to Blocked first. Never test it by sending.
-2. **Propose a scheduled task** named "Morning message", every weekday at 6:50 AM, or the time they pick, a few minutes off the hour, with no folder. Use these instructions, word for word:
+2. **Propose a scheduled task** named "Morning message", every weekday at 6:40 AM, or the time they pick, a few minutes off the hour, with no folder. Use these instructions, word for word:
 
 ```
 This is my scheduled morning message. Use the today skill from the Chief of Staff plugin, unattended. Read my last day of email, today's calendar, my My People list and what you remember about me. Draft up to five replies in my voice. With Gmail, leave them in Gmail Drafts. With Outlook only, put them after the message. Make a prep page in my Google Drive for each client appointment today, and draft any home anniversary, birthday or rate note that's due. Never send, reply to or forward an email. Never create, change, delete or answer a calendar event, and never invite anyone to anything. Never invent a name, number, date or commitment. Write [NEEDS REVIEW] instead. Your final reply is my morning message, with the Behind the drafts lines under it, and nothing else.

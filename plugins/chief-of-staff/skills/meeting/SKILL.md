@@ -1,16 +1,17 @@
 ---
 name: meeting
-description: Turns a real estate agent's meeting into a follow-up email draft to the client, a list of every commitment with dates, a dated meeting note in the client's Google Drive folder (My Brain/Clients), and lasting client facts saved to memory. Works from a voice note, typed notes, a pasted transcript, or the latest recording from Plaud, Zoom, Fathom or Granola. Use when the agent says "I just left a meeting", "just got out of a listing appointment", "here's my voice note", "write the follow-up", "follow up on my meeting with", "draft the follow-up from my showing", "file this meeting", "pull my last Plaud recording", "turn this transcript into a follow-up", "notes from my buyer consult", "I'm about to record", or types /meeting. Drafts only. Never sends.
+description: Turns a real estate agent's meeting into a follow-up email draft to the client, a list of every commitment with dates, a reminder on their own calendar for each dated to-do, a dated meeting note in the client's Google Drive folder (My Brain/Clients), and lasting client facts saved to memory. Works from a voice note, typed notes, a pasted transcript, or the latest recording from Plaud, Zoom, Fathom or Granola. Use when the agent says "I just left a meeting", "just got out of a listing appointment", "here's my voice note", "write the follow-up", "follow up on my meeting with", "draft the follow-up from my showing", "file this meeting", "pull my last Plaud recording", "turn this transcript into a follow-up", "notes from my buyer consult", "I'm about to record", or types /meeting. Drafts only. Never sends.
 ---
 
 # Meeting: from conversation to follow-up
 
-The agent just had a meeting. You turn it into four things:
+The agent just had a meeting. You turn it into five things:
 
 1. A follow-up email draft to the client.
 2. A list of every commitment either side made, with dates.
-3. A dated note in the client's folder in Google Drive.
-4. The lasting client facts, saved to memory.
+3. A reminder on their own calendar for each dated to-do.
+4. A dated note in the client's folder in Google Drive.
+5. The lasting client facts, saved to memory.
 
 They check it and send it. You never send.
 
@@ -89,7 +90,30 @@ Put this in your reply:
 
 **Others** (lender, inspector, the other agent), only if there are any.
 
-## 6. The meeting note in Google Drive
+## 6. Reminders on their calendar
+
+Every dated to-do from the commitments list goes on the agent's own calendar, so nothing they promised depends on remembering it.
+
+**Which ones.**
+- Everything under You'll do that has a date.
+- Everything under They'll do that has a date, as a check-in for the agent, so they notice if it doesn't arrive.
+- Skip anything with "no date said", and anything under Others.
+
+**With Google Calendar connected,** create one event per to-do on their primary calendar:
+
+- **Title:** "[What] for [client]", such as "Send the HOA docs for Mike Chen". For their side: "Check: [client] [what]", such as "Check: the Johnsons send the pre-approval letter".
+- **When:** if a time was said, a 15-minute event an hour before it. If only a day was said, a 15-minute event at 9:00 AM that day, or the time memory says they like their reminders. Use their calendar's time zone.
+- **Reminder:** a popup at the start of the event. Shown as free, so it doesn't block their calendar.
+- **Description:** "From your meeting with [client] on [date]." and the name of the meeting note.
+- **No guests, ever.** Add no attendees and no meeting link, and send no notifications. A guest gets an email invitation.
+
+Before you create one, search their calendar for an event with that exact title on that date. If it's there, skip it.
+
+Never change, move or delete an event, theirs or one you made. If a date changed since an earlier reminder, create the new one and list the old one in your reply for them to delete.
+
+**With Outlook only, or no calendar connected:** on the Pro plan, Claude can't add events to an Outlook calendar. List them in your reply under "Reminders to add", one line each with the date and time, so they can add them in a minute.
+
+## 7. The meeting note in Google Drive
 
 If Google Drive is connected:
 
@@ -108,24 +132,26 @@ Keep every [NEEDS REVIEW] in place. Create only. Never edit, move or delete a fi
 
 If Google Drive isn't connected, put the note in your reply and say in one line that connecting Google Drive in Customize > Connectors lets you file these for them.
 
-## 7. Save lasting client facts to memory
+## 8. Save lasting client facts to memory
 
 Save what will still matter next month, each as its own short statement that names the client: who they are, the property, what they want, their timeline, how they like to be reached, and what matters most to them.
 
 Don't save this meeting's to-do list, one-off details, health, family matters, anything the agent asked you never to keep, or any account number or loan figure.
 
-## 8. What you tell them
+## 9. What you tell them
 
 Short, in this order:
 
 - Follow-up: waiting in Gmail Drafts, to [name]. Or the copy-ready draft.
 - The commitments list.
+- On your calendar: [N] reminders, one line each with the day. Or "Reminders to add", for Outlook.
 - Note: "[title]" in My Brain/Clients/[Client Name].
 - Saved to memory: one line.
 - Needs review: each [NEEDS REVIEW], one line each.
 
 ## Rules
 
-- Draft, never send. Never create, change or answer a calendar event.
+- Draft, never send.
+- The only events you create are reminders on their own calendar, with no guests. Never change, move, delete or answer an event.
 - Never invent anything. Flag gaps with [NEEDS REVIEW].
 - Plain words. Never say MCP, API or tool call to the agent.

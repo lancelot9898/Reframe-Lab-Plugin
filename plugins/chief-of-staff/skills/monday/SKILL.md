@@ -40,7 +40,7 @@ The week is today, Monday, through Sunday. Use the time zone on their calendar f
 2. **Waiting on you:** the people from step 3, oldest first, with a few words on what they asked.
 3. **Gone quiet:** active clients with no email either way, no meeting and no new note in their folder in My Brain/Clients for 14 days or more. Check email and calendar for each one, because My People's Last contact can be a month old. Show at most five, the longest quiet first, each with the last thing you know about where they stand. Don't draft to them. Offer it instead: "Say 'draft a check-in to [name]' and I'll write one."
 4. **Your listings:** filled in by step 6.
-5. **Dates this week:** birthdays and home anniversaries from My People, Monday through Sunday.
+5. **Dates this week:** birthdays and home anniversaries from My People and from memory, Monday through Sunday. A date the agent told you in plain words counts the same as a row in the sheet.
 
 ## 5. Notes for this week's dates
 

@@ -3,9 +3,9 @@ name: marketing
 description: The monthly marketing review for a real estate agent's chief of staff, and what their monthly scheduled task runs. Looks back at last month in their business and life, looks up what's happening in their town, and plans the month ahead, with four post ideas (one a week, each with the reason and a draft caption) and a newsletter plan built on one local story, with a draft. Saves it as a Google Doc in My Brain/Marketing. On request, makes the graphics in their brand, or one post such as a just listed post. Use when the agent says "marketing review", "my monthly marketing", "plan my posts", "what should I post", "post ideas", "plan my newsletter", "write my newsletter", "make the graphics", "make a just listed post", "make a just sold post", "a post for my open house", "set up my marketing review", or types /marketing. Drafts only. Never posts or sends.
 ---
 
-# Marketing: next month, planned and drafted
+# Marketing: the month ahead, planned and drafted
 
-You're the agent's chief of staff. On the first of every month they get next month's marketing planned from their own world: what happened in their business and their life, and what's coming up in their town. Four posts, one a week, and one newsletter, each with the reason and a draft. When they've picked, you make the graphics in their brand. They post and send.
+You're the agent's chief of staff. On the first of every month they get the month ahead planned from their own world: what happened in their business and their life, and what's coming up in their town. Four posts, one a week, and one newsletter, each with the reason and a draft. When they've picked, you make the graphics in their brand. They post and send.
 
 Never post or send anything. Never invent anything.
 
@@ -32,10 +32,10 @@ Last month is the calendar month before today. Gather, in short notes for yourse
 - **Last month's review:** the newest "Marketing review" doc in My Brain/Marketing, so you don't repeat an idea and can see what they posted.
 - **A market report,** if memory says one was made last month.
 
-## 4. Look ahead at next month
+## 4. Look ahead at the month that's starting
 
 - **The season:** the month, the holidays, and what it means for homes, such as gutters in November or the first open houses of spring.
-- **Their town:** search the web for events, openings, changes and dates in their town next month: a festival, a road project, a new business, a town vote, a farmers market's last day. Use the town's own site, the local paper or the organizer's page, and check every date there. Keep the link for each one.
+- **Their town:** search the web for events, openings, changes and dates in their town in the month ahead: a festival, a road project, a new business, a town vote, a farmers market's last day. Use the town's own site, the local paper or the organizer's page, and check every date there. Keep the link for each one.
 
 ## 5. Write the plan
 
@@ -48,7 +48,7 @@ Last month is the calendar month before today. Gather, in short notes for yourse
 
 For each idea:
 - **The idea** in one line.
-- **Why now,** in one line: what in last month or next month makes it timely.
+- **Why now,** in one line: what in last month or the month ahead makes it timely.
 - **A draft caption** in their voice, under about 80 words.
 - **The picture:** which of their own photos would fit, or a simple designed graphic.
 
@@ -123,7 +123,7 @@ When they want the review every month:
 2. Use these instructions, word for word:
 
 ```
-This is my scheduled marketing review. Use the marketing skill from the Chief of Staff plugin, unattended. Look back at last month in my email, calendar, memory and client notes, and look up what's happening in my town next month. Plan four posts, one a week, each with the reason and a draft caption, and a newsletter built on one local story, with a draft. Save it as a Google Doc in My Brain/Marketing. Never post, send, reply to or forward anything. Never name a client or share a deal detail without marking it [NEEDS REVIEW: client OK]. Never invent a name, number, date or event. Write [NEEDS REVIEW] instead. Ask me nothing. End with a short summary.
+This is my scheduled marketing review. Use the marketing skill from the Chief of Staff plugin, unattended. Look back at last month in my email, calendar, memory and client notes, and look up what's happening in my town in the month ahead. Plan four posts, one a week, each with the reason and a draft caption, and a newsletter built on one local story, with a draft. Save it as a Google Doc in My Brain/Marketing. Never post, send, reply to or forward anything. Never name a client or share a deal detail without marking it [NEEDS REVIEW: client OK]. Never invent a name, number, date or event. Write [NEEDS REVIEW] instead. Ask me nothing. End with a short summary.
 ```
 
 3. They check the task names no folder, then click Schedule.

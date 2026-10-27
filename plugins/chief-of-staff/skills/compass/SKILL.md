@@ -120,6 +120,23 @@ Before you create one, search the calendar for that exact title on that date. If
 - **Saved:** the file name in My Brain/Compass, and a one-line count of what went to memory.
 - **Check:** anything that looked off, such as a close date that passed with the deal still In contract, a deal with no timeline, or a page you couldn't read.
 
+## Put it on a schedule
+
+When they say "put my Compass check on a schedule" or "set up my weekly Compass check":
+
+1. **Pick a time their laptop is open.** This check drives Chrome on their computer, so it runs only while the laptop is awake, the Claude desktop app is open, and Chrome is signed in to Compass. Suggest Monday at 9:10 AM, or a weekly time they're usually at their desk, a few minutes off the hour.
+2. **Propose a scheduled task** named "Compass check", weekly at that time, with no folder. Use these instructions, word for word:
+
+```
+This is my scheduled weekly Compass check. Use the compass skill from the Chief of Staff plugin, unattended. Use Claude in Chrome to read my own Compass account, read only. Never type into Compass, and never save, send, edit, delete, download, export or share anything there. Save Compass this week in My Brain/Compass, save lasting client and deal facts to memory, and put deal dates in the next 14 days on my calendar as reminders with no guests. Never send, reply to or forward an email, never invite anyone to anything, and never change or delete a calendar event. Never invent a name, date or number. Ask me nothing.
+```
+
+3. They check the task names no folder, then click Schedule.
+4. They open the task and click Run now once, with Chrome open and signed in to Compass. If it asks to allow a tool or a site, they choose the option that allows it for all scheduled runs.
+5. Save to memory: "Compass check is scheduled weekly, [day] at [time]."
+
+If the laptop is shut at that time, the run ends with the skipped line from step 2 and tries again the next week. They can run /compass by hand any time.
+
 ## Rules
 
 - Read only in Compass. Change nothing there.

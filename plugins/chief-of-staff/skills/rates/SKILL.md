@@ -18,7 +18,7 @@ Only buyers who asked to hear about rates. A buyer counts when both are true:
 
 Nobody else, ever. Not past clients, not the sphere, not leads.
 
-When the agent says "[name] wants to hear about rates", save a line to memory: "[Name] asked to hear about rates, [date]." If they say why the buyer paused or what payment they were aiming for, save that too, in their words. Tell them to mark Rate notes yes in their contact list, so the next My People update carries it.
+When the agent says "[name] wants to hear about rates", save a line to memory: "[Name] paused their search and asked to hear about rates, [date]." If they say why the buyer paused or what payment they were aiming for, save that too, in their words. Tell them to mark Rate notes yes in their contact list, so the next My People update carries it.
 
 ## 2. The rate
 

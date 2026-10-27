@@ -37,7 +37,7 @@ Use the time zone on their calendar for every date and time.
 - **Their sent email from the last 7 days,** to catch promises that fall due today.
 - **Today's calendar,** and the next 10 days for deal dates.
 - **Memory:** the people involved, what they want to know first thing in the morning, how they want this message to look, any promise that's due today or late, and deal facts such as close dates.
-- **My People:** the Google Sheet named "My People" in My Brain/People. Read it for birthdays and home anniversaries in the next 7 days, and for buyers with Rate notes set to yes. If there's no My People sheet, skip this. In an attended run, add one line under ALSO: "Say 'update my people' to add birthdays and home anniversaries."
+- **My People:** the Google Sheet named "My People" in My Brain/People. Read it for birthdays and home anniversaries in the next 7 days, and for buyers with Rate notes set to yes. Memory counts too: a home anniversary, a birthday or a buyer who asked to hear about rates that the agent told you in plain words is just as real as a row in the sheet. If there's no My People sheet, skip this. In an attended run, add one line under ALSO: "Say 'update my people' to add birthdays and home anniversaries."
 - **Compass:** if Google Drive has a "Compass this week" file in My Brain/Compass from the last 7 days, read it for deal dates due today, late, or in the next 10 days.
 
 Search results can show only the oldest messages in a thread. Open the whole thread before you decide a reply is owed or a promise is still open.
@@ -93,7 +93,7 @@ From My People, and from memory, find anyone whose home anniversary or birthday 
 
 ### Rate notes for paused buyers
 
-If My People has buyers with Rate notes set to yes, use the rates skill's morning check. It decides who, if anyone, gets a note today, and drafts it. Its notes go under ALSO, not in the five replies. If the rates skill isn't installed, skip this.
+If My People or memory has paused buyers who asked to hear about rates, use the rates skill's morning check. It decides who, if anyone, gets a note today, and drafts it. Its notes go under ALSO, not in the five replies. If the rates skill isn't installed, skip this.
 
 ## How drafts sound
 

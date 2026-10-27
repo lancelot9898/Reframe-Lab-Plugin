@@ -157,6 +157,20 @@ Good morning, [first name]. Nothing needs you this morning. Today: [the first ap
 
 **In an attended run**, if memory doesn't say their morning message is scheduled, end with one line: "Want this on your phone every weekday morning? Say 'set up my morning message.'"
 
+## 8a. Put it on their phone
+
+In an unattended run, after you've written the message, put it on their own Google Calendar. Their calendar app turns it into a phone alert, and Google Calendar can email it to them too. Do the same in an attended run only when they ask for it on their phone.
+
+- **One event** on their main calendar, titled "Morning message", today at their delivery time from memory, or 7:00 AM if memory has none, 5 minutes long. If that time has already passed, start it 2 minutes from now.
+- **The description** is the morning message in plain text, exactly as you wrote it, without the Behind the drafts lines.
+- **Shown as free and private, with no guests and no meeting link.** Send no invitation.
+- **Reminders:** a popup at the start. If memory says they want it by email too, add an email reminder at the start.
+- **Never twice.** If an event titled "Morning message" is already on today's calendar, don't add another.
+- **Never touch earlier ones.** Never change or delete a Morning message event from another day.
+- **Outlook only:** skip this. Claude can't add events to an Outlook calendar on the Pro plan, so the message waits in Claude, under Scheduled, on their phone and computer.
+- When you list TODAY, leave out events titled "Morning message".
+
+
 ## 9. Set up the Morning message
 
 When they say "set up my morning message", or want this on a schedule:
@@ -165,16 +179,18 @@ When they say "set up my morning message", or want this on a schedule:
 2. **Propose a scheduled task** named "Morning message", every weekday at 6:40 AM, or the time they pick, a few minutes off the hour, with no folder. Use these instructions, word for word:
 
 ```
-This is my scheduled morning message. Use the today skill from the Chief of Staff plugin, unattended. Read my last day of email, today's calendar, my My People list and what you remember about me. Draft up to five replies in my voice. With Gmail, leave them in Gmail Drafts. With Outlook only, put them after the message. Make a prep page in my Google Drive for each client appointment today, and draft any home anniversary, birthday or rate note that's due. Never send, reply to or forward an email. Never create, change, delete or answer a calendar event, and never invite anyone to anything. Never invent a name, number, date or commitment. Write [NEEDS REVIEW] instead. Your final reply is my morning message, with the Behind the drafts lines under it, and nothing else.
+This is my scheduled morning message. Use the today skill from the Chief of Staff plugin, unattended. Read my last day of email, today's calendar, my My People list and what you remember about me. Draft up to five replies in my voice. With Gmail, leave them in Gmail Drafts. With Outlook only, put them after the message. Make a prep page in my Google Drive for each client appointment today, and draft any home anniversary, birthday or rate note that's due. Never send, reply to or forward an email. The only calendar event you may create is today's Morning message on my own calendar, with no guests. Never change, delete or answer an event, and never invite anyone to anything. Never invent a name, number, date or commitment. Write [NEEDS REVIEW] instead. Your final reply is my morning message, with the Behind the drafts lines under it, and nothing else.
 ```
 
-3. **Ask how they want it to reach them.**
-   - **On their phone (the default).** The Claude app on their phone, signed in with the same email, with notifications allowed. Each morning's run ends with a notification. They tap it to open the message.
-   - **By email.** In the task's settings, they turn on the email notification. The message arrives in the inbox of the email they use to sign in to Claude. <!-- VERIFY-EMAIL: main thread confirms this setting's name and which address it uses on Pro before release, then edits this line. -->
-   - Never send it from their Gmail. If they ask for that, explain that Gmail's send, reply and forward stay Blocked, so nothing can ever leave their account without them, and the email notification gets them the same message.
+3. **Ask how they want it to reach them,** and save the answer to memory.
+   - **On their phone (the default).** Each run puts a 7:00 AM event called Morning message on their own Google Calendar, with the message inside, as in step 8a. They need the Google Calendar app on their phone, signed in to the same Google account, with its notifications allowed. They tap the alert, and the message is in the event. Save: "Morning message: phone alert at 7:00."
+   - **By email too.** The same event also emails them a reminder at 7:00, to the address of that Google account, with the message in it. Save: "Morning message: phone alert and email at 7:00."
+   - **A different time.** Save the time they say, such as 6:45 or 7:30. Keep the task's start at least 15 minutes earlier.
+   - **Outlook only.** Claude can't add events to their Outlook calendar on Pro, so the message waits in Claude, under Scheduled. They open the Claude app on their phone in the morning.
+   - Never send it from their Gmail. If they ask for that, explain that Gmail's send, reply and forward stay Blocked, so nothing can ever leave their account without them, and the calendar alert gets them the same message.
 4. They check the task names no folder, then click Schedule.
 5. They open the task and click Run now once, the day they make it. If it asks to allow a tool, they choose the option that allows it for all scheduled runs. If it ever asks to send, reply to or forward an email, the answer is no.
-6. Save to memory: "Morning message is scheduled weekdays at [time], to [their phone / their phone and email]."
+6. Save to memory: "Morning message is scheduled weekdays at [task time], delivered at [delivery time] as [a phone alert / a phone alert and email]."
 
 ## Changing the morning message
 
@@ -186,6 +202,6 @@ When they say what they want different, such as "put my closings first", "leave 
 
 ## Rules
 
-- Draft, never send. Never create, change, delete or answer a calendar event.
+- Draft, never send. The only event you create is today's Morning message on their own calendar, with no guests. Never change, delete or answer an event.
 - Never invent anything. Flag gaps with [NEEDS REVIEW].
 - Plain words. Never say MCP, API or tool call to the agent.

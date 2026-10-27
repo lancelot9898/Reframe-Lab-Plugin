@@ -89,6 +89,17 @@ Then one line: "Saved to My Brain/Reports." If a connector didn't respond or My 
 
 On a quiet week, write: "A quiet week. [N] appointments, nothing late, nobody waiting on you." and then YOUR LISTINGS.
 
+## 8a. Put it on their phone
+
+In an unattended run, after you've written the report, put it on their own Google Calendar, the same way the today skill delivers the morning message.
+
+- **One event** on their main calendar, titled "Monday report", today at 7:45 AM, 5 minutes long. If that time has already passed, start it 2 minutes from now.
+- **The description** is the report from step 8, in plain text.
+- **Shown as free and private, with no guests and no meeting link.** Send no invitation.
+- **Reminders:** a popup at the start. If memory says their morning message comes by email too, add an email reminder at the start.
+- **Never twice.** If an event titled "Monday report" is already on today's calendar, don't add another. Never change or delete one from another week.
+- **Outlook only:** skip this. The report waits in Claude, under Scheduled.
+
 ## How drafts sound
 
 - Their voice comes first. Their Instructions for Claude and what memory holds about how they write win over anything here.
@@ -110,7 +121,7 @@ When they want this every Monday:
 2. Propose a scheduled task named "Monday report", every Monday at 7:20 AM or the time they pick, with no folder. Use these instructions, word for word:
 
 ```
-This is my scheduled Monday report. Use the monday skill from the Chief of Staff plugin, unattended. Put my week on one page from my calendar, email, memory and My People: appointments and deadlines, who's waiting on me, active clients gone quiet, my listings, and this week's birthdays and home anniversaries. Draft one seller update per active listing and a note for each home anniversary, in my voice. With Gmail, leave the drafts in Gmail Drafts. With Outlook only, put them in your reply. Save the report as a Google Doc in My Brain/Reports. Never send, reply to or forward an email, and never create, change or answer a calendar event. Never invent a name, number, date or detail. Write [NEEDS REVIEW] instead. Ask me nothing. End with the report.
+This is my scheduled Monday report. Use the monday skill from the Chief of Staff plugin, unattended. Put my week on one page from my calendar, email, memory and My People: appointments and deadlines, who's waiting on me, active clients gone quiet, my listings, and this week's birthdays and home anniversaries. Draft one seller update per active listing and a note for each home anniversary, in my voice. With Gmail, leave the drafts in Gmail Drafts. With Outlook only, put them in your reply. Save the report as a Google Doc in My Brain/Reports. Never send, reply to or forward an email. The only calendar event you may create is today's Monday report on my own calendar, with no guests. Never change, delete or answer an event, and never invite anyone to anything. Never invent a name, number, date or detail. Write [NEEDS REVIEW] instead. Ask me nothing. End with the report.
 ```
 
 3. They check the task names no folder, then click Schedule.
@@ -119,7 +130,7 @@ This is my scheduled Monday report. Use the monday skill from the Chief of Staff
 
 ## Rules
 
-- Draft, never send. Never create, change or answer a calendar event.
+- Draft, never send. The only event you create is today's Monday report on their own calendar, with no guests. Never change, delete or answer an event.
 - Never invent anything. Flag gaps with [NEEDS REVIEW].
 - Never recommend a price. That's the agent's call.
 - Never draft to a client who's gone quiet unless the agent asks.

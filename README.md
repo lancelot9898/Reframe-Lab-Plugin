@@ -7,7 +7,7 @@ The Chief of Staff plugin for Building Your AI Chief of Staff, a Reframe Lab pro
 - Claude Pro, or any paid Claude plan. Plugins don't work on the free plan.
 - The Claude desktop app, on a Mac or a Windows computer.
 - Gmail and Google Calendar, connected in Customize > Connectors. Google Drive too, for My People, client notes, prep pages and backups.
-- The Claude app on your phone, signed in with the same email, for your morning message.
+- The Claude app on your phone, signed in with the same email. On Gmail, the Google Calendar app too, with notifications on, because your morning message arrives there as an alert.
 - On Outlook? Read "If you use Outlook" below first.
 
 ## Install it once
@@ -34,7 +34,7 @@ Everything else arrives on a schedule or starts when you ask in plain words.
 
 ## What arrives on its own
 
-- **Every weekday morning:** your morning message, on your phone or in your email.
+- **Every weekday morning:** your morning message, as a 7:00 calendar alert on your phone, and by email too if you'd like. On Outlook, it waits in Claude under Scheduled.
 - **Every Monday:** your week on one page, with an update drafted for each seller.
 - **The 1st of every month:** your marketing review, with posts and a newsletter planned and drafted.
 

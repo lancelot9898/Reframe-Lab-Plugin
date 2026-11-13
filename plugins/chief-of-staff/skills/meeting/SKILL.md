@@ -130,7 +130,7 @@ If Google Drive is connected:
 
 Keep every [NEEDS REVIEW] in place. Create only. Never edit, move or delete a file that's already there. A new meeting always gets a new note.
 
-If Google Drive isn't connected, put the note in your reply and say in one line that connecting Google Drive in Customize > Connectors lets you file these for them.
+If Google Drive isn't connected, put the note in your reply and say in one line that connecting Google Drive in Plugins, in the left sidebar, lets you file these for them.
 
 ## 8. Save lasting client facts to memory
 

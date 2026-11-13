@@ -11,7 +11,7 @@ It takes about 45 minutes, in week 1 of the program.
 
 ## What they leave with
 
-1. The facts about them and their business, saved to Claude's memory. They can read them any time in Settings > Memory, under Topics.
+1. The facts about them and their business, saved to Claude's memory. They can read them any time in Settings > Your Claude, by clicking Manage beside Your memory.
 2. One block for Instructions for Claude, in their words, under about 1,500 characters. You can't edit that box yourself, so they paste it in.
 3. If Google Drive is connected, a dated copy of the interview in My Brain/Backups.
 4. A test in a new chat: "Who am I, and what's your job?"
@@ -24,7 +24,7 @@ Say these in a few short lines, then ask Part 1, question 1.
 - Talk, don't type. On the computer, use the microphone in the message box. On the phone, use dictation. Rambling is fine. You'll pull out what matters.
 - Two things get typed, not spoken: names, spelled out, and the words they never want to see. Dictation gets both wrong.
 - Never give you a Social Security number, an account number or loan figures.
-- Health details stay out of memory unless they turn that on. Settings > Memory has a switch for sensitive topics, and it starts off. Leave it off unless they're sure they want it.
+- Health details stay out of memory unless they turn that on. Settings > Your Claude has a switch called Include sensitive topics in memory, and it starts off. Leave it off unless they're sure they want it.
 
 ## Starting partway, or with answers already written
 
@@ -79,7 +79,7 @@ Notes:
 - the kinds of things they never want kept or repeated (the kinds, never the details)
 - each name to get right: the right spelling, and how it gets misheard
 
-Then tell them: "That's saved. You can see it any time in Settings > Memory, under Topics. It shows up in your next chat." Ask whether to go on to Part 2.
+Then tell them: "That's saved. To see it, open Settings, then Your Claude, and click Manage beside Your memory. It shows up in your next chat." Ask whether to go on to Part 2.
 
 ## Part 2: How I behave
 
@@ -164,7 +164,7 @@ Show the finished block in a code block, so it has a copy button. Then give thes
 
 1. Click the copy button on the block.
 2. Open Settings. In the Claude app, click your name or initials at the bottom left, then Settings.
-3. Click General.
+3. Click Your Claude.
 4. Find the box called Instructions for Claude.
 5. If the box is empty, paste. If it holds an older version of this block, select everything in it and paste over it. If it holds something else, stop and paste what's there into this chat first, and I'll fold it into one block.
 6. Click Save if you see a Save button.
@@ -190,13 +190,13 @@ End with this, close to word for word:
 
 "Last step. Start a new chat, not this one, and type: Who am I, and what's your job?"
 
-A good answer is about them and their business: who they serve, the people they work with, and the thing it catches for them. If something's wrong or missing, they can say so in that chat ("Remember that...") or fix it in Settings > Memory.
+A good answer is about them and their business: who they serve, the people they work with, and the thing it catches for them. If something's wrong or missing, they can say so in that chat ("Remember that...") or fix it in Settings > Your Claude > Manage.
 
 Then name the next step in one line: "Next we load your brand and your people, then schedule tomorrow's morning message."
 
 ## If memory won't save
 
-If you can't save to memory in this chat, say so plainly. Memory may be off. Ask them to check two places: Settings > Memory, and the Memory switch in this chat's + menu. Then give them the facts as a list in a code block. They can paste it into a new chat and type "Add all of this to your memory", or use Start import in Settings > Memory.
+If you can't save to memory in this chat, say so plainly. Memory may be off. Ask them to check two places: Generate memory from chats in Settings > Your Claude, and Memory in this chat's + menu. Then give them the facts as a list in a code block. They can paste it into a new chat and type "Add all of this to your memory", or use Start import in Settings > Your Claude.
 
 ## Rules
 

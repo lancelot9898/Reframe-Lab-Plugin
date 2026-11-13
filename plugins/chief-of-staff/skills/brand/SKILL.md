@@ -26,7 +26,7 @@ If they don't know their color codes, read them from the logo or the piece they'
 
 ## 2. Build the design system
 
-If you can create a design system in this conversation, build one from their files, named "[Their name] brand". Use their colors, fonts and logos, and copy the layout feel of the piece they're proud of. Tell them it's saved under Settings, then Customize, then Design systems, and that they can open it there to check or change it.
+If you can create a design system in this conversation, build one from their files, named "[Their name] brand". Use their colors, fonts and logos, and copy the layout feel of the piece they're proud of. Tell them it's saved under Settings, then Capabilities, then Manage beside Design systems, and that they can open it there to check or change it.
 
 If you can't create one here, say so in one line and carry on. The memory in step 3 is what everything else uses.
 

@@ -6,21 +6,20 @@ The Chief of Staff plugin for Building Your AI Chief of Staff, a Reframe Lab pro
 
 - Claude Pro, or any paid Claude plan. Plugins don't work on the free plan.
 - The Claude desktop app, on a Mac or a Windows computer.
-- Gmail and Google Calendar, connected in Customize > Connectors. Google Drive too, for My People, client notes, prep pages and backups.
+- Gmail and Google Calendar, connected in Plugins, in the left sidebar. Google Drive too, for My People, client notes, prep pages and backups.
 - The Claude app on your phone, signed in with the same email. On Gmail, the Google Calendar app too, with notifications on, because your morning message arrives there as an alert.
 - On Outlook? Read "If you use Outlook" below first.
 
 ## Install it once
 
 1. Open the Claude desktop app.
-2. Click Customize in the left sidebar.
-3. Click Plugins.
-4. Click Add, then Add marketplace.
-5. Click Add from a repository.
-6. Type `lancelot9898/Reframe-Lab-Plugin`
-7. Leave Sync automatically on.
-8. Click Sync.
-9. Find Chief of Staff and click Add.
+2. Click Plugins in the left sidebar.
+3. Click Add at the top right, then Add marketplace.
+4. Click Add from a repository.
+5. In the URL box, type `lancelot9898/Reframe-Lab-Plugin`
+6. Click Sync.
+7. In the Plugins search box, type Chief of staff. Click the one by Lance Pendleton.
+8. Click Add at the top right.
 
 You're done when you type / in a new chat and see the Chief of Staff jobs, such as setup, today, meeting and client.
 
@@ -55,7 +54,7 @@ On Pro, Claude can read your Outlook mail and calendar through the Microsoft 365
 
 ## Updates
 
-Updates arrive on their own, with nothing to accept. If something looks out of date, go to Customize > Plugins and click Check for updates.
+Updates arrive on their own, with nothing to accept. If something looks out of date, click Plugins in the left sidebar, then Add, then Manage marketplaces. Click the three dots beside Reframe-Lab-Plugin, then Check for updates. If that doesn't do it, open Chief of staff, click the three dots at the top right, click Remove, then search for it again and click Add. Your memory stays. Add it back right away, since your scheduled tasks use it.
 
 ## For maintainers
 

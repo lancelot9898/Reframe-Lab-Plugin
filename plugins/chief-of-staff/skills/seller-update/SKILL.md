@@ -13,7 +13,7 @@ Never send anything. Never invent anything.
 
 Look at the tools you have in this conversation.
 
-- Email: Gmail, or Microsoft 365 (Outlook). Without one, say in one line, "Connect Gmail or Microsoft 365 in Customize > Connectors, then run /seller-update again." Then stop.
+- Email: Gmail, or Microsoft 365 (Outlook). Without one, say in one line, "Connect Gmail or Microsoft 365 in Plugins, in the left sidebar, then run /seller-update again." Then stop.
 - Calendar: Google Calendar or Microsoft 365. Without one, carry on.
 - A listings connector, if any: Zillow, RentCast, Rechat, or the agent's MLS. Use it only for the market section, and say which one you used.
 - Drafts: with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365 only, write copy-ready drafts and say once, near the top: "The Claude for Outlook add-in can draft these straight into Outlook." Never say or suggest a draft was saved in Outlook.
@@ -98,7 +98,7 @@ Nobody is watching. Make the drafts and stay quiet. Ask no questions. Mark anyth
 
 The Monday report drafts these letters every Monday, so most agents need no separate task. If they've set up the Monday report, point them to it and stop here. If they want seller updates alone, suggest this only after they've sent three Monday letters they were happy with.
 
-1. With Gmail, ask them to check that send, reply and forward say Blocked, in Customize > Connectors > Gmail. If any says something else, stop and help them set it to Blocked first. Never test it by sending.
+1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
 2. Propose a scheduled task named "Monday seller updates", every Monday at 7:00 AM or the time they pick, with no folder. Use these instructions, word for word:
 
 ```

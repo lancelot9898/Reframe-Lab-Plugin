@@ -75,7 +75,7 @@ Google Drive can create a new Google Sheet from your list, but it can't change a
 
 Don't put the people themselves in memory. The sheet holds them.
 
-If Google Drive isn't connected, say in one line that connecting Google Drive in Customize > Connectors lets you keep My People for them. Then stop. A list this size doesn't belong in a reply.
+If Google Drive isn't connected, say in one line that connecting Google Drive in Plugins, in the left sidebar, lets you keep My People for them. Then stop. A list this size doesn't belong in a reply.
 
 ## 5. One person at a time
 

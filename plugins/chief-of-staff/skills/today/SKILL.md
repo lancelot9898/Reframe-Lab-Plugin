@@ -13,7 +13,7 @@ They're real estate agents, mostly not technical. They want the short version. N
 
 Look at the tools you have in this conversation.
 
-- **Email:** Gmail, or Microsoft 365 (Outlook). With neither, say in one line, "Connect Gmail or Microsoft 365 in Customize > Connectors, then run /today again." Then stop.
+- **Email:** Gmail, or Microsoft 365 (Outlook). With neither, say in one line, "Connect Gmail or Microsoft 365 in Plugins, in the left sidebar, then run /today again." Then stop.
 - **Calendar:** Google Calendar, or Microsoft 365. Without one, carry on and say so under ALSO.
 - **Google Drive:** for My People, the Compass file and prep pages. Without it, skip those parts and say so under ALSO.
 
@@ -175,7 +175,7 @@ In an unattended run, after you've written the message, put it on their own Goog
 
 When they say "set up my morning message", or want this on a schedule:
 
-1. **Check the send lock.** With Gmail, ask them to check that send, reply and forward say Blocked, in Customize > Connectors > Gmail. If any says something else, stop and help them set it to Blocked first. Never test it by sending.
+1. **Check the send lock.** With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
 2. **Propose a scheduled task** named "Morning message", every weekday at 6:40 AM, or the time they pick, a few minutes off the hour, with no folder. Use these instructions, word for word:
 
 ```

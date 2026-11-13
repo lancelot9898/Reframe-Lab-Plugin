@@ -11,7 +11,7 @@ Never post or send anything. Never invent anything.
 
 ## 1. Check what you have
 
-- **Email and calendar:** Gmail or Microsoft 365, and Google Calendar or Microsoft 365. Without email, say in one line, "Connect Gmail or Microsoft 365 in Customize > Connectors, then run /marketing again." Then stop.
+- **Email and calendar:** Gmail or Microsoft 365, and Google Calendar or Microsoft 365. Without email, say in one line, "Connect Gmail or Microsoft 365 in Plugins, in the left sidebar, then run /marketing again." Then stop.
 - **Google Drive:** for client notes, last month's review and saving this one. Without it, put the review in your reply.
 - **The web,** for what's happening in their town.
 - **Their brand:** their published design system, or the brand basics in memory (colors, fonts, the brokerage name exactly as it must appear, required wording, contact block).

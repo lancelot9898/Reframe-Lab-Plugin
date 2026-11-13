@@ -13,7 +13,7 @@ Never send anything. Never invent anything.
 
 Look at the tools you have in this conversation.
 
-- **Email:** Gmail, or Microsoft 365 (Outlook). Without one, say in one line, "Connect Gmail or Microsoft 365 in Customize > Connectors, then run /monday again." Then stop.
+- **Email:** Gmail, or Microsoft 365 (Outlook). Without one, say in one line, "Connect Gmail or Microsoft 365 in Plugins, in the left sidebar, then run /monday again." Then stop.
 - **Calendar:** Google Calendar or Microsoft 365. Without one, carry on and say so in one line at the end.
 - **Google Drive:** for My People and for saving the report. Without it, put the whole report in your reply and say in one line that it couldn't be saved.
 - **Drafts:** with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365 only, write copy-ready drafts (below) and say once, near the top: "The Claude for Outlook add-in can draft these straight into Outlook." Never say or suggest a draft was saved in Outlook.
@@ -117,7 +117,7 @@ For Microsoft 365, or when no email connector can hold a draft. For each draft: 
 
 When they want this every Monday:
 
-1. With Gmail, ask them to check that send, reply and forward say Blocked, in Customize > Connectors > Gmail. If any says something else, stop and help them set it to Blocked first. Never test it by sending.
+1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
 2. Propose a scheduled task named "Monday report", every Monday at 7:20 AM or the time they pick, with no folder. Use these instructions, word for word:
 
 ```
@@ -126,7 +126,7 @@ This is my scheduled Monday report. Use the monday skill from the Chief of Staff
 
 3. They check the task names no folder, then click Schedule.
 4. They open the task and click Run now once, the day they make it. If it asks to allow a tool, they choose the option that allows it for all scheduled runs. If it ever asks to send, reply to or forward an email, the answer is no.
-5. If they already have a task called "Monday seller updates", ask them to pause it. The Monday report drafts the seller updates now, and two runs would draft every letter twice.
+5. If they already have a task called "Monday seller updates", ask them to open it under Scheduled and switch off Active. The Monday report drafts the seller updates now, and two runs would draft every letter twice.
 
 ## Rules
 

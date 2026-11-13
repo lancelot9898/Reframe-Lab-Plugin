@@ -5,7 +5,7 @@ description: Backs up everything Claude remembers about a real estate agent and 
 
 # Backup: what Claude remembers, saved to a Google Doc
 
-Claude's memory lives in the agent's Claude account. There's no export button for it. Anthropic's own way to export memory is to ask Claude to write it out word for word. This skill does that, into a dated Google Doc the agent owns.
+Claude's memory lives in the agent's Claude account. Claude's own Export button, in Settings > Your Claude, downloads it to their computer. This skill writes it out word for word into a dated Google Doc the agent owns, in their Google Drive, and can do that every month on a schedule.
 
 ## 1. Attended or unattended
 
@@ -14,7 +14,7 @@ Claude's memory lives in the agent's Claude account. There's no export button fo
 
 ## 2. Instructions for Claude (attended only)
 
-Ask: "Want your Instructions for Claude in the backup too? Open Settings, then General. Click in the Instructions for Claude box, select everything, copy it, and paste it here. Or say skip."
+Ask: "Want your Instructions for Claude in the backup too? Open Settings, then Your Claude. Click in the Instructions for Claude box, select everything, copy it, and paste it here. Or say skip."
 
 Use exactly what they paste.
 
@@ -42,8 +42,8 @@ Put this in the Doc, in this order:
 ```
 Claude memory backup, [Month D, YYYY]
 
-How to restore: start a new chat in Claude and paste in the Memory section below. Then type: Add all of this to your memory. Check Settings > Memory afterwards.
-To restore your instructions, paste the Instructions for Claude section into Settings > General > Instructions for Claude.
+How to restore: start a new chat in Claude and paste in the Memory section below. Then type: Add all of this to your memory. Check Settings > Your Claude > Manage afterwards.
+To restore your instructions, paste the Instructions for Claude section into Settings > Your Claude > Instructions for Claude.
 
 This Doc holds what Claude knows about you and your clients. Keep it private. Don't share this folder.
 
@@ -54,7 +54,7 @@ Instructions for Claude
 [their text, or: Not included in this backup.]
 ```
 
-**If Google Drive isn't connected**, or they're on Microsoft 365 only: on the Pro plan, Claude can't save files to OneDrive, so put the whole backup in your reply, in one code block. Tell them to paste it into a document they keep somewhere private. Say once that connecting Google Drive in Customize > Connectors lets /backup save it for them.
+**If Google Drive isn't connected**, or they're on Microsoft 365 only: on the Pro plan, Claude can't save files to OneDrive, so put the whole backup in your reply, in one code block. Tell them to paste it into a document they keep somewhere private. Say once that connecting Google Drive in Plugins, in the left sidebar, lets /backup save it for them.
 
 ## 5. Tell them
 

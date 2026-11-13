@@ -87,7 +87,7 @@ If Google Drive is connected:
 3. Create a new Google Doc called "YYYY-MM-DD Inspection review, [address]", with today's date. Upload the text with conversion to Google Docs left on. If one with that name exists, add " (2)".
 4. In it, in this order: the summary (what the report means, in five to ten plain lines, with counts by tier), the triage table, questions for the inspector, the memo, the draft request or response, and the pages to check by eye.
 
-If Google Drive isn't connected, put the whole review in your reply and say in one line that connecting Google Drive in Customize > Connectors files these for them.
+If Google Drive isn't connected, put the whole review in your reply and say in one line that connecting Google Drive in Plugins, in the left sidebar, files these for them.
 
 Save one line to memory naming the client and the address: the inspection date, the deadline, and the three biggest items.
 

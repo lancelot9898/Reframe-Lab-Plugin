@@ -30,7 +30,6 @@ if (process.argv.includes("--selftest")) { console.log("ok"); process.exit(0); }
 let CONFIG = {};
 try { CONFIG = JSON.parse(readFileSync(CONFIG_FILE, "utf8")); } catch {}
 const OUT_DIR = process.env.OUT_DIR ?? CONFIG.out_dir ?? "";
-const STATUS_FILE = join(OUT_DIR || STATE_DIR, "_status.md");
 const SKIP = Array.isArray(CONFIG.skip) ? CONFIG.skip.map((s) => String(s).trim()).filter(Boolean) : [];
 
 // The first run covers the last week, so the first morning message has something to work with.
@@ -92,9 +91,11 @@ for (const s of SKIP) {
   else if (phoneKey(s) && /\d{7,}/.test(s.replace(/\D/g, ""))) SKIP_KEYS.add(phoneKey(s));
   else SKIP_NAMES.add(s.toLowerCase().replace(/\s+/g, " "));
 }
-function isSkipped(handle, name) {
+const normName = (n) => String(n).toLowerCase().replace(/\s+/g, " ").trim();
+// names: every name Contacts has for this handle (first+last, with middle, nickname, company).
+function isSkipped(handle, names) {
   if (handle && SKIP_KEYS.has(handleKey(handle))) return true;
-  if (name && SKIP_NAMES.has(String(name).toLowerCase().replace(/\s+/g, " "))) return true;
+  for (const n of names ?? []) if (n && SKIP_NAMES.has(normName(n))) return true;
   return false;
 }
 
@@ -146,7 +147,13 @@ function cleanText(t) {
 // ---------- contacts ----------
 
 function loadContacts() {
-  const map = new Map();
+  const map = new Map();      // handle -> display name (first card found)
+  const allNames = new Map(); // handle -> every name on every card with that handle
+  const known = new Set();    // every name on every card, for reporting skip names that match nobody
+  const addName = (k, n) => {
+    if (!allNames.has(k)) allNames.set(k, new Set());
+    allNames.get(k).add(n);
+  };
   const dbs = [];
   const main = join(AB_ROOT, "AddressBook-v22.abcddb");
   if (existsSync(main)) dbs.push(main);
@@ -162,22 +169,39 @@ function loadContacts() {
     let db;
     try {
       db = new Database(p, { readonly: true });
-      const names = new Map();
-      for (const r of db.query(
-        "SELECT Z_PK AS id, ZFIRSTNAME AS first, ZLASTNAME AS last, ZNICKNAME AS nick, ZORGANIZATION AS org FROM ZABCDRECORD",
-      ).all()) {
+      const names = new Map();   // card -> display name
+      const variants = new Map(); // card -> every way the card can be named
+      let recs;
+      try {
+        recs = db.query("SELECT Z_PK AS id, ZFIRSTNAME AS first, ZMIDDLENAME AS middle, ZLASTNAME AS last, ZNICKNAME AS nick, ZORGANIZATION AS org FROM ZABCDRECORD").all();
+      } catch {
+        recs = db.query("SELECT Z_PK AS id, ZFIRSTNAME AS first, ZLASTNAME AS last, ZNICKNAME AS nick, ZORGANIZATION AS org FROM ZABCDRECORD").all();
+      }
+      for (const r of recs) {
         const n = [r.first, r.last].filter(Boolean).join(" ").trim() || r.nick || r.org;
         if (n) names.set(r.id, n);
+        const v = new Set([
+          [r.first, r.last].filter(Boolean).join(" "),
+          [r.first, r.middle, r.last].filter(Boolean).join(" "),
+          r.first && !r.last ? r.first : "",
+          r.nick || "", r.org || "",
+        ].map((x) => x.trim()).filter(Boolean));
+        variants.set(r.id, v);
+        for (const x of v) known.add(normName(x));
       }
       for (const r of db.query("SELECT ZOWNER AS owner, ZFULLNUMBER AS v FROM ZABCDPHONENUMBER").all()) {
         const n = names.get(r.owner);
         const k = phoneKey(r.v);
-        if (n && k && !map.has(k)) map.set(k, n);
+        if (!k) continue;
+        if (n && !map.has(k)) map.set(k, n);
+        for (const x of variants.get(r.owner) ?? []) addName(k, x);
       }
       for (const r of db.query("SELECT ZOWNER AS owner, ZADDRESS AS v FROM ZABCDEMAILADDRESS").all()) {
         const n = names.get(r.owner);
         const k = r.v ? String(r.v).trim().toLowerCase() : null;
-        if (n && k && !map.has(k)) map.set(k, n);
+        if (!k) continue;
+        if (n && !map.has(k)) map.set(k, n);
+        for (const x of variants.get(r.owner) ?? []) addName(k, x);
       }
       loaded++;
     } catch {
@@ -186,7 +210,7 @@ function loadContacts() {
       try { db?.close(); } catch {}
     }
   }
-  return { map, sources: dbs.length, loaded };
+  return { map, allNames, known, sources: dbs.length, loaded };
 }
 
 // ---------- state ----------
@@ -202,9 +226,12 @@ function writeState(s) {
 
 function writeHeartbeat(fields, note) {
   try {
-    mkdirSync(OUT_DIR || STATE_DIR, { recursive: true });
+    // Never create OUT_DIR here: if Google Drive isn't running, a folder made now
+    // would sit on this Mac, never sync, and hide the problem on every later run.
+    const dir = OUT_DIR && existsSync(OUT_DIR) ? OUT_DIR : STATE_DIR;
+    mkdirSync(dir, { recursive: true });
     const fm = Object.entries(fields).map(([k, v]) => `${k}: ${v ?? ""}`).join("\n");
-    writeFileSync(STATUS_FILE,
+    writeFileSync(join(dir, "_status.md"),
       `---\ntype: text-export-status\n${fm}\n---\n\n# Text export status\n\n${note}\n\n` +
       `_Written by the Mac job \`com.reframelab.texts\` every run. The Chief of Staff plugin reads it to check the export is working._\n`);
   } catch (e) {
@@ -218,7 +245,7 @@ function prune() {
   if (!existsSync(OUT_DIR)) return n;
   const cutoff = Date.now() - KEEP_DAYS * 86400e3;
   for (const f of readdirSync(OUT_DIR)) {
-    if (!/^Texts \d{4}-\d{2}-\d{2} \d{4}.*\.md$/.test(f)) continue;
+    if (!/^\.?Texts \d{4}-\d{2}-\d{2} \d{4}.*\.(md|partial)$/.test(f)) continue;
     const p = join(OUT_DIR, f);
     try {
       if (statSync(p).mtimeMs < cutoff) { unlinkSync(p); n++; }
@@ -254,6 +281,9 @@ function run() {
     ? new Date(new Date(state.last_run_at).getTime() - RESYNC_GUARD_DAYS * 86400e3)
     : new Date(now.getTime() - FIRST_RUN_DAYS * 86400e3);
 
+  // Highest ROWID first, so a text arriving mid-run is picked up next time, not skipped.
+  const maxRow = db.query("SELECT MAX(ROWID) AS r FROM message").get()?.r ?? lastRowid;
+
   const rows = db.query(`
     SELECT m.ROWID AS rowid, m.date AS date, m.is_from_me AS from_me, m.text AS text,
            m.attributedBody AS body, m.cache_has_attachments AS has_att,
@@ -264,12 +294,9 @@ function run() {
     LEFT JOIN handle h ON h.ROWID = m.handle_id
     LEFT JOIN chat_message_join cmj ON cmj.message_id = m.ROWID
     LEFT JOIN chat c ON c.ROWID = cmj.chat_id
-    WHERE m.ROWID > ?1 AND m.date >= ?2
+    WHERE m.ROWID > ?1 AND m.date >= ?2 AND m.ROWID <= ?3
     ORDER BY m.ROWID
-  `).all(lastRowid, toAppleNs(sinceDate));
-
-  // Highest ROWID in the table, so skipped rows are never re-scanned.
-  const maxRow = db.query("SELECT MAX(ROWID) AS r FROM message").get()?.r ?? lastRowid;
+  `).all(lastRowid, toAppleNs(sinceDate), maxRow);
 
   const attQ = db.query(`
     SELECT a.transfer_name AS name, a.mime_type AS mime
@@ -283,6 +310,10 @@ function run() {
 
   const contacts = loadContacts();
   const nameOf = (h) => (h ? contacts.map.get(handleKey(h)) : null) ?? null;
+  const namesOf = (h) => (h ? contacts.allNames.get(handleKey(h)) : null) ?? [];
+  const skipHandle = (h) => isSkipped(h, namesOf(h));
+  // Skip names that match no one in Contacts, reported so a typo doesn't let family through.
+  const unmatchedSkip = [...SKIP_NAMES].filter((n) => !contacts.known.has(n));
   const label = (h) => {
     const n = nameOf(h);
     return n ? `${n} (${h})` : h ?? "unknown";
@@ -313,11 +344,17 @@ function run() {
 
     const key = r.chat_id != null ? `c${r.chat_id}` : `h${r.sender}`;
     if (skippedChats.has(key)) { skippedList++; continue; }
+    if (skipHandle(r.sender)) {
+      // Someone on the skip list wrote in this conversation: drop all of it, including what was already kept.
+      const prev = convos.get(key);
+      if (prev) { kept -= prev.msgs.length; skippedList += prev.msgs.length; convos.delete(key); }
+      skippedChats.add(key); skippedList++; continue;
+    }
     let c = convos.get(key);
     if (!c) {
       const participants = r.chat_id != null ? partQ.all(r.chat_id).map((p) => p.id) : [r.sender];
-      if ((r.chat_name && isSkipped(null, r.chat_name)) ||
-          participants.some((h) => isSkipped(h, nameOf(h)))) {
+      if ((r.chat_name && isSkipped(null, [r.chat_name])) ||
+          [...participants, r.sender, r.chat_ident].some((h) => skipHandle(h))) {
         skippedChats.add(key); skippedList++; continue;
       }
       const isGroup = r.chat_style === 43 || participants.length > 1;
@@ -394,7 +431,7 @@ function run() {
 
   const pruned = DRY_RUN ? 0 : prune();
   return {
-    now, kept, convos: convos.size, skippedShort, skippedNoise, skippedList, written, pruned,
+    now, kept, convos: convos.size, skippedShort, skippedNoise, skippedList, written, pruned, unmatchedSkip,
     contacts: `${contacts.map.size} handles from ${contacts.loaded} of ${contacts.sources} sources`,
     sinceDate, firstRun: !state,
   };
@@ -411,6 +448,7 @@ try {
     writeHeartbeat({
       last_run: isoLocal(r.now), status: "ok", messages: r.kept, conversations: r.convos,
       files: r.written.length, skipped_short_codes: r.skippedShort, skipped_on_list: r.skippedList, pruned: r.pruned,
+      unmatched_skip: `"${r.unmatchedSkip.join(", ").replace(/"/g, "'")}"`,
       contacts: `"${r.contacts}"`, first_run: r.firstRun, error: "",
     }, note);
     console.log(`${isoLocal(r.now)} ok: ${r.kept} messages, ${r.convos} conversations, ${r.written.length} files, pruned ${r.pruned}`);

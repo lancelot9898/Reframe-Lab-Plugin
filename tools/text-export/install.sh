@@ -91,14 +91,46 @@ else
   fi
   DRIVE="${DRIVES[$((PICK - 1))]}"
 fi
-if [ ! -d "$DRIVE/My Drive" ]; then
+MYDRIVE="$DRIVE/My Drive"
+if [ ! -d "$MYDRIVE" ]; then
+  # On a Mac set to another language, My Drive has another name.
+  MYDRIVE=""
+  for d in "$DRIVE"/*/; do
+    n="$(basename "$d")"
+    case "$n" in "Shared drives"|"Other computers"|.*) continue ;; esac
+    if [ -z "$MYDRIVE" ]; then MYDRIVE="${d%/}"; fi
+  done
+fi
+if [ -z "$MYDRIVE" ] || [ ! -d "$MYDRIVE" ]; then
   say "Can't find My Drive inside Google Drive at: $DRIVE"
-  echo "Open Google Drive for desktop, make sure it says it's up to date, then run this again."
+  echo "Open Google Drive for desktop from the menu bar, wait until it says it's up to date, then run this again."
   exit 1
 fi
-OUT_DIR="$DRIVE/My Drive/My Brain/Texts"
+# Use the My Brain folder the chief of staff already uses, if there is one.
+BRAINS=()
+while IFS= read -r b; do BRAINS+=("$b"); done < <(find "$MYDRIVE" -maxdepth 3 -type d -name "My Brain" 2>/dev/null)
+if [ "${#BRAINS[@]}" -eq 0 ]; then
+  BRAIN="$MYDRIVE/My Brain"
+elif [ "${#BRAINS[@]}" -eq 1 ]; then
+  BRAIN="${BRAINS[0]}"
+else
+  say "There's more than one folder called My Brain in your Google Drive:"
+  i=1
+  for b in "${BRAINS[@]}"; do
+    echo "  $i. ${b#"$MYDRIVE"/}"
+    i=$((i + 1))
+  done
+  PICK="$(ask "Type the number of the one your chief of staff uses: ")"
+  if ! [[ "$PICK" =~ ^[0-9]+$ ]] || [ "$PICK" -lt 1 ] || [ "$PICK" -gt "${#BRAINS[@]}" ]; then
+    say "That isn't one of the numbers. Run the installer again."
+    exit 1
+  fi
+  BRAIN="${BRAINS[$((PICK - 1))]}"
+fi
+OUT_DIR="$BRAIN/Texts"
+echo "If your Mac asks to let Terminal use Google Drive, click Allow."
 mkdir -p "$OUT_DIR"
-say "Your texts will go to: My Brain/Texts (Google account ${DRIVE##*/GoogleDrive-})"
+say "Your texts will go to: ${OUT_DIR#"$MYDRIVE"/} (Google account ${DRIVE##*/GoogleDrive-})"
 
 # ---------- 2. Who to leave out ----------
 OLD_SKIP=""
@@ -111,7 +143,7 @@ echo "Type their names exactly as they appear in Contacts, separated by commas."
 echo "A group chat with any of them in it is left out too."
 if [ -n "$OLD_SKIP" ] && [ "$OLD_SKIP" != "[]" ]; then
   echo "Right now you leave out: $OLD_SKIP"
-  echo "Press Return to keep that list, or type a new one."
+  echo "Press Return to keep that list, type a new one, or type none to leave nobody out."
 else
   echo "Press Return to leave nobody out."
 fi
@@ -136,33 +168,47 @@ fi
 
 # ---------- 4. Get the exporter and save the settings ----------
 mkdir -p "$APP_DIR" "$HOME/Library/LaunchAgents"
+NEW_JS="$APP_DIR/export.js.new"
 SRC_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" 2>/dev/null && pwd || true)"
 if [ -n "$SRC_DIR" ] && [ -f "$SRC_DIR/export.js" ]; then
-  cp "$SRC_DIR/export.js" "$APP_DIR/export.js"
+  cp "$SRC_DIR/export.js" "$NEW_JS"
 else
-  curl -fsSL "$REPO_RAW/export.js" -o "$APP_DIR/export.js"
+  curl -fsSL "$REPO_RAW/export.js" -o "$NEW_JS"
 fi
+BIN="$APP_DIR/reframe-texts"
+HAD_BIN=no
+if [ -x "$BIN" ]; then HAD_BIN=yes; fi
+SAME=no
+if [ "$HAD_BIN" = yes ] && [ -f "$APP_DIR/export.js" ] && cmp -s "$NEW_JS" "$APP_DIR/export.js" && "$BIN" --selftest >/dev/null 2>&1; then
+  SAME=yes
+fi
+mv -f "$NEW_JS" "$APP_DIR/export.js"
 
 OUT_DIR="$OUT_DIR" SKIP_RAW="$SKIP_RAW" OLD_SKIP="$OLD_SKIP" CONFIG="$CONFIG" "$BUN" -e '
   const fs = require("fs");
   const raw = (process.env.SKIP_RAW || "").trim();
   let skip = [];
-  if (raw) skip = raw.split(",").map((s) => s.trim()).filter(Boolean);
+  if (/^none$/i.test(raw)) skip = [];
+  else if (raw) skip = raw.split(",").map((s) => s.trim()).filter(Boolean);
   else { try { skip = JSON.parse(process.env.OLD_SKIP || "[]"); } catch { skip = []; } }
   fs.writeFileSync(process.env.CONFIG, JSON.stringify({ out_dir: process.env.OUT_DIR, skip, first_run_days: 7 }, null, 2));
 '
 
 # ---------- 5. Build one small program ----------
 # Full Disk Access then goes to this one program, not to bun or Terminal.
-BIN="$APP_DIR/reframe-texts"
-rm -f "$BIN"
+# Rebuilding makes macOS treat it as a new program, so keep the old one when nothing changed.
 built=no
+if [ "$SAME" = yes ]; then
+  built=yes
+else
+rm -f "$BIN"
 if "$BUN" build "$APP_DIR/export.js" --compile --outfile "$BIN" >/dev/null 2>&1; then
   if "$BIN" --selftest >/dev/null 2>&1; then
     built=yes
   elif codesign --force --sign - "$BIN" >/dev/null 2>&1 && "$BIN" --selftest >/dev/null 2>&1; then
     built=yes
   fi
+fi
 fi
 BUN_REAL="$(readlink -f "$BUN" 2>/dev/null || echo "$BUN")"
 if [ "$built" = yes ]; then
@@ -177,8 +223,9 @@ else
   FDA_NAME="bun"
 fi
 
-# ---------- 6. Schedule it: every day at 6:10 AM, before the morning message ----------
-# A Mac that's asleep at 6:10 runs it when it wakes.
+# ---------- 6. Schedule it: 9:10 PM, and 6:10 AM before the morning message ----------
+# The evening run catches the day's texts while the Mac is usually still open.
+# A Mac that's asleep at either time runs it when it wakes.
 cat > "$PLIST" <<PLISTEOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -190,10 +237,16 @@ cat > "$PLIST" <<PLISTEOF
 $PROG_XML
   </array>
   <key>StartCalendarInterval</key>
-  <dict>
-    <key>Hour</key><integer>6</integer>
-    <key>Minute</key><integer>10</integer>
-  </dict>
+  <array>
+    <dict>
+      <key>Hour</key><integer>6</integer>
+      <key>Minute</key><integer>10</integer>
+    </dict>
+    <dict>
+      <key>Hour</key><integer>21</integer>
+      <key>Minute</key><integer>10</integer>
+    </dict>
+  </array>
   <key>RunAtLoad</key><false/>
   <key>ProcessType</key><string>Background</string>
   <key>StandardOutPath</key><string>$APP_DIR/export.log</string>
@@ -202,33 +255,58 @@ $PROG_XML
 </plist>
 PLISTEOF
 launchctl bootout "gui/$UID_NUM/$LABEL" 2>/dev/null || true
-launchctl bootstrap "gui/$UID_NUM" "$PLIST"
+launchctl enable "gui/$UID_NUM/$LABEL" 2>/dev/null || true
+if ! launchctl bootstrap "gui/$UID_NUM" "$PLIST" 2>/dev/null; then
+  sleep 2
+  launchctl bootstrap "gui/$UID_NUM" "$PLIST" 2>/dev/null || true
+fi
+if ! launchctl print "gui/$UID_NUM/$LABEL" >/dev/null 2>&1; then
+  say "Your Mac didn't accept the daily schedule."
+  echo "Open System Settings, then General, then Login Items."
+  echo "Under Allow in the Background, switch on reframe-texts (it may show as bun). Then run this installer again."
+  exit 1
+fi
 
 # ---------- 7. Full Disk Access, the one step only you can do ----------
-say "One step only you can do: switch on Full Disk Access for $FDA_NAME."
-echo "Two windows are opening now:"
-echo "  - System Settings, on Privacy & Security, then Full Disk Access"
-echo "  - Finder, with $FDA_NAME selected"
-echo ""
-echo "Drag $FDA_NAME from the Finder window into the list in System Settings, then switch it on."
-echo "If it's already in the list, switch it off and on again."
-echo "If your Mac asks for your password or Touch ID, that's your Mac asking, not this installer."
-echo "If it asks you to quit and reopen an app, choose Later."
-open "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles" || true
-open -R "$FDA_TARGET" || true
-echo ""
-ask "Press Return once $FDA_NAME is switched on... " >/dev/null
+echo "If a notice says a background item was added, that's this program. Leave it on."
+if [ "$SAME" = yes ]; then
+  say "Nothing changed in the program, so Full Disk Access stays as it is."
+else
+  say "One step only you can do: switch on Full Disk Access for $FDA_NAME."
+  echo "Two windows are opening now:"
+  echo "  - System Settings, on Privacy & Security, then Full Disk Access"
+  echo "  - Finder, with $FDA_NAME selected"
+  echo ""
+  if [ "$HAD_BIN" = yes ]; then
+    echo "This is a new copy of the program, so the old switch won't work any more."
+    echo "In System Settings, select $FDA_NAME, click the minus button, then drag $FDA_NAME in again and switch it on."
+  else
+    echo "Drag $FDA_NAME from the Finder window into the list in System Settings, then switch it on."
+  fi
+  echo "If dragging doesn't work: click the plus button, press Command, Shift and G together,"
+  echo "paste this, press Return, then click Open:"
+  echo "  $FDA_TARGET"
+  echo "If your Mac asks for your password or Touch ID, that's your Mac asking, not this installer."
+  echo "If it asks you to quit and reopen an app, choose Later."
+  open "x-apple.systempreferences:com.apple.preference.security?Privacy_AllFiles" || true
+  open -R "$FDA_TARGET" || true
+  echo ""
+  ask "Press Return once $FDA_NAME is switched on... " >/dev/null
+fi
 
 # ---------- 8. First run ----------
 say "Copying your texts from the last 7 days now..."
 STATUS="$OUT_DIR/_status.md"
+STATUS2="$APP_DIR/_status.md"
 BEFORE="$(stat -f %m "$STATUS" 2>/dev/null || echo 0)"
-launchctl kickstart -k "gui/$UID_NUM/$LABEL"
+BEFORE2="$(stat -f %m "$STATUS2" 2>/dev/null || echo 0)"
+launchctl kickstart -k "gui/$UID_NUM/$LABEL" 2>/dev/null || true
 AFTER="$BEFORE"
 for _i in $(seq 1 30); do
   sleep 2
   AFTER="$(stat -f %m "$STATUS" 2>/dev/null || echo 0)"
   if [ "$AFTER" != "$BEFORE" ]; then break; fi
+  if [ "$(stat -f %m "$STATUS2" 2>/dev/null || echo 0)" != "$BEFORE2" ]; then STATUS="$STATUS2"; AFTER=changed; break; fi
 done
 
 if [ "$MODE" = "test" ]; then
@@ -247,12 +325,23 @@ fi
 RESULT="$(grep '^status:' "$STATUS" | head -1 | sed 's/status: *//')"
 if [ "$RESULT" = "ok" ]; then
   MSGS="$(grep '^messages:' "$STATUS" | head -1 | sed 's/messages: *//')"
+  UNMATCHED="$(grep '^unmatched_skip:' "$STATUS" | head -1 | sed 's/unmatched_skip: *//; s/"//g')"
   say "Done. It works."
-  echo "Texts copied into My Brain/Texts: $MSGS"
+  if [ "$MSGS" = "0" ]; then
+    echo "No new texts since the last run."
+  else
+    echo "Texts copied into My Brain/Texts: $MSGS"
+  fi
+  if [ -n "$UNMATCHED" ]; then
+    echo ""
+    echo "These names didn't match anyone in Contacts, so they aren't left out yet: $UNMATCHED"
+    echo "Check how they're spelled in Contacts, then run this installer again with the exact names."
+  fi
   if [ "$MODE" = "test" ]; then
     echo "This was a test run, so nothing is scheduled. Run the installer without --test to make it daily."
   else
-    echo "From now on it runs every morning at 6:10, or when your Mac wakes up."
+    echo "From now on it runs at 9:10 every evening and 6:10 every morning. If your Mac is asleep then, it runs when it wakes."
+    echo "Install it on one Mac only."
   fi
 else
   say "It ran but hit a problem:"

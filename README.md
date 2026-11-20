@@ -41,12 +41,12 @@ Everything else arrives on a schedule or starts when you ask in plain words.
 
 - **Week 1, it learns you:** setup (the interview), brand (your brand kit), people (My People, from your CRM or an export), today (your morning message).
 - **Week 2, your day:** meeting (after every conversation), client (one page on anyone, and prep pages), backup (a monthly copy of what Claude remembers).
-- **Week 3, your people and your listings:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents).
+- **Week 3, your people and your listings:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents), texts (your text messages, on a Mac, through the text export in tools/text-export).
 - **Week 4, your marketing:** marketing (the monthly review, posts and newsletter), cma (a CMA), inspection (the inspection response).
 
 ## It drafts. You send.
 
-Nothing in this plugin sends an email. Your replies wait in Gmail Drafts until you read them and press send. In week 1 you also set Gmail's send, reply and forward to Blocked, so Claude can't send even by mistake.
+Nothing in this plugin sends an email or a text. Your replies wait in Gmail Drafts until you read them and press send. In week 1 you also set Gmail's send, reply and forward to Blocked, so Claude can't send even by mistake.
 
 ## If you use Outlook
 

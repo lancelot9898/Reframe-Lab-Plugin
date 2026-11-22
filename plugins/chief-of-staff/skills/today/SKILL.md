@@ -165,7 +165,7 @@ Good morning, [first name]. Nothing needs you this morning. Today: [the first ap
 In an unattended run, after you've written the message, put it on their own Google Calendar. Their calendar app turns it into a phone alert, and Google Calendar can email it to them too. Do the same in an attended run only when they ask for it on their phone.
 
 - **One event** on their main calendar, titled "Morning message", today at their delivery time from memory, or 7:00 AM if memory has none, 5 minutes long. If that time has already passed, start it 2 minutes from now.
-- **The description** is the morning message in plain text, exactly as you wrote it, without the Behind the drafts lines.
+- **The description** is the morning message in plain text, exactly as you wrote it, without the Behind the drafts lines. Under it, add each copy-ready text: "Text to: [name]", then the text on its own line, so they can copy it on their phone.
 - **Shown as free and private, with no guests and no meeting link.** Send no invitation.
 - **Reminders:** a popup at the start. If memory says they want it by email too, add an email reminder at the start.
 - **Never twice.** If an event titled "Morning message" is already on today's calendar, don't add another.

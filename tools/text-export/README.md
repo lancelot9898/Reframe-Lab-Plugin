@@ -1,6 +1,6 @@
 # Text export for the Chief of Staff plugin (Mac only)
 
-Once a day, this copies your new text messages, with each person's name from Contacts, into `My Brain/Texts` in your Google Drive. Your chief of staff reads that folder, so it can see what you promised people by text.
+Twice a day, this copies your new text messages, with each person's name from Contacts, into `My Brain/Texts` in your Google Drive. Your chief of staff reads that folder, so it can see what you promised people by text.
 
 - It only reads Messages and Contacts. It never sends a text.
 - It runs at 9:10 every evening and 6:10 every morning. If your Mac is asleep then, it runs when it wakes.

@@ -1,11 +1,11 @@
 ---
 name: texts
-description: The text export for a real estate agent's chief of staff, Mac only. Once a day a small program on their Mac copies new texts, with each person's name, into My Brain/Texts in their Google Drive. This walks them through installing it in Terminal one step at a time, checks it's working, changes who's left out, and reads their texts to say who's waiting on a reply and what they promised by text. Use when the agent says "set up my text export", "set up my texts", "connect my texts", "connect my iMessages", "read my texts", "check my texts", "who's waiting on a text from me", "what did I promise by text", "check my text export", "my texts stopped", "leave someone out of my texts", "turn off my text export", or types /texts. Reads only. Never sends a text.
+description: The text export for a real estate agent's chief of staff, Mac only. Twice a day a small program on their Mac copies new texts, with each person's name, into My Brain/Texts in their Google Drive. This walks them through installing it in Terminal one step at a time, checks it's working, changes who's left out, and reads their texts to say who's waiting on a reply and what they promised by text. Use when the agent says "set up my text export", "set up my texts", "connect my texts", "connect my iMessages", "read my texts", "check my texts", "who's waiting on a text from me", "what did I promise by text", "check my text export", "my texts stopped", "leave someone out of my texts", "turn off my text export", or types /texts. Reads only. Never sends a text.
 ---
 
 # Texts: your texts, for your chief of staff
 
-You're the agent's chief of staff. Clients text far more than they email, so promises and questions hide in Messages where you can't see them. A small program on their Mac fixes that. Once a day it copies their new texts, with each person's name from Contacts, into My Brain/Texts in their Google Drive. You read that folder.
+You're the agent's chief of staff. Clients text far more than they email, so promises and questions hide in Messages where you can't see them. A small program on their Mac fixes that. Twice a day it copies their new texts, with each person's name from Contacts, into My Brain/Texts in their Google Drive. You read that folder.
 
 The program only reads Messages and Contacts. It never sends a text, and neither do you.
 
@@ -65,11 +65,12 @@ Have them copy the last lines Terminal shows and paste them into the chat. Then 
 - **"Google Drive for desktop isn't on this Mac yet."** Install it, sign in, and paste the line again.
 - **"Can't find My Drive inside Google Drive."** Open Google Drive for desktop from the menu bar, wait until it says it's up to date, and paste the line again.
 - **"bun didn't install."** Paste the line it shows, press Return, then paste the install line again.
-- **Anything that mentions Full Disk Access.** The program isn't switched on. In Full Disk Access, select reframe-texts, click the minus button, add it again with step 6, then paste the install line again.
-- **"These names didn't match anyone in Contacts."** Those people aren't left out yet. Have them check the spelling in the Contacts app, then paste the install line again and type the list with the exact names.
+- **Anything that mentions Full Disk Access.** The program isn't switched on. Have them paste the install line again, type yes, and press Return to keep their list. Because the last run failed, it opens the two windows again. They check reframe-texts is in the list and switched on (if it isn't in the list, they add it as in step 6), then press Return in Terminal.
+- **"These names didn't match anyone in Contacts."** Those people aren't left out yet, and their texts from the last 7 days are already in My Brain/Texts. Have them check the spelling in the Contacts app, paste the install line again, type yes, and type the list with the exact names. Then offer to help them delete the Texts files already made, so those texts come out today.
 - **"Your Mac didn't accept the daily schedule."** In System Settings, General, Login Items, under Allow in the Background, they switch on reframe-texts (it may show as bun), then paste the install line again.
 - **"The Texts folder is missing."** Google Drive for desktop isn't running. Open it, then paste the install line again.
 - **"Nothing came back yet."** Wait a minute and paste the install line again. If it says the same, have them paste the log lines it shows.
+- **Anything else:** have them paste Terminal's last lines into the chat, and tell them in plain words what happened.
 
 ## Read their texts
 

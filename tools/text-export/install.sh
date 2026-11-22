@@ -1,7 +1,7 @@
 #!/bin/bash
 # Reframe Lab text export, for the Chief of Staff plugin.
 #
-# Once a day, copies your new text messages, with each person's name, from the
+# Twice a day, copies your new text messages, with each person's name, from the
 # Messages app on this Mac into My Brain/Texts in your Google Drive, so your
 # chief of staff can see what you promised people by text. It only reads.
 # It never sends a text.
@@ -53,7 +53,7 @@ fi
 
 say "Reframe Lab text export"
 echo "This copies your new texts, with each person's name, into My Brain/Texts"
-echo "in your Google Drive once a day, so your chief of staff can see them."
+echo "in your Google Drive twice a day, so your chief of staff can see them."
 echo "It only reads your texts. It never sends one."
 echo "Everything you text is included, unless you name people to leave out in a minute."
 echo ""
@@ -268,8 +268,17 @@ if ! launchctl print "gui/$UID_NUM/$LABEL" >/dev/null 2>&1; then
 fi
 
 # ---------- 7. Full Disk Access, the one step only you can do ----------
+# When the program didn't change, skip this step only if the last run worked.
+# If the last run failed (often Full Disk Access was never switched on), show the step again.
+LAST_STATUS=""
+for s in "$OUT_DIR/_status.md" "$APP_DIR/_status.md"; do
+  if [ -f "$s" ] && { [ -z "$LAST_STATUS" ] || [ "$s" -nt "$LAST_STATUS" ]; }; then LAST_STATUS="$s"; fi
+done
+LAST_OK=no
+if [ -n "$LAST_STATUS" ] && grep -q '^status: ok' "$LAST_STATUS" 2>/dev/null; then LAST_OK=yes; fi
+
 echo "If a notice says a background item was added, that's this program. Leave it on."
-if [ "$SAME" = yes ]; then
+if [ "$SAME" = yes ] && [ "$LAST_OK" = yes ]; then
   say "Nothing changed in the program, so Full Disk Access stays as it is."
 else
   say "One step only you can do: switch on Full Disk Access for $FDA_NAME."
@@ -277,7 +286,10 @@ else
   echo "  - System Settings, on Privacy & Security, then Full Disk Access"
   echo "  - Finder, with $FDA_NAME selected"
   echo ""
-  if [ "$HAD_BIN" = yes ]; then
+  if [ "$SAME" = yes ]; then
+    echo "If $FDA_NAME is already in the list, make sure its switch is on."
+    echo "If it isn't in the list, drag $FDA_NAME from the Finder window into the list, then switch it on."
+  elif [ "$HAD_BIN" = yes ]; then
     echo "This is a new copy of the program, so the old switch won't work any more."
     echo "In System Settings, select $FDA_NAME, click the minus button, then drag $FDA_NAME in again and switch it on."
   else
@@ -347,7 +359,7 @@ else
   say "It ran but hit a problem:"
   grep '^error:' "$STATUS" | sed 's/error: *//'
   echo ""
-  echo "If it mentions Full Disk Access, $FDA_NAME isn't switched on yet. Switch it on, then run this installer again."
+  echo "If it mentions Full Disk Access, $FDA_NAME isn't switched on yet. Run this installer again and it shows you that step."
   echo "Otherwise, copy the line above into your chat with Claude and ask what went wrong."
   exit 1
 fi

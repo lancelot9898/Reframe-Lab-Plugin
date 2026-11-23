@@ -16,7 +16,7 @@ Look at the tools you have in this conversation.
 - Email: Gmail, or Microsoft 365 (Outlook). Without one, say in one line, "Connect Gmail or Microsoft 365 in Plugins, in the left sidebar, then run /seller-update again." Then stop.
 - Calendar: Google Calendar or Microsoft 365. Without one, carry on.
 - A listings connector, if any: Zillow, RentCast, Rechat, or the agent's MLS. Use it only for the market section, and say which one you used.
-- Drafts: with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365, create each draft in Outlook with its draft tools, and never use its tools that send mail, forward mail or send a draft. If it has no draft tool, or it fails, write copy-ready drafts and say so once, near the top. Never say a draft is in Outlook unless the tool confirmed it.
+- Drafts: with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365, create each draft in Outlook with its draft tools, and never use its tools that send mail, forward mail, send a draft, answer an event, post in Teams, set automatic replies or make inbox rules. If it has no draft tool, or it fails, write copy-ready drafts and say so once, near the top. Never say a draft is in Outlook unless the tool confirmed it.
 
 ## 2. Which listings
 
@@ -41,7 +41,7 @@ The week is the last 7 days, Monday through Sunday. Use the time zone on their c
   - With Zillow: search the home's city for the same beds, give or take one, about 15% either side on square feet and 20% on price. New this week is days on Zillow 7 or fewer. Solds are recently sold within 7 days. Price cuts use the price reduction filter, which shows a cut at any time, so call it "show a price cut", not "cut this week". If the listing itself shows a cut, that's its own history, not news for the sellers. Zillow's property details only cover homes that aren't for sale, so take the listing's own facts from memory or the search.
   - Builders' new homes compete too. Name them as new construction, separately from resales.
 - **What the agent did and what's next.** Sent mail and calendar for this listing: open houses, marketing, price changes, calls with buyers' agents, anything scheduled.
-- **Last week's letter.** With Gmail, find last week's draft or sent update to this seller and keep the story continuous.
+- **Last week's letter.** Find last week's draft or sent update to this seller and keep the story continuous.
 
 ## 4. Draft one letter per listing
 
@@ -98,7 +98,7 @@ Nobody is watching. Make the drafts and stay quiet. Ask no questions. Mark anyth
 
 The Monday report drafts these letters every Monday, so most agents need no separate task. If they've set up the Monday report, point them to it and stop here. If they want seller updates alone, suggest this only after they've sent three Monday letters they were happy with.
 
-1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. With Microsoft 365, ask them to check that the tools that send mail, forward mail and send a draft are set to Blocked, on the Microsoft 365 page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
+1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. With Microsoft 365, ask them to check that every tool that sends something for them is set to Blocked, on the Microsoft 365 page in Plugins, under Permissions: send mail, forward mail, send draft and respond to event, and on a work account the Teams tools that send or post, automatic replies and inbox rules. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
 2. Propose a scheduled task named "Monday seller updates", every Monday at 7:00 AM or the time they pick, with no folder. Use these instructions, word for word:
 
 ```
@@ -106,7 +106,7 @@ This is my scheduled Monday run. Use the seller-update skill from the Chief of S
 ```
 
 3. They check the task names no folder, then click Schedule.
-4. They open the task and click Run now once. If it asks to allow a tool, they choose the option that allows it for all scheduled runs. If it ever asks to send, reply to or forward an email, the answer is no.
+4. They open the task and click Run now once. If it asks to allow a tool, they choose the option that allows it for all scheduled runs. If it ever asks to send, reply to or forward an email, the answer is no. A draft, including a reply draft, is fine.
 
 ## Rules
 

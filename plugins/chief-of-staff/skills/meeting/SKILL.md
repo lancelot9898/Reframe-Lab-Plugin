@@ -64,7 +64,7 @@ To the client, in the agent's voice. Three short parts:
 Keep dollar figures, contract terms and legal positions out of it. Where the email needs one, write [NEEDS REVIEW: the figure] and tell the agent.
 
 - **Gmail:** if there's a recent thread between the agent and this client alone, draft it as a reply inside that thread. Otherwise start a new draft. A thread that includes other people, such as an introduction, would copy them on the follow-up. Find their email address in memory or past mail. If you can't, leave To empty and say so. Never use Gmail's send, reply or forward tools. Reply and forward send at once.
-- **Microsoft 365 (Outlook):** if there's a recent thread between the agent and this client alone, draft it as a reply draft inside that thread with Microsoft 365's draft tools. Otherwise create a new draft. Never use its tools that send mail, forward mail or send a draft. If Microsoft 365 has no draft tool, or it fails, give a copy-ready draft and say so once. Never say it's in Outlook unless the tool confirmed it.
+- **Microsoft 365 (Outlook):** if there's a recent thread between the agent and this client alone, draft it as a reply draft inside that thread with Microsoft 365's draft tools. Otherwise create a new draft. Never use its tools that send mail, forward mail, send a draft, answer an event, post in Teams, set automatic replies or make inbox rules. If Microsoft 365 has no draft tool, or it fails, give a copy-ready draft and say so once. Never say it's in Outlook unless the tool confirmed it.
 - **No email connector:** give it as a copy-ready draft.
 
 A copy-ready draft is a line with To, a line with Subject, then the body alone in its own code block, so the copy button copies only the body.
@@ -99,7 +99,7 @@ Every dated to-do from the commitments list goes on the agent's own calendar, so
 - Everything under They'll do that has a date, as a check-in for the agent, so they notice if it doesn't arrive.
 - Skip anything with "no date said", and anything under Others.
 
-**With Google Calendar, or Microsoft 365 for an Outlook calendar,** create one event per to-do on their main calendar:
+**With Google Calendar, or Microsoft 365 for an Outlook calendar,** create one event per to-do on their main calendar. If both are connected, use the calendar on the same account as their email:
 
 - **Title:** "[What] for [client]", such as "Send the HOA docs for Mike Chen". For their side: "Check: [client] [what]", such as "Check: the Johnsons send the pre-approval letter".
 - **When:** if a time was said, a 15-minute event an hour before it. If only a day was said, a 15-minute event at 9:00 AM that day, or the time memory says they like their reminders. Use their calendar's time zone.

@@ -16,7 +16,7 @@ Look at the tools you have in this conversation.
 - **Email:** Gmail, or Microsoft 365 (Outlook). Without one, say in one line, "Connect Gmail or Microsoft 365 in Plugins, in the left sidebar, then run /monday again." Then stop.
 - **Calendar:** Google Calendar or Microsoft 365. Without one, carry on and say so in one line at the end.
 - **Google Drive:** for My People and for saving the report. Without it, put the whole report in your reply and say in one line that it couldn't be saved.
-- **Drafts:** with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365, create each draft in Outlook with its draft tools, and never use its tools that send mail, forward mail or send a draft. If it has no draft tool, or it fails, write copy-ready drafts (below) and say so once, near the top. Never say a draft is in Outlook unless the tool confirmed it.
+- **Drafts:** with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365, create each draft in Outlook with its draft tools, and never use its tools that send mail, forward mail, send a draft, answer an event, post in Teams, set automatic replies or make inbox rules. If it has no draft tool, or it fails, write copy-ready drafts (below) and say so once, near the top. Never say a draft is in Outlook unless the tool confirmed it.
 
 ## 2. Attended or unattended
 
@@ -44,7 +44,7 @@ The week is today, Monday, through Sunday. Use the time zone on their calendar f
 
 ## 5. Notes for this week's dates
 
-Before you draft any note, search their Gmail drafts and sent mail for a note to that person in the last 14 days. If there's one, skip that person. The morning message may already have drafted it.
+Before you draft any note, search their email drafts and sent mail for a note to that person in the last 14 days. If there's one, skip that person. The morning message may already have drafted it.
 
 - **Home anniversaries come first.** Draft one for each. Use the home and one real detail from memory, their client folder or My People, such as the street, something they loved about the house, or the year they moved in. Count the years from the Home anniversary date. If you have nothing real beyond the date, draft it from the home and the years alone, and keep it to two or three sentences.
 - **Birthdays get a note only when you have one real detail** about the person: something they told the agent, a trip they planned, a project they mentioned, from memory or their folder. Without one, don't draft. Attended, ask: "[Name]'s birthday is [day]. Give me one real thing about them and I'll draft a note." Unattended, list them under Needs a detail in the report.
@@ -117,7 +117,7 @@ For when no email connector can hold a draft, such as Microsoft 365 without its 
 
 When they want this every Monday:
 
-1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. With Microsoft 365, ask them to check that the tools that send mail, forward mail and send a draft are set to Blocked, on the Microsoft 365 page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
+1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. With Microsoft 365, ask them to check that every tool that sends something for them is set to Blocked, on the Microsoft 365 page in Plugins, under Permissions: send mail, forward mail, send draft and respond to event, and on a work account the Teams tools that send or post, automatic replies and inbox rules. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
 2. Propose a scheduled task named "Monday report", every Monday at 7:20 AM or the time they pick, with no folder. Use these instructions, word for word:
 
 ```
@@ -125,7 +125,7 @@ This is my scheduled Monday report. Use the monday skill from the Chief of Staff
 ```
 
 3. They check the task names no folder, then click Schedule.
-4. They open the task and click Run now once, the day they make it. If it asks to allow a tool, they choose the option that allows it for all scheduled runs. If it ever asks to send, reply to or forward an email, the answer is no.
+4. They open the task and click Run now once, the day they make it. If it asks to allow a tool, they choose the option that allows it for all scheduled runs. If it ever asks to send, reply to or forward an email, the answer is no. A draft, including a reply draft, is fine.
 5. If they already have a task called "Monday seller updates", ask them to open it under Scheduled and switch off Active. The Monday report drafts the seller updates now, and two runs would draft every letter twice.
 
 ## Rules

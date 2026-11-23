@@ -1,6 +1,6 @@
 ---
 name: today
-description: The morning message for a real estate agent's chief of staff, and what their "Morning message" scheduled task runs every weekday. Reads the last day of email, today's calendar, their My People list and what Claude remembers, then writes one short message for their phone, with the three things that matter today, today's appointments, dated deal items and anything else worth a look. Drafts the replies they owe in Gmail, makes a prep page for each client appointment today, and drafts any home anniversary, birthday or rate note that's due. Use when the agent says "what do I owe", "what do I owe people", "what's on my plate", "what did I miss", "catch me up", "catch me up on my inbox", "who do I need to get back to", "draft my replies", "run my morning", "my morning message", "what's on today", "prep me for today", "set up my morning message", "change my morning message", "put this first in my morning message", or types /today. Drafts only. Never sends.
+description: The morning message for a real estate agent's chief of staff, and what their "Morning message" scheduled task runs every weekday. Reads the last day of email, today's calendar, their My People list and what Claude remembers, then writes one short message for their phone, with the three things that matter today, today's appointments, dated deal items and anything else worth a look. Drafts the replies they owe in Gmail or Outlook, makes a prep page for each client appointment today, and drafts any home anniversary, birthday or rate note that's due. Use when the agent says "what do I owe", "what do I owe people", "what's on my plate", "what did I miss", "catch me up", "catch me up on my inbox", "who do I need to get back to", "draft my replies", "run my morning", "my morning message", "what's on today", "prep me for today", "set up my morning message", "change my morning message", "put this first in my morning message", or types /today. Drafts only. Never sends.
 ---
 
 # Today: your morning message
@@ -21,7 +21,7 @@ Look at the tools you have in this conversation.
 How drafts work depends on their email:
 
 - **Gmail:** create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. The agent set them to Blocked in week 1. If one ever looks allowed, still never use it.
-- **Microsoft 365 (Outlook):** create each draft in Outlook with Microsoft 365's draft tools, as a reply draft inside the thread when there is one. Never use its tools that send mail, forward mail or send a draft. They send at once, and the agent set them to Blocked. If Microsoft 365 has no draft tool, or it fails, write copy-ready drafts (below) instead and say once, under ALSO: "Your Microsoft 365 connection can't save drafts in Outlook, so they're below to copy." Never say a draft is in Outlook unless the tool confirmed it.
+- **Microsoft 365 (Outlook):** create each draft in Outlook with Microsoft 365's draft tools, as a reply draft inside the thread when there is one. Never use its tools that send mail, forward mail, send a draft, answer an event, post in Teams, set automatic replies or make inbox rules. They send at once, and the agent set them to Blocked. If Microsoft 365 has no draft tool, or it fails, write copy-ready drafts (below) instead and say once, under ALSO: "Your Microsoft 365 connection can't save drafts in Outlook, so they're below to copy." Never say a draft is in Outlook unless the tool confirmed it.
 - **Both connected:** read both. Gmail threads get Gmail drafts. Outlook threads get Outlook drafts.
 
 ## 2. Attended or unattended
@@ -50,7 +50,7 @@ Search results can show only the oldest messages in a thread. Open the whole thr
 2. **Emails and texts waiting on them.** A real person, often a client, asked a question or asked for something, and they haven't answered in that thread or text conversation.
 3. **Today's appointments.** Who, when, where, and what it's about.
 4. **Deal dates.** Inspection, appraisal, financing and closing dates, and timeline tasks, from email (a TC's or attorney's timeline), the Compass file and memory. Keep the ones due in the next 10 days, and any that are late.
-5. **Forgotten drafts.** With Gmail, drafts to real people that have sat unsent for 2 days or more.
+5. **Forgotten drafts.** In Gmail or Outlook, drafts to real people that have sat unsent for 2 days or more.
 
 ## 5. Pick the three things that matter today
 
@@ -162,7 +162,7 @@ Good morning, [first name]. Nothing needs you this morning. Today: [the first ap
 
 ## 8a. Put it on their phone
 
-In an unattended run, after you've written the message, put it on their own calendar: Google Calendar, or their Outlook calendar through Microsoft 365. Their calendar app turns it into a phone alert, and Google Calendar can email it to them too. Do the same in an attended run only when they ask for it on their phone.
+In an unattended run, after you've written the message, put it on their own calendar: Google Calendar, or their Outlook calendar through Microsoft 365. If both are connected, use the calendar on the same account as their email. Their calendar app turns it into a phone alert, and Google Calendar can email it to them too. Do the same in an attended run only when they ask for it on their phone.
 
 - **One event** on their main calendar, titled "Morning message", today at their delivery time from memory, or 7:00 AM if memory has none, 5 minutes long. If that time has already passed, start it 2 minutes from now.
 - **The description** is the morning message in plain text, exactly as you wrote it, without the Behind the drafts lines. Under it, add each copy-ready text: "Text to: [name]", then the text on its own line, so they can copy it on their phone.
@@ -178,7 +178,7 @@ In an unattended run, after you've written the message, put it on their own cale
 
 When they say "set up my morning message", or want this on a schedule:
 
-1. **Check the send lock.** With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. With Microsoft 365, ask them to check that the tools that send mail, forward mail and send a draft are set to Blocked, on the Microsoft 365 page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
+1. **Check the send lock.** With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. With Microsoft 365, ask them to check that every tool that sends something for them is set to Blocked, on the Microsoft 365 page in Plugins, under Permissions: send mail, forward mail, send draft and respond to event, and on a work account the Teams tools that send or post, automatic replies and inbox rules. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
 2. **Propose a scheduled task** named "Morning message", every weekday at 6:40 AM, or the time they pick, a few minutes off the hour, with no folder. Use these instructions, word for word:
 
 ```
@@ -190,9 +190,9 @@ This is my scheduled morning message. Use the today skill from the Chief of Staf
    - **By email too.** The same event also emails them a reminder at 7:00, to the address of that Google account, with the message in it. Save: "Morning message: phone alert and email at 7:00."
    - **A different time.** Save the time they say, such as 6:45 or 7:30. Keep the task's start at least 15 minutes earlier.
    - **Outlook.** The event goes on their Outlook calendar, and the Outlook app on their phone gives the alert, with its notifications allowed. There's no email copy. If Microsoft 365 can't add events for them, the message waits in Claude, under Scheduled, and they open the Claude app in the morning. Save: "Morning message: Outlook calendar alert at 7:00."
-   - Never send it from their Gmail. If they ask for that, explain that Gmail's send, reply and forward stay Blocked, so nothing can ever leave their account without them, and the calendar alert gets them the same message.
+   - Never send it from their email. If they ask for that, explain that the tools that send stay Blocked, so nothing can ever leave their account without them, and the calendar alert gets them the same message.
 4. They check the task names no folder, then click Schedule.
-5. They open the task and click Run now once, the day they make it. If it asks to allow a tool, they choose the option that allows it for all scheduled runs. If it ever asks to send, reply to or forward an email, the answer is no.
+5. They open the task and click Run now once, the day they make it. If it asks to allow a tool, they choose the option that allows it for all scheduled runs. If it ever asks to send, reply to or forward an email, the answer is no. A draft, including a reply draft, is fine.
 6. Save to memory: "Morning message is scheduled weekdays at [task time], delivered at [delivery time] as [a phone alert / a phone alert and email]."
 
 ## Changing the morning message

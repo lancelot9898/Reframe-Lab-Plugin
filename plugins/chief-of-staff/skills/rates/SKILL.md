@@ -35,7 +35,7 @@ For each buyer from step 1:
    - Unattended, use this week's rate.
    - Save the baseline line, and draft nothing for that buyer today. The next quarter point down is their note.
 2. **A quarter point down.** A note is due when this week's average is 0.25 points or more below their baseline. A rate that goes up never gets a note. When it rises 0.25 points or more above their baseline, move their baseline up to this week's rate, quietly, so the next real drop counts.
-3. **Once a month at most.** Search their Gmail drafts and sent mail for a rate note to that buyer in the last 30 days, and check memory for one. If there's one, skip them this time.
+3. **Once a month at most.** Search their email drafts and sent mail for a rate note to that buyer in the last 30 days, and check memory for one. If there's one, skip them this time.
 4. **One real detail.** The note needs one true thing about their search, such as the town they wanted, the kind of home, or why they paused, from memory, their client folder in My Brain/Clients or My People. Without one, don't draft. Attended, ask the agent for it. Unattended, list them under Needs a detail.
 
 ## 4. Draft the note
@@ -53,7 +53,7 @@ Never put in the note:
 - urgency or a forecast: no "rates won't last", "now's the time", "before they go back up", "lock in".
 - a link to a rate page or a listing.
 
-With Gmail, create the draft in Gmail. Never use Gmail's send, reply or forward tools. With Microsoft 365, create the draft in Outlook with its draft tools, and never use its tools that send mail, forward mail or send a draft. If it can't hold a draft, write it as a copy-ready draft: a line with To, a line with Subject, then the body alone in its own code block.
+With Gmail, create the draft in Gmail. Never use Gmail's send, reply or forward tools. With Microsoft 365, create the draft in Outlook with its draft tools, and never use its tools that send mail, forward mail, send a draft, answer an event, post in Teams, set automatic replies or make inbox rules. If it can't hold a draft, write it as a copy-ready draft: a line with To, a line with Subject, then the body alone in its own code block.
 
 After each draft, update memory: "Rate baseline for [Name]: [this week's rate]%, Freddie Mac 30-year average, week of [date]. Note drafted [today's date]."
 

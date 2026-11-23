@@ -1,6 +1,6 @@
 ---
 name: meeting
-description: Turns a real estate agent's meeting into a follow-up email draft to the client, a list of every commitment with dates, a reminder on their own calendar for each dated to-do, a dated meeting note in the client's Google Drive folder (My Brain/Clients), and lasting client facts saved to memory. Works from a voice note, typed notes, a pasted transcript, or the latest recording from Plaud, Zoom, Fathom or Granola. Use when the agent says "I just left a meeting", "just got out of a listing appointment", "here's my voice note", "write the follow-up", "follow up on my meeting with", "draft the follow-up from my showing", "file this meeting", "pull my last Plaud recording", "turn this transcript into a follow-up", "notes from my buyer consult", "I'm about to record", or types /meeting. Drafts only. Never sends.
+description: Turns a real estate agent's meeting into a follow-up email draft to the client, a list of every commitment with dates, a reminder on their own calendar for each dated to-do, a dated meeting note in the client's Google Drive folder (My Brain/Clients), and lasting client facts saved to memory. Works from a voice note, typed notes, a pasted transcript, or the latest recording from Plaud, Zoom, Fathom, Granola, Otter or Fireflies. Use when the agent says "I just left a meeting", "just got out of a listing appointment", "here's my voice note", "write the follow-up", "follow up on my meeting with", "draft the follow-up from my showing", "file this meeting", "pull my last Plaud recording", "turn this transcript into a follow-up", "notes from my buyer consult", "I'm about to record", or types /meeting. Drafts only. Never sends.
 ---
 
 # Meeting: from conversation to follow-up
@@ -29,10 +29,10 @@ Take whatever they give you.
 
 - **A voice note or typed notes.** If it's thin, ask once: "Who was there, what did you talk about, what did you say you'd do, what did they say they'd do, and by when?"
 - **A pasted transcript.** Use it as is.
-- **"My last recording."** Check which meeting connector you have: Plaud, Zoom, Fathom or Granola. Take the newest recording and tell them which one you picked, by title, date and time. If the title doesn't make the client obvious, ask before going on.
+- **"My last recording."** Check which meeting connector you have: Plaud, Zoom, Fathom, Granola, Otter or Fireflies. Take the newest recording and tell them which one you picked, by title, date and time. If the title doesn't make the client obvious, ask before going on.
   - Plaud: read the summary and the transcript. If they pressed the button on the device during the meeting, read those marked moments first. If the recording has no transcript yet, tell them to open it in the Plaud app and tap Generate, then stop. Recordings only reach Claude when Private Cloud Sync is on in the Plaud app.
   - Granola: on the free plan, Claude can read notes from the last 30 days and no transcripts. Work from the notes.
-  - Zoom or Fathom: read the transcript, or the summary if that's all there is.
+  - Zoom, Fathom, Otter or Fireflies: read the transcript, or the summary if that's all there is.
 - **Nothing connected and nothing pasted:** ask them to tell you about it. On the phone, dictation works. A minute is plenty.
 
 Transcripts mishear names. Use the spelling the agent types, or the one in memory, never the transcript's.
@@ -64,7 +64,7 @@ To the client, in the agent's voice. Three short parts:
 Keep dollar figures, contract terms and legal positions out of it. Where the email needs one, write [NEEDS REVIEW: the figure] and tell the agent.
 
 - **Gmail:** if there's a recent thread between the agent and this client alone, draft it as a reply inside that thread. Otherwise start a new draft. A thread that includes other people, such as an introduction, would copy them on the follow-up. Find their email address in memory or past mail. If you can't, leave To empty and say so. Never use Gmail's send, reply or forward tools. Reply and forward send at once.
-- **Microsoft 365 only:** give it as a copy-ready draft. Say once that the Claude for Outlook add-in can draft straight into Outlook. Never say or suggest it was saved in Outlook.
+- **Microsoft 365 (Outlook):** if there's a recent thread between the agent and this client alone, draft it as a reply draft inside that thread with Microsoft 365's draft tools. Otherwise create a new draft. Never use its tools that send mail, forward mail or send a draft. If Microsoft 365 has no draft tool, or it fails, give a copy-ready draft and say so once. Never say it's in Outlook unless the tool confirmed it.
 - **No email connector:** give it as a copy-ready draft.
 
 A copy-ready draft is a line with To, a line with Subject, then the body alone in its own code block, so the copy button copies only the body.
@@ -99,7 +99,7 @@ Every dated to-do from the commitments list goes on the agent's own calendar, so
 - Everything under They'll do that has a date, as a check-in for the agent, so they notice if it doesn't arrive.
 - Skip anything with "no date said", and anything under Others.
 
-**With Google Calendar connected,** create one event per to-do on their primary calendar:
+**With Google Calendar, or Microsoft 365 for an Outlook calendar,** create one event per to-do on their main calendar:
 
 - **Title:** "[What] for [client]", such as "Send the HOA docs for Mike Chen". For their side: "Check: [client] [what]", such as "Check: the Johnsons send the pre-approval letter".
 - **When:** if a time was said, a 15-minute event an hour before it. If only a day was said, a 15-minute event at 9:00 AM that day, or the time memory says they like their reminders. Use their calendar's time zone.
@@ -111,7 +111,7 @@ Before you create one, search their calendar for an event with that exact title 
 
 Never change, move or delete an event, theirs or one you made. If a date changed since an earlier reminder, create the new one and list the old one in your reply for them to delete.
 
-**With Outlook only, or no calendar connected:** on the Pro plan, Claude can't add events to an Outlook calendar. List them in your reply under "Reminders to add", one line each with the date and time, so they can add them in a minute.
+**With no calendar tool that can create events, or if creating one fails:** list them in your reply under "Reminders to add", one line each with the date and time, so they can add them in a minute.
 
 ## 7. The meeting note in Google Drive
 
@@ -142,9 +142,9 @@ Don't save this meeting's to-do list, one-off details, health, family matters, a
 
 Short, in this order:
 
-- Follow-up: waiting in Gmail Drafts, to [name]. Or the copy-ready draft.
+- Follow-up: waiting in Gmail or Outlook Drafts, to [name]. Or the copy-ready draft.
 - The commitments list.
-- On your calendar: [N] reminders, one line each with the day. Or "Reminders to add", for Outlook.
+- On your calendar: [N] reminders, one line each with the day. Or "Reminders to add", when you couldn't add them.
 - Note: "[title]" in My Brain/Clients/[Client Name].
 - Saved to memory: one line.
 - Needs review: each [NEEDS REVIEW], one line each.

@@ -62,7 +62,7 @@ End with: "Want me to draft the next email to [first name]?"
 If they say yes:
 
 - **Gmail:** draft it inside the latest thread between the agent and this client alone, or as a new email if there's none. A thread that includes other people, such as an introduction, would copy them, so start a new email instead. Never use Gmail's send, reply or forward tools. Reply and forward send at once.
-- **Microsoft 365 only:** give it as a copy-ready draft: a line with To, a line with Subject, then the body alone in its own code block. Say once that the Claude for Outlook add-in can draft straight into Outlook. Never say or suggest it was saved in Outlook.
+- **Microsoft 365 (Outlook):** draft it with Microsoft 365's draft tools, inside the latest thread with this client alone when there is one. Never use its tools that send mail, forward mail or send a draft. If it has no draft tool, or it fails, give a copy-ready draft: a line with To, a line with Subject, then the body alone in its own code block. Never say it's in Outlook unless the tool confirmed it.
 - **No email connector:** give it as a copy-ready draft.
 - Never draft contract terms, legal positions or dollar figures. Where the email needs one, write [NEEDS REVIEW: the figure].
 

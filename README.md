@@ -6,8 +6,8 @@ The Chief of Staff plugin for Building Your AI Chief of Staff, a Reframe Lab pro
 
 - Claude Pro, or any paid Claude plan. Plugins don't work on the free plan.
 - The Claude desktop app, on a Mac or a Windows computer.
-- Gmail and Google Calendar, connected in Plugins, in the left sidebar. Google Drive too, for My People, client notes, prep pages and backups.
-- The Claude app on your phone, signed in with the same email. On Gmail, the Google Calendar app too, with notifications on, because your morning message arrives there as an alert.
+- Gmail and Google Calendar, or Outlook through Microsoft 365, connected in Plugins, in the left sidebar. Google Drive too, for My People, client notes, prep pages and backups.
+- The Claude app on your phone, signed in with the same email. Your calendar app too, Google Calendar or Outlook, with notifications on, because your morning message arrives there as an alert.
 - On Outlook? Read "If you use Outlook" below first.
 
 ## Install it once
@@ -33,24 +33,24 @@ Everything else arrives on a schedule or starts when you ask in plain words.
 
 ## What arrives on its own
 
-- **Every weekday morning:** your morning message, as a 7:00 calendar alert on your phone, and by email too if you'd like. On Outlook, it waits in Claude under Scheduled.
+- **Every weekday morning:** your morning message, as a 7:00 calendar alert on your phone, and by email too if you're on Google Calendar.
 - **Every Monday:** your week on one page, with an update drafted for each seller.
 - **The 1st of every month:** your marketing review, with posts and a newsletter planned and drafted.
 
 ## The jobs, week by week
 
 - **Week 1, it learns you:** setup (the interview), brand (your brand kit), people (My People, from your CRM or an export), today (your morning message).
-- **Week 2, your day:** meeting (after every conversation), client (one page on anyone, and prep pages), backup (a monthly copy of what Claude remembers).
+- **Week 2, your day:** meeting (after every conversation, from a voice note or Plaud, Zoom, Fathom, Granola, Otter or Fireflies), client (one page on anyone, and prep pages), backup (a monthly copy of what Claude remembers).
 - **Week 3, your people and your listings:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents), texts (your text messages, on a Mac, through the text export in tools/text-export).
 - **Week 4, your marketing:** marketing (the monthly review, posts and newsletter), cma (a CMA), inspection (the inspection response).
 
 ## It drafts. You send.
 
-Nothing in this plugin sends an email or a text. Your replies wait in Gmail Drafts until you read them and press send. In week 1 you also set Gmail's send, reply and forward to Blocked, so Claude can't send even by mistake.
+Nothing in this plugin sends an email or a text. Your replies wait in your Drafts until you read them and press send. In week 1 you also set the tools that send email to Blocked, so Claude can't send even by mistake.
 
 ## If you use Outlook
 
-On Pro, Claude can read your Outlook mail and calendar through the Microsoft 365 connector, but it can't save drafts in Outlook. So Claude writes each draft out for you to copy. The Claude for Outlook add-in can draft straight into Outlook. Both need a work Microsoft 365 account, and whoever runs your brokerage's email has to approve them once, in one request. Personal Outlook.com and Hotmail addresses can't connect.
+Connect Microsoft 365 in Plugins. On Pro, it takes a personal Outlook.com, Hotmail or Live address, or a work account. A work account needs whoever runs your brokerage's email to approve Claude once. Claude then reads your mail and calendar, saves drafts in Outlook Drafts, and puts your morning message on your Outlook calendar. Set the tools that send mail, forward mail and send a draft to Blocked on the Microsoft 365 page, under Permissions. If your connection can't save drafts, Claude writes each one out for you to copy. Your people list and client notes still live in Google Drive, so connect a free Google account for those.
 
 ## Updates
 

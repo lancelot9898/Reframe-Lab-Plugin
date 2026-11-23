@@ -21,13 +21,13 @@ Look at the tools you have in this conversation.
 How drafts work depends on their email:
 
 - **Gmail:** create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. The agent set them to Blocked in week 1. If one ever looks allowed, still never use it.
-- **Microsoft 365 only:** on the Pro plan, Claude can read Outlook mail and calendar but can't save drafts in Outlook. Write each draft after the morning message as a copy-ready draft (below). Say once, under ALSO: "The Claude for Outlook add-in can draft these straight into Outlook." Never say or suggest a draft was saved in Outlook.
-- **Both connected:** read both. Gmail threads get Gmail drafts. Outlook threads get copy-ready drafts.
+- **Microsoft 365 (Outlook):** create each draft in Outlook with Microsoft 365's draft tools, as a reply draft inside the thread when there is one. Never use its tools that send mail, forward mail or send a draft. They send at once, and the agent set them to Blocked. If Microsoft 365 has no draft tool, or it fails, write copy-ready drafts (below) instead and say once, under ALSO: "Your Microsoft 365 connection can't save drafts in Outlook, so they're below to copy." Never say a draft is in Outlook unless the tool confirmed it.
+- **Both connected:** read both. Gmail threads get Gmail drafts. Outlook threads get Outlook drafts.
 
 ## 2. Attended or unattended
 
 - **Attended:** someone typed /today or asked. Do the steps below and finish with the morning message in step 8.
-- **Unattended:** this is the scheduled "Morning message" task, or the request says it's the scheduled morning run. Nobody is watching, and your final reply is what reaches their phone. Ask nothing. Do the steps, then make your final reply the morning message, with the Behind the drafts lines under it, and nothing else: no preamble, no notes about what you did. With Outlook, the copy-ready drafts follow the message. Copy-ready texts follow it too.
+- **Unattended:** this is the scheduled "Morning message" task, or the request says it's the scheduled morning run. Nobody is watching, and your final reply is what reaches their phone. Ask nothing. Do the steps, then make your final reply the morning message, with the Behind the drafts lines under it, and nothing else: no preamble, no notes about what you did. Any copy-ready drafts follow the message. Copy-ready texts follow it too.
 - In either case, if Google Drive has more than one folder named exactly My Brain, don't write to Drive. Note it under ALSO: "Two folders are named My Brain. Tell me which one to use."
 
 ## 3. Read
@@ -110,7 +110,7 @@ If My People or memory has paused buyers who asked to hear about rates, use the 
 
 ## Copy-ready drafts
 
-For Microsoft 365, or when no email connector can hold a draft. For each draft:
+For when no email connector can hold a draft, such as Microsoft 365 without its draft tools. For each draft:
 
 - A line: To: their name and email address.
 - A line: Subject: the subject.
@@ -162,7 +162,7 @@ Good morning, [first name]. Nothing needs you this morning. Today: [the first ap
 
 ## 8a. Put it on their phone
 
-In an unattended run, after you've written the message, put it on their own Google Calendar. Their calendar app turns it into a phone alert, and Google Calendar can email it to them too. Do the same in an attended run only when they ask for it on their phone.
+In an unattended run, after you've written the message, put it on their own calendar: Google Calendar, or their Outlook calendar through Microsoft 365. Their calendar app turns it into a phone alert, and Google Calendar can email it to them too. Do the same in an attended run only when they ask for it on their phone.
 
 - **One event** on their main calendar, titled "Morning message", today at their delivery time from memory, or 7:00 AM if memory has none, 5 minutes long. If that time has already passed, start it 2 minutes from now.
 - **The description** is the morning message in plain text, exactly as you wrote it, without the Behind the drafts lines. Under it, add each copy-ready text: "Text to: [name]", then the text on its own line, so they can copy it on their phone.
@@ -170,7 +170,7 @@ In an unattended run, after you've written the message, put it on their own Goog
 - **Reminders:** a popup at the start. If memory says they want it by email too, add an email reminder at the start.
 - **Never twice.** If an event titled "Morning message" is already on today's calendar, don't add another.
 - **Never touch earlier ones.** Never change or delete a Morning message event from another day.
-- **Outlook only:** skip this. Claude can't add events to an Outlook calendar on the Pro plan, so the message waits in Claude, under Scheduled, on their phone and computer.
+- **Outlook:** create it on their Outlook calendar with Microsoft 365's event tool, the same way, with no attendees. Outlook can't email the message, so the email copy is for Google Calendar only. If Microsoft 365 can't create the event, skip this. The message waits in Claude, under Scheduled, and say so once under ALSO.
 - When you list TODAY, leave out events titled "Morning message".
 
 
@@ -178,18 +178,18 @@ In an unattended run, after you've written the message, put it on their own Goog
 
 When they say "set up my morning message", or want this on a schedule:
 
-1. **Check the send lock.** With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
+1. **Check the send lock.** With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. With Microsoft 365, ask them to check that the tools that send mail, forward mail and send a draft are set to Blocked, on the Microsoft 365 page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
 2. **Propose a scheduled task** named "Morning message", every weekday at 6:40 AM, or the time they pick, a few minutes off the hour, with no folder. Use these instructions, word for word:
 
 ```
-This is my scheduled morning message. Use the today skill from the Chief of Staff plugin, unattended. Read my last day of email, today's calendar, my My People list and what you remember about me. Draft up to five replies in my voice. With Gmail, leave them in Gmail Drafts. With Outlook only, put them after the message. Make a prep page in my Google Drive for each client appointment today, and draft any home anniversary, birthday or rate note that's due. Never send, reply to or forward an email. The only calendar event you may create is today's Morning message on my own calendar, with no guests. Never change, delete or answer an event, and never invite anyone to anything. Never invent a name, number, date or commitment. Write [NEEDS REVIEW] instead. Your final reply is my morning message, with the Behind the drafts lines under it, and nothing else.
+This is my scheduled morning message. Use the today skill from the Chief of Staff plugin, unattended. Read my last day of email, today's calendar, my My People list and what you remember about me. Draft up to five replies in my voice and leave them in my email drafts, or after the message if my email can't hold drafts. Make a prep page in my Google Drive for each client appointment today, and draft any home anniversary, birthday or rate note that's due. Never send, reply to or forward an email. The only calendar event you may create is today's Morning message on my own calendar, with no guests. Never change, delete or answer an event, and never invite anyone to anything. Never invent a name, number, date or commitment. Write [NEEDS REVIEW] instead. Your final reply is my morning message, with the Behind the drafts lines under it, and nothing else.
 ```
 
 3. **Ask how they want it to reach them,** and save the answer to memory.
    - **On their phone (the default).** Each run puts a 7:00 AM event called Morning message on their own Google Calendar, with the message inside, as in step 8a. They need the Google Calendar app on their phone, signed in to the same Google account, with its notifications allowed. They tap the alert, and the message is in the event. Save: "Morning message: phone alert at 7:00."
    - **By email too.** The same event also emails them a reminder at 7:00, to the address of that Google account, with the message in it. Save: "Morning message: phone alert and email at 7:00."
    - **A different time.** Save the time they say, such as 6:45 or 7:30. Keep the task's start at least 15 minutes earlier.
-   - **Outlook only.** Claude can't add events to their Outlook calendar on Pro, so the message waits in Claude, under Scheduled. They open the Claude app on their phone in the morning.
+   - **Outlook.** The event goes on their Outlook calendar, and the Outlook app on their phone gives the alert, with its notifications allowed. There's no email copy. If Microsoft 365 can't add events for them, the message waits in Claude, under Scheduled, and they open the Claude app in the morning. Save: "Morning message: Outlook calendar alert at 7:00."
    - Never send it from their Gmail. If they ask for that, explain that Gmail's send, reply and forward stay Blocked, so nothing can ever leave their account without them, and the calendar alert gets them the same message.
 4. They check the task names no folder, then click Schedule.
 5. They open the task and click Run now once, the day they make it. If it asks to allow a tool, they choose the option that allows it for all scheduled runs. If it ever asks to send, reply to or forward an email, the answer is no.

@@ -53,7 +53,7 @@ Never put in the note:
 - urgency or a forecast: no "rates won't last", "now's the time", "before they go back up", "lock in".
 - a link to a rate page or a listing.
 
-With Gmail, create the draft in Gmail. Never use Gmail's send, reply or forward tools. With Microsoft 365 only, write it as a copy-ready draft: a line with To, a line with Subject, then the body alone in its own code block.
+With Gmail, create the draft in Gmail. Never use Gmail's send, reply or forward tools. With Microsoft 365, create the draft in Outlook with its draft tools, and never use its tools that send mail, forward mail or send a draft. If it can't hold a draft, write it as a copy-ready draft: a line with To, a line with Subject, then the body alone in its own code block.
 
 After each draft, update memory: "Rate baseline for [Name]: [this week's rate]%, Freddie Mac 30-year average, week of [date]. Note drafted [today's date]."
 

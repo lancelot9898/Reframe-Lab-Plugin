@@ -16,12 +16,12 @@ Look at the tools you have in this conversation.
 - **Email:** Gmail, or Microsoft 365 (Outlook). Without one, say in one line, "Connect Gmail or Microsoft 365 in Plugins, in the left sidebar, then run /monday again." Then stop.
 - **Calendar:** Google Calendar or Microsoft 365. Without one, carry on and say so in one line at the end.
 - **Google Drive:** for My People and for saving the report. Without it, put the whole report in your reply and say in one line that it couldn't be saved.
-- **Drafts:** with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365 only, write copy-ready drafts (below) and say once, near the top: "The Claude for Outlook add-in can draft these straight into Outlook." Never say or suggest a draft was saved in Outlook.
+- **Drafts:** with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365, create each draft in Outlook with its draft tools, and never use its tools that send mail, forward mail or send a draft. If it has no draft tool, or it fails, write copy-ready drafts (below) and say so once, near the top. Never say a draft is in Outlook unless the tool confirmed it.
 
 ## 2. Attended or unattended
 
 - **Attended:** someone typed /monday or asked. Do the steps and finish with the report in step 8. Ask a question only where these steps say to.
-- **Unattended:** this is the Monday scheduled task, or the request says it's the scheduled Monday run. Nobody is watching. Ask nothing. Mark anything missing with [NEEDS REVIEW]. Do every step, then end with the report in step 8 and nothing else. With Microsoft 365 only, put the copy-ready drafts after the report.
+- **Unattended:** this is the Monday scheduled task, or the request says it's the scheduled Monday run. Nobody is watching. Ask nothing. Mark anything missing with [NEEDS REVIEW]. Do every step, then end with the report in step 8 and nothing else. Put any copy-ready drafts after the report.
 
 ## 3. Read
 
@@ -91,14 +91,14 @@ On a quiet week, write: "A quiet week. [N] appointments, nothing late, nobody wa
 
 ## 8a. Put it on their phone
 
-In an unattended run, after you've written the report, put it on their own Google Calendar, the same way the today skill delivers the morning message.
+In an unattended run, after you've written the report, put it on their own calendar, Google Calendar or Outlook, the same way the today skill delivers the morning message.
 
 - **One event** on their main calendar, titled "Monday report", today at 7:45 AM, 5 minutes long. If that time has already passed, start it 2 minutes from now.
 - **The description** is the report from step 8, in plain text.
 - **Shown as free and private, with no guests and no meeting link.** Send no invitation.
 - **Reminders:** a popup at the start. If memory says their morning message comes by email too, add an email reminder at the start.
 - **Never twice.** If an event titled "Monday report" is already on today's calendar, don't add another. Never change or delete one from another week.
-- **Outlook only:** skip this. The report waits in Claude, under Scheduled.
+- **Outlook:** create it on their Outlook calendar with Microsoft 365, with no attendees. If Microsoft 365 can't create the event, skip this. The report waits in Claude, under Scheduled.
 
 ## How drafts sound
 
@@ -111,17 +111,17 @@ In an unattended run, after you've written the report, put it on their own Googl
 
 ## Copy-ready drafts
 
-For Microsoft 365, or when no email connector can hold a draft. For each draft: a line with To (name and email address), a line with Subject, then the body alone in its own code block, so the copy button copies only the body.
+For when no email connector can hold a draft, such as Microsoft 365 without its draft tools. For each draft: a line with To (name and email address), a line with Subject, then the body alone in its own code block, so the copy button copies only the body.
 
 ## Put it on a schedule
 
 When they want this every Monday:
 
-1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
+1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. With Microsoft 365, ask them to check that the tools that send mail, forward mail and send a draft are set to Blocked, on the Microsoft 365 page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
 2. Propose a scheduled task named "Monday report", every Monday at 7:20 AM or the time they pick, with no folder. Use these instructions, word for word:
 
 ```
-This is my scheduled Monday report. Use the monday skill from the Chief of Staff plugin, unattended. Put my week on one page from my calendar, email, memory and My People: appointments and deadlines, who's waiting on me, active clients gone quiet, my listings, and this week's birthdays and home anniversaries. Draft one seller update per active listing and a note for each home anniversary, in my voice. With Gmail, leave the drafts in Gmail Drafts. With Outlook only, put them in your reply. Save the report as a Google Doc in My Brain/Reports. Never send, reply to or forward an email. The only calendar event you may create is today's Monday report on my own calendar, with no guests. Never change, delete or answer an event, and never invite anyone to anything. Never invent a name, number, date or detail. Write [NEEDS REVIEW] instead. Ask me nothing. End with the report.
+This is my scheduled Monday report. Use the monday skill from the Chief of Staff plugin, unattended. Put my week on one page from my calendar, email, memory and My People: appointments and deadlines, who's waiting on me, active clients gone quiet, my listings, and this week's birthdays and home anniversaries. Draft one seller update per active listing and a note for each home anniversary, in my voice. Leave the drafts in my email drafts, or in your reply if my email can't hold drafts. Save the report as a Google Doc in My Brain/Reports. Never send, reply to or forward an email. The only calendar event you may create is today's Monday report on my own calendar, with no guests. Never change, delete or answer an event, and never invite anyone to anything. Never invent a name, number, date or detail. Write [NEEDS REVIEW] instead. Ask me nothing. End with the report.
 ```
 
 3. They check the task names no folder, then click Schedule.

@@ -54,7 +54,7 @@ Instructions for Claude
 [their text, or: Not included in this backup.]
 ```
 
-**If Google Drive isn't connected**, or they're on Microsoft 365 only: on the Pro plan, Claude can't save files to OneDrive, so put the whole backup in your reply, in one code block. Tell them to paste it into a document they keep somewhere private. Say once that connecting Google Drive in Plugins, in the left sidebar, lets /backup save it for them.
+**If Google Drive isn't connected**, put the whole backup in your reply, in one code block. This plugin keeps files in Google Drive only, so Microsoft 365 alone doesn't change this. Tell them to paste it into a document they keep somewhere private. Say once that connecting Google Drive in Plugins, in the left sidebar, lets /backup save it for them.
 
 ## 5. Tell them
 

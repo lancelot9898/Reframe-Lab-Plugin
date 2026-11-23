@@ -101,7 +101,7 @@ Short, no preamble:
 - Pages to check by eye, if any.
 - Where the review is filed.
 
-Then offer to draft an email to the client with the plain-English summary. With Gmail, create it as a draft. Never use Gmail's send, reply or forward tools. With Microsoft 365 only, write it as a copy-ready draft: a To line, a Subject line, and the body alone in its own code block.
+Then offer to draft an email to the client with the plain-English summary. With Gmail, create it as a draft. Never use Gmail's send, reply or forward tools. With Microsoft 365, create it in Outlook with its draft tools, and never use its tools that send mail, forward mail or send a draft. If it can't hold a draft, write it as a copy-ready draft: a To line, a Subject line, and the body alone in its own code block.
 
 ## Rules
 

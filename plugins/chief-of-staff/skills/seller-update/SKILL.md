@@ -16,7 +16,7 @@ Look at the tools you have in this conversation.
 - Email: Gmail, or Microsoft 365 (Outlook). Without one, say in one line, "Connect Gmail or Microsoft 365 in Plugins, in the left sidebar, then run /seller-update again." Then stop.
 - Calendar: Google Calendar or Microsoft 365. Without one, carry on.
 - A listings connector, if any: Zillow, RentCast, Rechat, or the agent's MLS. Use it only for the market section, and say which one you used.
-- Drafts: with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365 only, write copy-ready drafts and say once, near the top: "The Claude for Outlook add-in can draft these straight into Outlook." Never say or suggest a draft was saved in Outlook.
+- Drafts: with Gmail, create each draft in Gmail. Never use Gmail's send, reply or forward tools. Reply and forward send at once. With Microsoft 365, create each draft in Outlook with its draft tools, and never use its tools that send mail, forward mail or send a draft. If it has no draft tool, or it fails, write copy-ready drafts and say so once, near the top. Never say a draft is in Outlook unless the tool confirmed it.
 
 ## 2. Which listings
 
@@ -67,7 +67,7 @@ After each letter, save one line to memory that names the listing: the date, sho
 
 ## Copy-ready drafts
 
-For Microsoft 365, or when no email connector can hold a draft. For each letter: a line with To (names and email addresses), a line with Subject, then the body alone in its own code block, so the copy button copies only the body.
+For when no email connector can hold a draft, such as Microsoft 365 without its draft tools. For each letter: a line with To (names and email addresses), a line with Subject, then the body alone in its own code block, so the copy button copies only the body.
 
 ## 5. What you tell them (attended runs)
 
@@ -92,17 +92,17 @@ The monday skill runs this skill for every active listing as part of the Monday 
 
 ## 7. Unattended (its own Monday scheduled task)
 
-Nobody is watching. Make the drafts and stay quiet. Ask no questions. Mark anything missing with [NEEDS REVIEW]. End with one line only: "[N] seller updates in Gmail." With Microsoft 365 only, write the copy-ready drafts and nothing else. If there are no active listings in memory, leave nothing and end with: "No active listings."
+Nobody is watching. Make the drafts and stay quiet. Ask no questions. Mark anything missing with [NEEDS REVIEW]. End with one line only: "[N] seller updates in your drafts." If you wrote copy-ready drafts instead, end with those and nothing else. If there are no active listings in memory, leave nothing and end with: "No active listings."
 
 ## Put it on a schedule
 
 The Monday report drafts these letters every Monday, so most agents need no separate task. If they've set up the Monday report, point them to it and stop here. If they want seller updates alone, suggest this only after they've sent three Monday letters they were happy with.
 
-1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
+1. With Gmail, ask them to check that send, reply and forward are set to Blocked, on the Gmail page in Plugins, under Permissions. With Microsoft 365, ask them to check that the tools that send mail, forward mail and send a draft are set to Blocked, on the Microsoft 365 page in Plugins, under Permissions. If any is set to something else, stop and help them set it to Blocked first. Never test it by sending.
 2. Propose a scheduled task named "Monday seller updates", every Monday at 7:00 AM or the time they pick, with no folder. Use these instructions, word for word:
 
 ```
-This is my scheduled Monday run. Use the seller-update skill from the Chief of Staff plugin, unattended. For each active listing in your memory, read the last 7 days of showings, feedback and my sent mail and calendar, and draft one update to the sellers in my voice. With Gmail, leave them in Gmail Drafts. With Outlook only, put the drafts in your reply. Never send, reply to or forward an email. Never write a new list price. Never invent a showing, comment, number or date. Write [NEEDS REVIEW] instead. Ask me nothing. Write no report.
+This is my scheduled Monday run. Use the seller-update skill from the Chief of Staff plugin, unattended. For each active listing in your memory, read the last 7 days of showings, feedback and my sent mail and calendar, and draft one update to the sellers in my voice. Leave them in my email drafts, or in your reply if my email can't hold drafts. Never send, reply to or forward an email. Never write a new list price. Never invent a showing, comment, number or date. Write [NEEDS REVIEW] instead. Ask me nothing. Write no report.
 ```
 
 3. They check the task names no folder, then click Schedule.

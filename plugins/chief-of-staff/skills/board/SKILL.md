@@ -15,7 +15,8 @@ Why it's built this way: a long list is where promises go to hide. Now holds fiv
 - **Update it:** the Morning message does this every weekday, from the today skill. Or they say "update my board". Go to Update the board.
 - **Change one card:** "put the Garcia comps on my board", "I sent Linda the HOA docs", "take the Lees off my board", "move that to Now". Go to Change one card.
 - **Friday scoreboard:** "how did I do this week", "Friday scoreboard". Go to Friday scoreboard.
-- **Where's my board:** give the link from memory, and say it's pinned in the left sidebar in Claude.
+- **Where's my board:** give the link from memory, and say it's pinned in the left sidebar in Claude, under Pinned.
+- **Turn it off:** "stop updating my board". Remove the "My Board" line from memory, and say: "Done. Your board stays as it is and won't change. To take it out of your sidebar, unpin it." Never delete the page.
 
 ## How you reach the board
 

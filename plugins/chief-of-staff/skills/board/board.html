@@ -366,7 +366,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
     var nl=$("nowList"); nl.textContent="";
     if(now.length>CAP) nl.appendChild(el("div","banner","Now has "+now.length+". The limit is "+CAP+". Move "+(now.length-CAP)+" to Later."));
     if(!now.length){
-      var msg=!loaded?"Loading your board…":(cards.length?"Nothing in Now. Pull one from Later, or enjoy the quiet.":"Your board fills itself. Tomorrow morning Claude adds what you owe people from your email, texts and meetings. Add one yourself below to start.");
+      var msg=!loaded?"Loading your board.":(cards.length?"Nothing in Now. Pull one from Later, or enjoy the quiet.":"Your board fills itself. Tomorrow morning Claude adds what you owe people from your email, texts and meetings. Add one yourself below to start.");
       nl.appendChild(el("div","empty",msg));
     }
     now.forEach(function(c,ix){ nl.appendChild(nowCard(c,ix===0)); });

@@ -11,7 +11,7 @@ The agent is at Compass. Compass has no connector, so you read their account the
 
 - **Claude in Chrome.** You need its browser tools in this conversation. If you don't have them, say in one line: "Open Chrome, make sure the Claude extension is on and you're signed in to Compass, then run /compass again." Then stop.
 - **Google Drive** for the weekly file. Without it, put the file's contents in your reply.
-- **Calendar** (Google Calendar) for reminders. Without it, list the dates in your reply instead.
+- **Calendar** (Google Calendar, or Microsoft 365 for an Outlook calendar) for reminders. Without one that can create events, list the dates in your reply instead.
 
 ## 2. Attended or unattended
 

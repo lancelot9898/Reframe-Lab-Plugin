@@ -42,7 +42,7 @@ Everything else arrives on a schedule or starts when you ask in plain words.
 
 - **Week 1, it learns you:** setup (the interview), brand (your brand kit), people (My People, from your CRM or an export), today (your morning message).
 - **Week 2, your day:** meeting (after every conversation, from a voice note or Plaud, Zoom, Fathom, Granola, Otter or Fireflies), client (one page on anyone, and prep pages), backup (a monthly copy of what Claude remembers).
-- **Week 3, your people and your listings:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents), texts (your text messages, on a Mac, through the text export in tools/text-export), board (My Board, pinned in your Claude sidebar: five things in Now at most, filled and cleared every morning, with the Friday scoreboard).
+- **Week 3, your people and your listings:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents), texts (your text messages, on a Mac, through the text export in tools/text-export), board (My Board, pinned in your Claude sidebar: five things in Now at most, filled and cleared every weekday morning, with the Friday scoreboard).
 - **Week 4, your marketing:** marketing (the monthly review, posts and newsletter), cma (a CMA), inspection (the inspection response).
 
 ## It drafts. You send.

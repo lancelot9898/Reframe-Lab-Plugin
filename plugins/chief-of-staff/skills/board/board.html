@@ -81,8 +81,8 @@ h2{margin:0;font-family:var(--display);font-weight:700;font-size:20px;letter-spa
 
 details.fold summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
 details.fold summary::-webkit-details-marker{display:none}
-details.fold summary h2::before{content:"+ ";color:var(--muted)}
-details.fold[open] summary h2::before{content:"\2212  "}
+details.fold summary h2::before{content:"\25B8  ";color:var(--muted)}
+details.fold[open] summary h2::before{content:"\25BE  "}
 details.fold .list{margin-top:12px}
 
 .score{background:var(--win-soft);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
@@ -114,7 +114,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
 <div class="wrap">
   <header class="top">
     <h1>My Board</h1>
-    <p class="sub">What's on you right now. Claude fills it every morning and clears what you've done.</p>
+    <p class="sub">What's on you right now. Claude fills it every weekday morning and clears what you've done.</p>
   </header>
 
   <div id="sample" class="banner" hidden>This is a sample board. The clients on it are made up.</div>
@@ -133,7 +133,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
 
   <section id="letgoSec" hidden aria-labelledby="letgoH">
     <div class="letgo">
-      <div class="head"><h2 id="letgoH">Let it go?</h2><p class="hint">These have sat for two weeks with nothing new.</p></div>
+      <div class="head"><h2 id="letgoH">Let it go?</h2><p class="hint">Nothing new on these in a while. Keep them, or let them go.</p></div>
       <div class="list" id="letgoList"></div>
     </div>
   </section>
@@ -173,7 +173,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
       </div>
       <div class="actions"><button class="btn" type="submit" id="addBtn">Add it</button><span class="msg" id="addMsg"></span></div>
     </form>
-    <span id="runLine">Claude adds what you owe people from your email, texts and meetings each weekday morning.</span>
+    <span id="runLine">Each weekday morning, Claude adds what you owe people. Meetings you file go on too.</span>
   </footer>
 </div>
 
@@ -192,6 +192,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
   function dayKey(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
   function today(){return dayKey(new Date());}
   function addDays(n){var d=new Date(); d.setDate(d.getDate()+n); return dayKey(d);}
+  function nextWorkday(){ var d=new Date(), n=d.getDay()===5?3:(d.getDay()===6?2:1); d.setDate(d.getDate()+n); return dayKey(d); }
   function parse(iso){ if(!iso) return null; var t=Date.parse(String(iso).length===10?iso+"T12:00:00":iso); return isNaN(t)?null:new Date(t); }
   function shortDate(iso){ var d=parse(iso); return d?d.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"}):""; }
   function dayName(iso){ var d=parse(iso); return d?d.toLocaleDateString(undefined,{weekday:"short"}):""; }
@@ -230,7 +231,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
     });
     queues[id]=next; return next;
   }
-  function before(c){ return {list:c.list||"later",closedAt:c.closedAt||null,closedBy:c.closedBy||null,closedNote:c.closedNote||"",snoozeUntil:c.snoozeUntil||null,pinned:!!c.pinned,note:c.note||""}; }
+  function before(c){ return {list:c.list||"later",closedAt:c.closedAt||null,closedBy:c.closedBy||null,closedNote:c.closedNote||"",snoozeUntil:c.snoozeUntil||null,pinned:!!c.pinned,note:c.note||"",keptAt:c.keptAt||null,reopenedAt:c.reopenedAt||null}; }
   function change(c,data,label){
     var b=before(c);
     write(c.id,data).then(function(ok){ if(ok) toast(label,c.id,b); });
@@ -239,18 +240,22 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
     var note=c.kind==="waiting"?"It came in.":"You marked it done.";
     change(c,{list:"done",closedAt:new Date().toISOString(),closedBy:"you",closedNote:note,snoozeUntil:null,note:""},c.kind==="waiting"?"Closed. It came in.":"Done. One more for this week.");
   }
-  function notToday(c){ change(c,{list:"later",snoozeUntil:addDays(1),pinned:false,note:"Back tomorrow"},"Moved off Now until tomorrow."); }
+  function notToday(c){
+    if(c.kind==="waiting"){ change(c,{list:"waiting",pinned:false,note:""},"Back in Waiting."); return; }
+    var mon=new Date().getDay()>=5||new Date().getDay()===0;
+    change(c,{list:"later",snoozeUntil:nextWorkday(),pinned:false,note:mon?"Back Monday":"Back tomorrow"},mon?"Moved off Now until Monday.":"Moved off Now until tomorrow.");
+  }
   function notMine(c){ change(c,{list:"dropped",closedAt:new Date().toISOString(),closedBy:"you",closedNote:"Not yours.",note:""},"Taken off. Claude won't add it again."); }
   function letGo(c){ change(c,{list:"dropped",closedAt:new Date().toISOString(),closedBy:"you",closedNote:"You let it go.",note:""},"Let go."); }
-  function keep(c){ change(c,{list:"later",note:"",added:today()},"Kept, in Later."); }
+  function keep(c){ var w=c.kind==="waiting"; change(c,{list:w?"waiting":"later",note:"",keptAt:today()},w?"Kept, in Waiting.":"Kept, in Later."); }
   function toNow(c){
-    if(inNow()>=CAP){ cardMsg[c.id]="Now is full. Finish one or move one to Later first."; render(); return; }
+    if(inNow()>=CAP){ cardMsg[c.id]="Now is full. Finish one, or tap Not today on one, first."; render(); return; }
     cardMsg[c.id]="";
     change(c,{list:"now",pinned:true,snoozeUntil:null,note:""},"Moved to Now.");
   }
   function putBack(c){
     var to=c.kind==="waiting"?"waiting":(inNow()<CAP?"now":"later");
-    change(c,{list:to,closedAt:null,closedBy:null,closedNote:"",note:"You put it back"},to==="now"?"Back in Now.":to==="waiting"?"Back in Waiting.":"Back, in Later. Now is full.");
+    change(c,{list:to,closedAt:null,closedBy:null,closedNote:"",note:"You put it back",reopenedAt:new Date().toISOString()},to==="now"?"Back in Now.":to==="waiting"?"Back in Waiting.":"Back, in Later. Now is full.");
   }
 
   function toast(text,id,b){
@@ -281,6 +286,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
     if(c.list==="waiting"&&c.added) m.appendChild(el("span",null,"since "+shortDate(c.added)));
     return m;
   }
+  function noteOf(c){ var n=c.note||""; if((n==="Back tomorrow"||n==="Back Monday") && !(c.snoozeUntil && c.snoozeUntil>today())) return ""; return n; }
   function linkBtn(c,cls){
     var u=c.link&&safeUrl(c.link.url); if(!u) return null;
     var a=el("a","btn "+(cls||""),(c.link.label||"Open it")+" ↗"); a.href=u; a.target="_blank"; a.rel="noopener"; return a;
@@ -294,7 +300,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
     k.appendChild(metaLine(c));
     if(c.why) k.appendChild(el("p","why",c.why));
     if(c.ready) k.appendChild(el("span","chip",c.ready));
-    if(c.note) k.appendChild(el("span","note",c.note));
+    if(noteOf(c)) k.appendChild(el("span","note",noteOf(c)));
     var a=el("div","actions");
     a.appendChild(btn("Done","primary",function(){ done(c); }));
     var l=linkBtn(c); if(l) a.appendChild(l);
@@ -314,7 +320,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
     } else {
       left.appendChild(metaLine(c));
       if(c.why) left.appendChild(el("p","why",c.why));
-      if(c.note) left.appendChild(el("span","note",c.note));
+      if(noteOf(c)) left.appendChild(el("span","note",noteOf(c)));
     }
     r.appendChild(left);
     var a=el("div","actions");
@@ -323,8 +329,8 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
     if(kind==="letgo"){ a.appendChild(btn("Keep it","small",function(){ keep(c); })); a.appendChild(btn("Let it go","small",function(){ letGo(c); })); }
     if(kind==="done"){ a.appendChild(btn(c.closedBy==="Claude"?"Not done? Put it back":"Put it back","quiet small",function(){ putBack(c); })); }
     var l=kind!=="done"?linkBtn(c,"small quiet"):null; if(l) a.appendChild(l);
-    var msg=el("span","msg",cardMsg[c.id]||""); msg.style.gridColumn="1 / -1"; a.appendChild(msg);
     r.appendChild(a);
+    var msg=el("span","msg",cardMsg[c.id]||""); msg.style.gridColumn="1 / -1"; r.appendChild(msg);
     return r;
   }
 
@@ -335,7 +341,7 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
     var dow=new Date().getDay();
     var friday=(dow===5||dow===6||dow===0);
     var s=el("section","score"); s.setAttribute("aria-labelledby","scoreH");
-    var h=el("div","head"); h.appendChild(el("h2",null,friday?"Friday scoreboard":"This week")); h.firstChild.id="scoreH";
+    var h=el("div","head"); h.appendChild(el("h2",null,dow===5?"Friday scoreboard":"This week")); h.firstChild.id="scoreH";
     h.appendChild(el("p","hint","Since Monday"));
     s.appendChild(h);
     var big=el("div","big");
@@ -364,9 +370,9 @@ footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);paddin
     for(var i=0;i<CAP;i++){ var t=el("i"); if(i<now.length) t.className="on"; dots.appendChild(t); }
     $("slotLabel").textContent=Math.min(now.length,CAP)+" of "+CAP;
     var nl=$("nowList"); nl.textContent="";
-    if(now.length>CAP) nl.appendChild(el("div","banner","Now has "+now.length+". The limit is "+CAP+". Move "+(now.length-CAP)+" to Later."));
+    if(now.length>CAP) nl.appendChild(el("div","banner","Now has "+now.length+". The limit is "+CAP+". Tap Not today on "+(now.length-CAP)+"."));
     if(!now.length){
-      var msg=!loaded?"Loading your board.":(cards.length?"Nothing in Now. Pull one from Later, or enjoy the quiet.":"Your board fills itself. Tomorrow morning Claude adds what you owe people from your email, texts and meetings. Add one yourself below to start.");
+      var msg=!loaded?"Loading your board.":(cards.length?"Nothing in Now. Pull one from Later, or enjoy the quiet.":"Your board fills itself. Your next morning message adds what you owe people. Add one yourself below to start.");
       nl.appendChild(el("div","empty",msg));
     }
     now.forEach(function(c,ix){ nl.appendChild(nowCard(c,ix===0)); });

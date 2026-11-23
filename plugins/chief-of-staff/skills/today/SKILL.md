@@ -1,6 +1,6 @@
 ---
 name: today
-description: The morning message for a real estate agent's chief of staff, and what their "Morning message" scheduled task runs every weekday. Reads the last day of email, today's calendar, their My People list and what Claude remembers, then writes one short message for their phone, with the three things that matter today, today's appointments, dated deal items and anything else worth a look. Drafts the replies they owe in Gmail or Outlook, makes a prep page for each client appointment today, and drafts any home anniversary, birthday or rate note that's due. Use when the agent says "what do I owe", "what do I owe people", "what's on my plate", "what did I miss", "catch me up", "catch me up on my inbox", "who do I need to get back to", "draft my replies", "run my morning", "my morning message", "what's on today", "prep me for today", "set up my morning message", "change my morning message", "put this first in my morning message", or types /today. Drafts only. Never sends.
+description: The morning message for a real estate agent's chief of staff, and what their "Morning message" scheduled task runs every weekday. Reads the last day of email, today's calendar, their My People list and what Claude remembers, then writes one short message for their phone, with the three things that matter today, today's appointments, dated deal items and anything else worth a look. Drafts the replies they owe in Gmail or Outlook, makes a prep page for each client appointment today, drafts any home anniversary, birthday or rate note that's due, and updates their board if they have one, with the Friday scoreboard on Fridays. Use when the agent says "what do I owe", "what do I owe people", "what's on my plate", "what did I miss", "catch me up", "catch me up on my inbox", "who do I need to get back to", "draft my replies", "run my morning", "my morning message", "what's on today", "prep me for today", "set up my morning message", "change my morning message", "put this first in my morning message", or types /today. Drafts only. Never sends.
 ---
 
 # Today: your morning message
@@ -16,6 +16,7 @@ Look at the tools you have in this conversation.
 - **Email:** Gmail, or Microsoft 365 (Outlook). With neither, say in one line, "Connect Gmail or Microsoft 365 in Plugins, in the left sidebar, then run /today again." Then stop.
 - **Calendar:** Google Calendar, or Microsoft 365. Without one, carry on and say so under ALSO.
 - **Google Drive:** for My People, the Compass file and prep pages. Without it, skip those parts and say so under ALSO.
+- **Board:** if memory has "My Board" with a link, you'll update it in step 6. Without it, say nothing about a board.
 - **Texts (Mac only):** if they set up the text export, Google Drive has a folder My Brain/Texts with files named "Texts" and a date. Without that folder, leave texts out and say nothing about them.
 
 How drafts work depends on their email:
@@ -98,6 +99,10 @@ From My People, and from memory, find anyone whose home anniversary or birthday 
 
 If My People or memory has paused buyers who asked to hear about rates, use the rates skill's morning check. It decides who, if anyone, gets a note today, and drafts it. Its notes go under ALSO, not in the five replies. If the rates skill isn't installed, skip this.
 
+### Their board
+
+If memory has "My Board" with a link, follow the board skill's Update the board, after the drafts and prep pages, so each card shows what's ready. It adds what they owe, closes what they finished with proof, and keeps Now to five. If the board skill isn't installed, skip this.
+
 ## How drafts sound
 
 - Their voice comes first. Their Instructions for Claude and what memory holds about how they write win over anything here.
@@ -126,7 +131,7 @@ For when no email connector can hold a draft, such as Microsoft 365 without its 
 
 ## 8. The morning message
 
-This is what they read on their phone. Keep it under about 150 words, not counting copy-ready drafts and the "Behind the drafts" lines. Short lines. No tables, no links, no preamble. Use their first name.
+This is what they read on their phone. Keep it under about 150 words, not counting the Friday scoreboard, the board line, copy-ready drafts and the "Behind the drafts" lines. Short lines. No tables, no links, no preamble. Use their first name.
 
 Good morning, [first name].
 
@@ -151,6 +156,7 @@ How each part works:
 - **YOUR DEALS:** only dated deal items in the next 10 days, and anything late, nearest first. Leave the section out when there are none.
 - **ALSO:** home anniversary, birthday and rate notes that are ready, with the day; replies owed past the five you drafted; forgotten drafts; anything that needs them and couldn't be drafted; a connector that didn't respond. At most five lines. Leave the section out when there's nothing.
 - Leave out any section with nothing in it, except TODAY.
+- **With a board:** the last line of the message is the board line from the board skill, such as "Your board: added 3, closed 2 you finished." On a Friday, the THIS WEEK scoreboard from the board skill goes right under Good morning, quiet day or not.
 
 **A quiet day.** When nothing needs them, the whole message is:
 
@@ -165,7 +171,7 @@ Good morning, [first name]. Nothing needs you this morning. Today: [the first ap
 In an unattended run, after you've written the message, put it on their own calendar: Google Calendar, or their Outlook calendar through Microsoft 365. If both are connected, use the calendar on the same account as their email. Their calendar app turns it into a phone alert, and Google Calendar can email it to them too. Do the same in an attended run only when they ask for it on their phone.
 
 - **One event** on their main calendar, titled "Morning message", today at their delivery time from memory, or 7:00 AM if memory has none, 5 minutes long. If that time has already passed, start it 2 minutes from now.
-- **The description** is the morning message in plain text, exactly as you wrote it, without the Behind the drafts lines. Under it, add each copy-ready text: "Text to: [name]", then the text on its own line, so they can copy it on their phone.
+- **The description** is the morning message in plain text, exactly as you wrote it, without the Behind the drafts lines. Under it, add each copy-ready text: "Text to: [name]", then the text on its own line, so they can copy it on their phone. If memory has My Board, end with "Your board:" and its link.
 - **Shown as free and private, with no guests and no meeting link.** Send no invitation.
 - **Reminders:** a popup at the start. If memory says they want it by email too, add an email reminder at the start.
 - **Never twice.** If an event titled "Morning message" is already on today's calendar, don't add another.
@@ -182,7 +188,7 @@ When they say "set up my morning message", or want this on a schedule:
 2. **Propose a scheduled task** named "Morning message", every weekday at 6:40 AM, or the time they pick, a few minutes off the hour, with no folder. Use these instructions, word for word:
 
 ```
-This is my scheduled morning message. Use the today skill from the Chief of Staff plugin, unattended. Read my last day of email, today's calendar, my My People list and what you remember about me. Draft up to five replies in my voice and leave them in my email drafts, or after the message if my email can't hold drafts. Make a prep page in my Google Drive for each client appointment today, and draft any home anniversary, birthday or rate note that's due. Never send, reply to or forward an email. The only calendar event you may create is today's Morning message on my own calendar, with no guests. Never change, delete or answer an event, and never invite anyone to anything. Never invent a name, number, date or commitment. Write [NEEDS REVIEW] instead. Your final reply is my morning message, with the Behind the drafts lines under it, and nothing else.
+This is my scheduled morning message. Use the today skill from the Chief of Staff plugin, unattended. Read my last day of email, today's calendar, my My People list and what you remember about me. Draft up to five replies in my voice and leave them in my email drafts, or after the message if my email can't hold drafts. Make a prep page in my Google Drive for each client appointment today, and draft any home anniversary, birthday or rate note that's due. Update my board if I have one. Never send, reply to or forward an email. The only calendar event you may create is today's Morning message on my own calendar, with no guests. Never change, delete or answer an event, and never invite anyone to anything. Never invent a name, number, date or commitment. Write [NEEDS REVIEW] instead. Your final reply is my morning message, with the Behind the drafts lines under it, and nothing else.
 ```
 
 3. **Ask how they want it to reach them,** and save the answer to memory.
@@ -206,6 +212,6 @@ When they say what they want different, such as "put my closings first", "leave 
 
 ## Rules
 
-- Draft, never send. Never send a text. The only event you create is today's Morning message on their own calendar, with no guests. Never change, delete or answer an event.
+- Draft, never send. Never send a text. Never delete a card on their board. The only event you create is today's Morning message on their own calendar, with no guests. Never change, delete or answer an event.
 - Never invent anything. Flag gaps with [NEEDS REVIEW].
 - Plain words. Never say MCP, API or tool call to the agent.

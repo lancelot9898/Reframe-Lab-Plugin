@@ -33,7 +33,8 @@ Everything else arrives on a schedule or starts when you ask in plain words.
 
 ## What arrives on its own
 
-- **Every weekday morning:** your morning message, as a 7:00 calendar alert on your phone, and by email too if you're on Google Calendar.
+- **Every weekday morning:** your morning message, as a 7:00 calendar alert on your phone, and by email too if you're on Google Calendar. If you set up your board, the same run updates it.
+- **Every Friday:** the Friday scoreboard, at the top of your morning message and your board.
 - **Every Monday:** your week on one page, with an update drafted for each seller.
 - **The 1st of every month:** your marketing review, with posts and a newsletter planned and drafted.
 
@@ -41,7 +42,7 @@ Everything else arrives on a schedule or starts when you ask in plain words.
 
 - **Week 1, it learns you:** setup (the interview), brand (your brand kit), people (My People, from your CRM or an export), today (your morning message).
 - **Week 2, your day:** meeting (after every conversation, from a voice note or Plaud, Zoom, Fathom, Granola, Otter or Fireflies), client (one page on anyone, and prep pages), backup (a monthly copy of what Claude remembers).
-- **Week 3, your people and your listings:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents), texts (your text messages, on a Mac, through the text export in tools/text-export).
+- **Week 3, your people and your listings:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents), texts (your text messages, on a Mac, through the text export in tools/text-export), board (My Board, pinned in your Claude sidebar: five things in Now at most, filled and cleared every morning, with the Friday scoreboard).
 - **Week 4, your marketing:** marketing (the monthly review, posts and newsletter), cma (a CMA), inspection (the inspection response).
 
 ## It drafts. You send.

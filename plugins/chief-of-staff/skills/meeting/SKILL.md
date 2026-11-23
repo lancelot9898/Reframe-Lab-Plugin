@@ -113,6 +113,8 @@ Never change, move or delete an event, theirs or one you made. If a date changed
 
 **With no calendar tool that can create events, or if creating one fails:** list them in your reply under "Reminders to add", one line each with the date and time, so they can add them in a minute.
 
+**Their board.** If memory has "My Board" with a link, put the commitments on it too, following the board skill's Update the board, steps 1, 3, 5 and 7. Each "You'll do" is an owe card, and each "They'll do" is a waiting card, with source `meeting`, the date as due, and a why line such as "You said you'd send them by Friday, at your meeting on Nov 19." Skip anything already on the board, and anything under Others. If you can't reach the board, say so in one line and carry on.
+
 ## 7. The meeting note in Google Drive
 
 If Google Drive is connected:
@@ -145,6 +147,7 @@ Short, in this order:
 - Follow-up: waiting in Gmail or Outlook Drafts, to [name]. Or the copy-ready draft.
 - The commitments list.
 - On your calendar: [N] reminders, one line each with the day. Or "Reminders to add", when you couldn't add them.
+- On your board: [N] added, when they have one.
 - Note: "[title]" in My Brain/Clients/[Client Name].
 - Saved to memory: one line.
 - Needs review: each [NEEDS REVIEW], one line each.

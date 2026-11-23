@@ -1,0 +1,428 @@
+<title>My Board</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one column for a phone or a laptop. Now first (five at most, the top card largest), then Let it go?, Waiting on others, Later folded, This week, Done with a way back. On Fridays and weekends the scoreboard moves to the top. */
+:root{
+  --paper:#F2F4F6; --surface:#FFFFFF; --ink:#1B2733; --muted:#5A6672; --line:#D7DDE3;
+  --accent:#C4461A; --accent-ink:#FFFFFF; --accent-soft:#FBE7DE;
+  --win:#1C7442; --win-soft:#E1F2E7; --warn:#8A4B00; --warn-soft:#FDEFD7;
+  --display:"Montserrat","Helvetica Neue",Arial,sans-serif;
+  --body:"Inter","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#10161C; --surface:#18212A; --ink:#E9EDF1; --muted:#9EA9B4; --line:#2B3640;
+    --accent:#F2784A; --accent-ink:#1A0E08; --accent-soft:#3A2016;
+    --win:#6FD39A; --win-soft:#16301F; --warn:#F2B866; --warn-soft:#352612;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#10161C; --surface:#18212A; --ink:#E9EDF1; --muted:#9EA9B4; --line:#2B3640;
+  --accent:#F2784A; --accent-ink:#1A0E08; --accent-soft:#3A2016;
+  --win:#6FD39A; --win-soft:#16301F; --warn:#F2B866; --warn-soft:#352612;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.45}
+.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 72px;display:flex;flex-direction:column;gap:28px}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.45}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+
+.top{display:flex;flex-direction:column;gap:6px}
+h1{margin:0;font-family:var(--display);font-weight:800;font-size:clamp(30px,6vw,42px);line-height:1.05;letter-spacing:-.01em;text-wrap:balance}
+.sub{margin:0;color:var(--muted);font-size:16px;max-width:58ch}
+.banner{background:var(--warn-soft);color:var(--warn);padding:10px 14px;border-radius:8px;font-weight:600;font-size:15px}
+.status{font-size:14px;color:var(--muted)}
+.status:empty{display:none}
+
+section{display:flex;flex-direction:column;gap:12px}
+.head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 14px}
+h2{margin:0;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.01em}
+.hint{margin:0;color:var(--muted);font-size:14.5px}
+.slots{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.slots span.dots{display:flex;gap:4px}
+.slots i{display:block;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--ink)}
+.slots i.on{background:var(--ink)}
+
+.list{display:flex;flex-direction:column;gap:10px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.card.lead{border:2px solid var(--ink);padding:18px 18px 16px;gap:10px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.ttl{margin:0;font-weight:700;font-size:17px;line-height:1.3;overflow-wrap:anywhere}
+.card.lead .ttl{font-size:21px}
+.meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13.5px;color:var(--muted)}
+.meta .due{color:var(--ink);font-weight:600}
+.meta .late{color:var(--accent);font-weight:600}
+.why{margin:0;font-size:15px;color:var(--muted);overflow-wrap:anywhere}
+.chip{align-self:flex-start;background:var(--win-soft);color:var(--win);border-radius:999px;padding:2px 10px;font-size:13px;font-weight:600}
+.note{align-self:flex-start;background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:2px 9px;font-size:13px;font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{min-height:42px;border:1.5px solid var(--line);background:var(--surface);border-radius:10px;padding:6px 14px;font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.quiet{border-color:transparent;background:transparent;color:var(--muted);padding-inline:8px}
+.btn.small{min-height:36px;font-size:14px;padding:4px 11px}
+.msg{font-size:14px;color:var(--accent);font-weight:600}
+.msg:empty{display:none}
+
+.row{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:11px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:center}
+.row .ttl{font-size:15.5px}
+.row .why{font-size:14px}
+.row .actions{justify-content:flex-end}
+.empty{color:var(--muted);font-size:15px;padding:14px 16px;border:1.5px dashed var(--line);border-radius:10px}
+.letgo{background:var(--warn-soft);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.letgo h2{color:var(--warn)}
+
+details.fold summary{cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+details.fold summary::-webkit-details-marker{display:none}
+details.fold summary h2::before{content:"+ ";color:var(--muted)}
+details.fold[open] summary h2::before{content:"\2212  "}
+details.fold .list{margin-top:12px}
+
+.score{background:var(--win-soft);border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.score h2{color:var(--win)}
+.big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.big b{font-family:var(--display);font-weight:800;font-size:56px;line-height:1;color:var(--win);font-variant-numeric:tabular-nums}
+.big span{font-size:17px;font-weight:600}
+.wins{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px;font-size:15px}
+.rolls{margin:0;font-size:14.5px;color:var(--muted)}
+
+.done .ttl{text-decoration:line-through;text-decoration-color:var(--muted);color:var(--muted)}
+
+footer{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:16px;display:flex;flex-direction:column;gap:10px}
+.add{display:flex;flex-direction:column;gap:8px}
+.add label{font-size:13.5px;font-weight:600;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+.add input{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%;color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:30;background:var(--ink);color:var(--paper);border-radius:10px;padding:10px 12px 10px 16px;display:flex;gap:12px;align-items:center;font-size:15px;box-shadow:0 6px 24px rgba(0,0,0,.2);max-width:calc(100% - 32px)}
+.toast button{background:transparent;border:1.5px solid var(--paper);color:var(--paper);border-radius:6px;padding:4px 10px;font-weight:700}
+@media (max-width:560px){
+  .row{grid-template-columns:1fr}
+  .row .actions{justify-content:flex-start}
+  .two{grid-template-columns:1fr}
+  .big b{font-size:46px}
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <h1>My Board</h1>
+    <p class="sub">What's on you right now. Claude fills it every morning and clears what you've done.</p>
+  </header>
+
+  <div id="sample" class="banner" hidden>This is a sample board. The clients on it are made up.</div>
+  <div id="banner" class="banner" hidden></div>
+  <div id="status" class="status" role="status"></div>
+
+  <div id="scoreTop"></div>
+
+  <section aria-labelledby="nowH">
+    <div class="head">
+      <h2 id="nowH">Now</h2>
+      <div class="slots"><span class="dots" id="dots"></span><span id="slotLabel">0 of 5</span></div>
+    </div>
+    <div class="list" id="nowList"></div>
+  </section>
+
+  <section id="letgoSec" hidden aria-labelledby="letgoH">
+    <div class="letgo">
+      <div class="head"><h2 id="letgoH">Let it go?</h2><p class="hint">These have sat for two weeks with nothing new.</p></div>
+      <div class="list" id="letgoList"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="waitH">
+    <div class="head">
+      <h2 id="waitH">Waiting on others</h2>
+      <p class="hint">Claude watches these. When it comes in, the card closes.</p>
+    </div>
+    <div class="list" id="waitList"></div>
+  </section>
+
+  <section>
+    <details class="fold" id="laterSec">
+      <summary><h2>Later</h2><span class="hint" id="laterCount">Nothing parked.</span></summary>
+      <div class="list" id="laterList"></div>
+    </details>
+  </section>
+
+  <div id="scoreBottom"></div>
+
+  <section>
+    <details class="fold" id="doneSec">
+      <summary><h2>Done this week</h2><span class="hint" id="doneCount"></span></summary>
+      <div class="list" id="doneList"></div>
+    </details>
+  </section>
+
+  <footer>
+    <form id="addForm" class="add">
+      <label for="addTitle">Add one yourself
+        <input id="addTitle" maxlength="120" placeholder="Send the Johnsons the disclosure packet" autocomplete="off">
+      </label>
+      <div class="two">
+        <label for="addWho">Who it's for (optional)<input id="addWho" maxlength="60" autocomplete="off"></label>
+        <label for="addDue">Due (optional)<input id="addDue" type="date"></label>
+      </div>
+      <div class="actions"><button class="btn" type="submit" id="addBtn">Add it</button><span class="msg" id="addMsg"></span></div>
+    </form>
+    <span id="runLine">Claude adds what you owe people from your email, texts and meetings each weekday morning.</span>
+  </footer>
+</div>
+
+<div class="toast" id="toast" hidden role="status"><span id="toastText"></span><button type="button" id="toastUndo">Undo</button></div>
+
+<script>
+(function(){
+  "use strict";
+  var CAP=5;
+  var cards=[], meta=null, db=null, canWrite=true, loaded=false;
+  var cardMsg={}, queues={}, undo=null, toastTimer=null;
+
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,text){var e=document.createElement(tag); if(cls) e.className=cls; if(text!=null) e.textContent=text; return e;}
+  function pad(n){return String(n).padStart(2,"0");}
+  function dayKey(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+  function today(){return dayKey(new Date());}
+  function addDays(n){var d=new Date(); d.setDate(d.getDate()+n); return dayKey(d);}
+  function parse(iso){ if(!iso) return null; var t=Date.parse(String(iso).length===10?iso+"T12:00:00":iso); return isNaN(t)?null:new Date(t); }
+  function shortDate(iso){ var d=parse(iso); return d?d.toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"}):""; }
+  function dayName(iso){ var d=parse(iso); return d?d.toLocaleDateString(undefined,{weekday:"short"}):""; }
+  function daysFrom(iso){ var d=parse(iso); if(!d) return null; var a=new Date(); a.setHours(12,0,0,0); var b=new Date(d); b.setHours(12,0,0,0); return Math.round((b-a)/86400000); }
+  function weekStart(){ var d=new Date(); d.setHours(0,0,0,0); var dow=(d.getDay()+6)%7; d.setDate(d.getDate()-dow); return d; }
+  function safeUrl(u){ try{ var x=new URL(u); return x.protocol==="https:"?x.href:null; }catch(e){ return null; } }
+  function setStatus(t){ $("status").textContent=t||""; }
+
+  function listOf(c){
+    var l=c.list||"later";
+    if(l==="now" && c.snoozeUntil && c.snoozeUntil>today()) return "later";
+    return l;
+  }
+  function byNow(a,b){
+    if(!!b.pinned!==!!a.pinned) return a.pinned?-1:1;
+    var ad=a.due||"9999-99-99", bd=b.due||"9999-99-99"; if(ad!==bd) return ad.localeCompare(bd);
+    return String(a.added||"").localeCompare(String(b.added||""));
+  }
+  function byClosed(a,b){ return String(b.closedAt||"").localeCompare(String(a.closedAt||"")); }
+  function open(l){ return cards.filter(function(c){return listOf(c)===l;}); }
+  function inNow(){ return open("now").length; }
+  function closedThisWeek(){
+    var ws=weekStart();
+    return cards.filter(function(c){ if(c.list!=="done"||!c.closedAt) return false; var d=parse(c.closedAt); return d && d>=ws; });
+  }
+
+  // ---------- writes ----------
+  function write(id,data){
+    if(!db||!canWrite) return Promise.resolve(false);
+    var payload=Object.assign({},data,{lastEditBy:"you",updatedAt:new Date().toISOString()});
+    var prev=queues[id]||Promise.resolve();
+    var next=prev.then(function(){ return db.doc("cards/"+id).update(payload); }).then(function(){ return true; },function(e){
+      if(e&&e.code==="invalid_argument"){ canWrite=false; setStatus("This view can't change the board. Open it from your own Claude sidebar."); render(); }
+      else { setStatus("That didn't save. Check your connection and try again."); }
+      return false;
+    });
+    queues[id]=next; return next;
+  }
+  function before(c){ return {list:c.list||"later",closedAt:c.closedAt||null,closedBy:c.closedBy||null,closedNote:c.closedNote||"",snoozeUntil:c.snoozeUntil||null,pinned:!!c.pinned,note:c.note||""}; }
+  function change(c,data,label){
+    var b=before(c);
+    write(c.id,data).then(function(ok){ if(ok) toast(label,c.id,b); });
+  }
+  function done(c){
+    var note=c.kind==="waiting"?"It came in.":"You marked it done.";
+    change(c,{list:"done",closedAt:new Date().toISOString(),closedBy:"you",closedNote:note,snoozeUntil:null,note:""},c.kind==="waiting"?"Closed. It came in.":"Done. One more for this week.");
+  }
+  function notToday(c){ change(c,{list:"later",snoozeUntil:addDays(1),pinned:false,note:"Back tomorrow"},"Moved off Now until tomorrow."); }
+  function notMine(c){ change(c,{list:"dropped",closedAt:new Date().toISOString(),closedBy:"you",closedNote:"Not yours.",note:""},"Taken off. Claude won't add it again."); }
+  function letGo(c){ change(c,{list:"dropped",closedAt:new Date().toISOString(),closedBy:"you",closedNote:"You let it go.",note:""},"Let go."); }
+  function keep(c){ change(c,{list:"later",note:"",added:today()},"Kept, in Later."); }
+  function toNow(c){
+    if(inNow()>=CAP){ cardMsg[c.id]="Now is full. Finish one or move one to Later first."; render(); return; }
+    cardMsg[c.id]="";
+    change(c,{list:"now",pinned:true,snoozeUntil:null,note:""},"Moved to Now.");
+  }
+  function putBack(c){
+    var to=c.kind==="waiting"?"waiting":(inNow()<CAP?"now":"later");
+    change(c,{list:to,closedAt:null,closedBy:null,closedNote:"",note:"You put it back"},to==="now"?"Back in Now.":to==="waiting"?"Back in Waiting.":"Back, in Later. Now is full.");
+  }
+
+  function toast(text,id,b){
+    undo={id:id,before:b};
+    $("toastText").textContent=text; $("toast").hidden=false;
+    clearTimeout(toastTimer); toastTimer=setTimeout(function(){ $("toast").hidden=true; undo=null; },12000);
+  }
+  $("toastUndo").addEventListener("click",function(){
+    if(!undo) return; var u=undo; undo=null; $("toast").hidden=true;
+    write(u.id,u.before);
+  });
+
+  // ---------- pieces ----------
+  function dueBits(c,m){
+    if(!c.due) return;
+    var d=daysFrom(c.due);
+    if(d==null) return;
+    if(d<0) m.appendChild(el("span","late","was due "+shortDate(c.due)));
+    else if(d===0) m.appendChild(el("span","due","due today"));
+    else if(d===1) m.appendChild(el("span","due","due tomorrow"));
+    else m.appendChild(el("span","due","due "+shortDate(c.due)));
+  }
+  function metaLine(c){
+    var m=el("div","meta");
+    if(c.who) m.appendChild(el("span",null,c.who));
+    dueBits(c,m);
+    if(c.kind==="date") m.appendChild(el("span",null,"deal date"));
+    if(c.list==="waiting"&&c.added) m.appendChild(el("span",null,"since "+shortDate(c.added)));
+    return m;
+  }
+  function linkBtn(c,cls){
+    var u=c.link&&safeUrl(c.link.url); if(!u) return null;
+    var a=el("a","btn "+(cls||""),(c.link.label||"Open it")+" ↗"); a.href=u; a.target="_blank"; a.rel="noopener"; return a;
+  }
+  function btn(label,cls,fn){ var b=el("button","btn "+(cls||""),label); b.type="button"; b.disabled=!canWrite; b.addEventListener("click",fn); return b; }
+
+  function nowCard(c,lead){
+    var k=el("article","card"+(lead?" lead":""));
+    if(lead) k.appendChild(el("div","eyebrow","Start here"));
+    k.appendChild(el("h3","ttl",c.title||"Untitled"));
+    k.appendChild(metaLine(c));
+    if(c.why) k.appendChild(el("p","why",c.why));
+    if(c.ready) k.appendChild(el("span","chip",c.ready));
+    if(c.note) k.appendChild(el("span","note",c.note));
+    var a=el("div","actions");
+    a.appendChild(btn("Done","primary",function(){ done(c); }));
+    var l=linkBtn(c); if(l) a.appendChild(l);
+    a.appendChild(btn("Not today","",function(){ notToday(c); }));
+    a.appendChild(btn("Not mine","quiet",function(){ notMine(c); }));
+    a.appendChild(el("span","msg",cardMsg[c.id]||""));
+    k.appendChild(a);
+    return k;
+  }
+  function row(c,kind){
+    var r=el("div","row"+(kind==="done"?" done":""));
+    var left=el("div"); left.style.minWidth="0";
+    left.appendChild(el("div","ttl",c.title||"Untitled"));
+    if(kind==="done"){
+      var m=el("div","meta"); if(c.who) m.appendChild(el("span",null,c.who)); if(c.closedAt) m.appendChild(el("span",null,dayName(c.closedAt))); left.appendChild(m);
+      if(c.closedNote) left.appendChild(el("p","why",(c.closedBy==="Claude"?"Claude closed it: ":"")+c.closedNote));
+    } else {
+      left.appendChild(metaLine(c));
+      if(c.why) left.appendChild(el("p","why",c.why));
+      if(c.note) left.appendChild(el("span","note",c.note));
+    }
+    r.appendChild(left);
+    var a=el("div","actions");
+    if(kind==="waiting"){ a.appendChild(btn("It came in","small",function(){ done(c); })); a.appendChild(btn("Back to me","small",function(){ toNow(c); })); a.appendChild(btn("Not needed","quiet small",function(){ notMine(c); })); }
+    if(kind==="later"){ a.appendChild(btn("Now","small",function(){ toNow(c); })); a.appendChild(btn("Done","small",function(){ done(c); })); a.appendChild(btn("Not mine","quiet small",function(){ notMine(c); })); }
+    if(kind==="letgo"){ a.appendChild(btn("Keep it","small",function(){ keep(c); })); a.appendChild(btn("Let it go","small",function(){ letGo(c); })); }
+    if(kind==="done"){ a.appendChild(btn(c.closedBy==="Claude"?"Not done? Put it back":"Put it back","quiet small",function(){ putBack(c); })); }
+    var l=kind!=="done"?linkBtn(c,"small quiet"):null; if(l) a.appendChild(l);
+    var msg=el("span","msg",cardMsg[c.id]||""); msg.style.gridColumn="1 / -1"; a.appendChild(msg);
+    r.appendChild(a);
+    return r;
+  }
+
+  function scoreboard(){
+    var closed=closedThisWeek();
+    var kept=closed.filter(function(c){return c.kind!=="waiting";}).sort(byClosed);
+    var came=closed.filter(function(c){return c.kind==="waiting";});
+    var dow=new Date().getDay();
+    var friday=(dow===5||dow===6||dow===0);
+    var s=el("section","score"); s.setAttribute("aria-labelledby","scoreH");
+    var h=el("div","head"); h.appendChild(el("h2",null,friday?"Friday scoreboard":"This week")); h.firstChild.id="scoreH";
+    h.appendChild(el("p","hint","Since Monday"));
+    s.appendChild(h);
+    var big=el("div","big");
+    big.appendChild(el("b",null,String(kept.length)));
+    big.appendChild(el("span",null,kept.length===1?"promise kept":"promises kept"));
+    s.appendChild(big);
+    if(kept.length){
+      var ul=el("ul","wins");
+      kept.slice(0,5).forEach(function(c){ ul.appendChild(el("li",null,c.title||"")); });
+      if(kept.length>5) ul.appendChild(el("li",null,"and "+(kept.length-5)+" more"));
+      s.appendChild(ul);
+    } else {
+      s.appendChild(el("p","rolls","Your first one this week shows up here the moment you tap Done."));
+    }
+    var bits=[];
+    if(came.length) bits.push(came.length+(came.length===1?" thing you were waiting on came in.":" things you were waiting on came in."));
+    if(friday){ var n=inNow(), w=open("waiting").length; bits.push("Rolling to next week: "+n+" in Now, "+w+" waiting on others."); }
+    if(bits.length) s.appendChild(el("p","rolls",bits.join(" ")));
+    return {node:s,friday:friday};
+  }
+
+  // ---------- render ----------
+  function render(){
+    var now=open("now").sort(byNow), wait=open("waiting").sort(byNow), later=open("later").sort(byNow), lg=open("letgo").sort(byNow);
+    var dots=$("dots"); dots.textContent="";
+    for(var i=0;i<CAP;i++){ var t=el("i"); if(i<now.length) t.className="on"; dots.appendChild(t); }
+    $("slotLabel").textContent=Math.min(now.length,CAP)+" of "+CAP;
+    var nl=$("nowList"); nl.textContent="";
+    if(now.length>CAP) nl.appendChild(el("div","banner","Now has "+now.length+". The limit is "+CAP+". Move "+(now.length-CAP)+" to Later."));
+    if(!now.length){
+      var msg=!loaded?"Loading your board…":(cards.length?"Nothing in Now. Pull one from Later, or enjoy the quiet.":"Your board fills itself. Tomorrow morning Claude adds what you owe people from your email, texts and meetings. Add one yourself below to start.");
+      nl.appendChild(el("div","empty",msg));
+    }
+    now.forEach(function(c,ix){ nl.appendChild(nowCard(c,ix===0)); });
+
+    $("letgoSec").hidden=!lg.length;
+    var ll=$("letgoList"); ll.textContent=""; lg.forEach(function(c){ ll.appendChild(row(c,"letgo")); });
+
+    var wl=$("waitList"); wl.textContent="";
+    if(!wait.length) wl.appendChild(el("div","empty",loaded?"Nobody owes you anything right now.":""));
+    wait.forEach(function(c){ wl.appendChild(row(c,"waiting")); });
+
+    $("laterCount").textContent=later.length?later.length+" parked.":"Nothing parked.";
+    var lt=$("laterList"); lt.textContent=""; later.forEach(function(c){ lt.appendChild(row(c,"later")); });
+
+    var dn=closedThisWeek().sort(byClosed);
+    $("doneCount").textContent=dn.length?dn.length+" closed. Claude's closes show why.":"Nothing yet.";
+    var dl=$("doneList"); dl.textContent=""; dn.forEach(function(c){ dl.appendChild(row(c,"done")); });
+
+    var sb=scoreboard();
+    $("scoreTop").textContent=""; $("scoreBottom").textContent="";
+    (sb.friday?$("scoreTop"):$("scoreBottom")).appendChild(sb.node);
+
+    $("sample").hidden=!(meta&&meta.sample===true);
+    var b=$("banner"), last=meta&&meta.lastRun?parse(meta.lastRun):null;
+    if(last && (Date.now()-last.getTime())>3*86400000){ b.hidden=false; b.textContent="Claude hasn't updated your board since "+shortDate(meta.lastRun)+". In Claude, open Scheduled and check that Morning message is on."; }
+    else b.hidden=true;
+    if(last){ $("runLine").textContent="Claude last updated this "+last.toLocaleString(undefined,{weekday:"short",hour:"numeric",minute:"2-digit"})+"."+(meta.note?" "+meta.note:""); }
+    $("addBtn").disabled=!canWrite;
+  }
+
+  // ---------- add ----------
+  $("addForm").addEventListener("submit",function(ev){
+    ev.preventDefault(); var m=$("addMsg"); m.textContent="";
+    if(!db||!canWrite){ m.textContent="This view can't add to the board."; return; }
+    var title=$("addTitle").value.trim(); if(!title){ m.textContent="Type what you need to do."; return; }
+    var who=$("addWho").value.trim(), due=$("addDue").value||null;
+    var list=inNow()<CAP?"now":"later";
+    var at=new Date().toISOString();
+    db.collection("cards").add({title:title,who:who,why:"",kind:"owe",list:list,due:due,ready:"",link:null,key:"you|"+title.toLowerCase().slice(0,60),source:"you",pinned:list==="now",snoozeUntil:null,added:today(),closedAt:null,closedBy:null,closedNote:"",note:"",lastEditBy:"you",updatedAt:at})
+      .then(function(){ $("addForm").reset(); m.textContent=list==="now"?"":"Now is full, so it went to Later."; },function(){ m.textContent="That didn't save. Try again."; });
+  });
+
+  render();
+
+  // ---------- data ----------
+  if(!window.claude || typeof window.claude.use!=="function"){ loaded=true; setStatus("Open this page in Claude to see your board."); render(); return; }
+  var timer=setTimeout(function(){ setStatus("Can't reach your board yet. It fills in once the connection is back."); },10000);
+  window.claude.use("db").then(function(d){
+    if(!d){ clearTimeout(timer); loaded=true; canWrite=false; setStatus("Your board isn't available in this view. Open it from your Claude sidebar."); render(); return; }
+    db=d;
+    db.collection("cards").onSnapshot(function(snap){
+      cards=snap.docs.map(function(x){ return Object.assign({id:x.id},x.data()); });
+      loaded=true; clearTimeout(timer); setStatus(""); render();
+    },function(e){ clearTimeout(timer); loaded=true; setStatus("Your board stopped updating. Reload the page to reconnect."); render(); });
+    db.doc("meta/board").onSnapshot(function(s){ meta=s.exists?s.data():null; render(); },function(){});
+  });
+  window.claude.use("user").then(function(u){ if(!u) return; u.can("data.write").then(function(ok){ if(ok===false){ canWrite=false; render(); } },function(){}); });
+})();
+</script>

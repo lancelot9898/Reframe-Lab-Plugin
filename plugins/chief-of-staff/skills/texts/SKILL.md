@@ -1,11 +1,11 @@
 ---
 name: texts
-description: The text export for a real estate agent's chief of staff, Mac only. Twice a day a small program on their Mac copies new texts, with each person's name, into My Brain/Texts in their Google Drive. This walks them through installing it in Terminal one step at a time, checks it's working, changes who's left out, and reads their texts to say who's waiting on a reply and what they promised by text. Use when the agent says "set up my text export", "set up my texts", "connect my texts", "connect my iMessages", "read my texts", "check my texts", "who's waiting on a text from me", "what did I promise by text", "check my text export", "my texts stopped", "leave someone out of my texts", "turn off my text export", or types /texts. Reads only. Never sends a text.
+description: The text export for a real estate agent's chief of staff, Mac only. Four times a day a small program on their Mac copies new texts, with each person's name, into My Brain/Texts in their Google Drive. This walks them through installing it in Terminal one step at a time, checks it's working, changes who's left out, updates it to the current schedule, and reads their texts to say who's waiting on a reply and what they promised by text. Use when the agent says "set up my text export", "set up my texts", "connect my texts", "connect my iMessages", "read my texts", "check my texts", "who's waiting on a text from me", "what did I promise by text", "check my text export", "update my text export", "my texts stopped", "leave someone out of my texts", "turn off my text export", or types /texts. Reads only. Never sends a text.
 ---
 
 # Texts: your texts, for your chief of staff
 
-You're the agent's chief of staff. Clients text far more than they email, so promises and questions hide in Messages where you can't see them. A small program on their Mac fixes that. Twice a day it copies their new texts, with each person's name from Contacts, into My Brain/Texts in their Google Drive. You read that folder.
+You're the agent's chief of staff. Clients text far more than they email, so promises and questions hide in Messages where you can't see them. A small program on their Mac fixes that. Four times a day it copies their new texts, with each person's name from Contacts, into My Brain/Texts in their Google Drive. You read that folder.
 
 The program only reads Messages and Contacts. It never sends a text, and neither do you.
 
@@ -14,6 +14,7 @@ The program only reads Messages and Contacts. It never sends a text, and neither
 - **Set it up:** "set up my text export", "connect my texts". Go to Set it up.
 - **Read their texts:** "read my texts", "who's waiting on a text from me", "what did I promise by text". Go to Read their texts.
 - **Something's wrong:** "check my text export", "my texts stopped". Go to Check the export.
+- **Update it:** "update my text export", or their morning message said it has an update. Go to Update it.
 - **Change who's left out, or turn it off.** Go to Change or turn off.
 
 ## Set it up
@@ -47,9 +48,9 @@ bash <(curl -fsSL https://raw.githubusercontent.com/lancelot9898/Reframe-Lab-Plu
 6. **Full Disk Access, the one step only they can do.** Two windows open: System Settings, on Privacy & Security, then Full Disk Access, and a Finder window with the program selected, usually called reframe-texts (on some Macs it's bun; use the name Terminal shows). They drag it into the list in System Settings and switch it on. If dragging doesn't work, they click the plus button, press Command, Shift and G together, paste the path Terminal shows, press Return and click Open. If Terminal says this is a new copy of the program, they select the old entry, click the minus button, then add it again. If Terminal says nothing changed, there's nothing to do here. If the Mac asks for their password or Touch ID, that's the Mac asking. If it asks them to quit and reopen an app, they choose Later. If a notice says a background item was added, that's the program: leave it on.
 7. **Back in Terminal, press Return.** It copies the last 7 days of texts and should say "Done. It works." with how many texts it copied.
 8. **Check it together.** Open the newest "Texts" file in My Brain/Texts in their Google Drive. Check that people show up by name, not by phone number. A few numbers are normal for people not in Contacts. Then do Read their texts for the last 7 days.
-9. **Save one line to memory:** "Text export: set up [date], runs at 9:10 PM and 6:10 AM on their Mac, files in My Brain/Texts." Never save the names they left out.
+9. **Save one line to memory:** "Text export: set up [date], runs at 6:10 AM, 11:10 AM, 4:10 PM and 9:10 PM on their Mac, files in My Brain/Texts." Never save the names they left out.
 
-Tell them: "From now on it runs at 9:10 every evening and 6:10 every morning. If your Mac is asleep then, it runs when it wakes. Your morning message reads it."
+Tell them: "From now on it runs four times a day: 6:10 and 11:10 in the morning, 4:10 in the afternoon and 9:10 at night. If your Mac is asleep then, it runs when it wakes. Your morning message reads it."
 
 ### Never
 
@@ -94,6 +95,24 @@ Read `_status.md` in My Brain/Texts.
 - **`last_run` older than 2 days:** their Mac has been shut down since, or the program stopped. Ask them to open their Mac and wait a few minutes. If it still doesn't update, paste the install line again. It's safe to run again.
 - **`status: error`:** read the error line and match it to If something goes wrong.
 - **No `_status.md`:** it was never set up on this Google account, or Google Drive for desktop wasn't running when it tried. Ask them to open Google Drive for desktop. If it still doesn't appear by the next morning, offer to set it up.
+- **No `_schedule.md`, or it doesn't say `runs_per_day: 4`:** it's on the old twice-a-day schedule. Offer Update it.
+
+## Update it
+
+Their Mac keeps the schedule it was installed with, so moving to four times a day takes one more run of the install line. It takes about a minute. Because the program itself hasn't changed, they don't redo Full Disk Access. Give them one step at a time, and wait for them to say it's done:
+
+1. Open Terminal: press Command and Space, type Terminal, press Return.
+2. Paste the install line and press Return:
+
+```
+bash <(curl -fsSL https://raw.githubusercontent.com/lancelot9898/Reframe-Lab-Plugin/main/tools/text-export/install.sh)
+```
+
+3. Type yes and press Return.
+4. Press Return again to keep the people they leave out.
+5. Wait for "Done. It works." If Terminal shows the Full Disk Access step instead, their last run had failed. Follow step 6 of Set it up, then press Return in Terminal.
+
+Then open `_schedule.md` in My Brain/Texts and check it says `runs_per_day: 4`. Update the memory line to the new times. If anything else comes up, use If something goes wrong.
 
 ## Change or turn off
 

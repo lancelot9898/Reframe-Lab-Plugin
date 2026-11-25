@@ -1,7 +1,7 @@
 #!/bin/bash
 # Reframe Lab text export, for the Chief of Staff plugin.
 #
-# Twice a day, copies your new text messages, with each person's name, from the
+# Four times a day, copies your new text messages, with each person's name, from the
 # Messages app on this Mac into My Brain/Texts in your Google Drive, so your
 # chief of staff can see what you promised people by text. It only reads.
 # It never sends a text.
@@ -53,7 +53,7 @@ fi
 
 say "Reframe Lab text export"
 echo "This copies your new texts, with each person's name, into My Brain/Texts"
-echo "in your Google Drive twice a day, so your chief of staff can see them."
+echo "in your Google Drive four times a day, so your chief of staff can see them."
 echo "It only reads your texts. It never sends one."
 echo "Everything you text is included, unless you name people to leave out in a minute."
 echo ""
@@ -223,9 +223,9 @@ else
   FDA_NAME="bun"
 fi
 
-# ---------- 6. Schedule it: 9:10 PM, and 6:10 AM before the morning message ----------
-# The evening run catches the day's texts while the Mac is usually still open.
-# A Mac that's asleep at either time runs it when it wakes.
+# ---------- 6. Schedule it: 6:10 AM before the morning message, 11:10 AM, 4:10 PM and 9:10 PM ----------
+# The daytime runs keep texts fresh when they ask Claude during the day.
+# A Mac that's asleep at any of these times runs it when it wakes.
 cat > "$PLIST" <<PLISTEOF
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -240,6 +240,14 @@ $PROG_XML
   <array>
     <dict>
       <key>Hour</key><integer>6</integer>
+      <key>Minute</key><integer>10</integer>
+    </dict>
+    <dict>
+      <key>Hour</key><integer>11</integer>
+      <key>Minute</key><integer>10</integer>
+    </dict>
+    <dict>
+      <key>Hour</key><integer>16</integer>
       <key>Minute</key><integer>10</integer>
     </dict>
     <dict>
@@ -265,6 +273,10 @@ if ! launchctl print "gui/$UID_NUM/$LABEL" >/dev/null 2>&1; then
   echo "Open System Settings, then General, then Login Items."
   echo "Under Allow in the Background, switch on reframe-texts (it may show as bun). Then run this installer again."
   exit 1
+fi
+# Tell the chief of staff which schedule this Mac is on, so the morning message knows it's current.
+if [ "$MODE" = "install" ]; then
+  printf -- '---\nruns_per_day: 4\ntimes: "6:10 AM, 11:10 AM, 4:10 PM, 9:10 PM"\nset_up: %s\n---\n\nThe text export on this Mac runs at 6:10 AM, 11:10 AM, 4:10 PM and 9:10 PM.\n' "$(date '+%Y-%m-%d %H:%M')" > "$OUT_DIR/_schedule.md" 2>/dev/null || true
 fi
 
 # ---------- 7. Full Disk Access, the one step only you can do ----------
@@ -352,7 +364,8 @@ if [ "$RESULT" = "ok" ]; then
   if [ "$MODE" = "test" ]; then
     echo "This was a test run, so nothing is scheduled. Run the installer without --test to make it daily."
   else
-    echo "From now on it runs at 9:10 every evening and 6:10 every morning. If your Mac is asleep then, it runs when it wakes."
+    echo "From now on it runs four times a day: 6:10 and 11:10 in the morning, 4:10 in the afternoon and 9:10 at night."
+    echo "If your Mac is asleep then, it runs when it wakes."
     echo "Install it on one Mac only."
   fi
 else

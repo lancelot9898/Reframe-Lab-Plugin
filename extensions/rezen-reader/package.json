@@ -1,0 +1,14 @@
+{
+  "name": "rezen-reader",
+  "version": "0.1.0",
+  "description": "Read-only Claude Desktop extension for Real's reZEN: your transactions, one deal's dates and people, its checklist. Never writes.",
+  "type": "module",
+  "main": "server/index.js",
+  "license": "MIT",
+  "private": true,
+  "author": "Lance Pendleton",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "zod": "^3.25.0"
+  }
+}

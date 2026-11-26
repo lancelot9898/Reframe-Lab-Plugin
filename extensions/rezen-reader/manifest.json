@@ -1,0 +1,50 @@
+{
+  "manifest_version": "0.2",
+  "name": "rezen-reader",
+  "display_name": "reZEN reader",
+  "version": "0.1.0",
+  "description": "Lets your chief of staff read your deals in reZEN: open transactions, contract dates, who is on each file, and the checklist. Read-only. It never creates, edits, sends or signs anything.",
+  "long_description": "A read-only window into Real's reZEN for the Reframe Lab Chief of Staff. Generate an API key in reZEN (three-dot menu, Security Settings, Recent API Key, Generate Key), paste it here once, and Claude can answer: where are we on the Johnsons, what is still open on the contract, what closes in the next ten days. The key is stored in your computer's keychain, never in a file. Nothing is ever written to reZEN. Commission and payout figures are left out unless you ask for them.",
+  "author": {
+    "name": "Lance Pendleton",
+    "url": "https://lancependleton.com"
+  },
+  "homepage": "https://github.com/lancelot9898/Reframe-Lab-Plugin",
+  "license": "MIT",
+  "keywords": ["real estate", "reZEN", "Real Brokerage", "transactions", "chief of staff"],
+  "server": {
+    "type": "node",
+    "entry_point": "server/index.js",
+    "mcp_config": {
+      "command": "node",
+      "args": ["${__dirname}/server/index.js"],
+      "env": {
+        "REZEN_API_KEY": "${user_config.api_key}"
+      }
+    }
+  },
+  "tools": [
+    { "name": "rezen_me", "description": "Who you are in reZEN: your agent id, team and office." },
+    { "name": "rezen_transactions", "description": "Your open deals and active listings, one line each." },
+    { "name": "rezen_transaction", "description": "One deal in full: dates, people, status, checklist id." },
+    { "name": "rezen_checklist", "description": "A deal's checklist: every item, its status, required, due date." },
+    { "name": "rezen_team", "description": "Your team and the agents on it." }
+  ],
+  "tools_generated": false,
+  "user_config": {
+    "api_key": {
+      "type": "string",
+      "title": "Your reZEN API key",
+      "description": "In reZEN, click the three dots, then Security Settings, then Recent API Key, then Generate Key. Copy it here. It stays in your computer's keychain.",
+      "sensitive": true,
+      "required": true
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["darwin", "win32"],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
+  }
+}

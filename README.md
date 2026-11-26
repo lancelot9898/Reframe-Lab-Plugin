@@ -30,6 +30,7 @@ Everything else arrives on a schedule or starts when you ask in plain words.
 - /today gives you your morning message any time: the three things that matter today, your appointments, your deal dates, and the replies you owe, drafted.
 - /meeting turns a voice note, a transcript or a recording into a follow-up draft, reminders on your calendar, and a note in the client's folder.
 - /client and a name, such as /client Bob Johnson, shows everything Claude knows about that client on one page. Say "prep me for my 2:00" and it makes the prep page for that appointment.
+- /deal and a client or an address, such as /deal 381 South Ames, shows where that deal stands: the dates, what's still open on the contract, what was promised, and the next step. /deals is the whole board. Both read reZEN when the reZEN reader is installed (Real agents, below).
 
 ## What arrives on its own
 
@@ -42,8 +43,18 @@ Everything else arrives on a schedule or starts when you ask in plain words.
 
 - **Week 1, it learns you:** setup (the interview), brand (your brand kit), people (My People, from your CRM or an export), today (your morning message).
 - **Week 2, your day:** meeting (after every conversation, from a voice note or Plaud, Zoom, Fathom, Granola, Otter or Fireflies), client (one page on anyone, and prep pages), backup (a monthly copy of what Claude remembers).
-- **Week 3, your people and your listings:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents), texts (your text messages, on a Mac, through the text export in tools/text-export), board (My Board, pinned in your Claude sidebar: five things in Now at most, filled and cleared every weekday morning, with the Friday scoreboard).
+- **Week 3, your people, your listings and your deals:** monday (the Monday report), seller-update (the Monday letter to each seller), rates (notes to paused buyers when rates move), market (a market report when you need one), compass (the weekly Compass check, for Compass agents), texts (your text messages, on a Mac, through the text export in tools/text-export), board (My Board, pinned in your Claude sidebar: five things in Now at most, filled and cleared every weekday morning, with the Friday scoreboard), under-contract (the ten-minute setup when a contract is accepted: dates on your calendar, the client's what-happens-next email and the TC handoff drafted, the deal file started), deal (where one deal stands), deals (the board).
 - **Week 4, your marketing:** marketing (the monthly review, posts and newsletter), cma (a CMA), inspection (the inspection response).
+
+## For Real agents: the reZEN reader
+
+If you're at Real, your chief of staff can read your deals in reZEN: open transactions, contract dates, who's on each file, and the compliance checklist. It is read-only. It never creates, edits, sends or signs anything in reZEN, and it leaves commission figures out unless you ask.
+
+1. In reZEN, click the three dots at the top right, then Security Settings, then Recent API Key, then Generate Key. Copy the key.
+2. Download `rezen-reader.mcpb` from this repository's Releases page and double-click it. The Claude desktop app opens and asks for the key. Paste it. It is stored in your computer's keychain, not in a file.
+3. In a new chat, type /deals. If it lists your open deals, you're done.
+
+Your key is yours alone. Nobody on the team, including Lance, can see it or your deals through it. If you ever want to turn it off, remove the extension in Plugins, then generate a new key in reZEN so the old one is dead.
 
 ## It drafts. You send.
 
